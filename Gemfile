@@ -2,7 +2,7 @@ source "https://rubygems.org"
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
 # file and run `bundle install`.
-gem "jekyll", "~> 4.3.2"
+gem "jekyll", "~> 4.3.4"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
