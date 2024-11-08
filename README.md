@@ -2,23 +2,19 @@
 
 ## Dependencies
 
-- Ruby 
-- Jekyll `gem install bundler jekyll`
-
-> Tip: Ensure installed gems are on your path. Use `gem environment` to find out location of installed gems
+- Ruby (easily managed with rbenv)
 
 ## Local development
 
-Run `start.sh`
+Run `gem install bundler`
+Run `bundle install`
+Run `./start.sh`
 
 Tested with
 ```
 > ruby -v
-ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux]
-
-> jekyll -v
-jekyll 4.0.0
+ruby 3.1.6p260 (2024-05-29 revision a777087be6) [x86_64-linux]
 
 > bundler -v
-Bundler version 2.1.4
+Bundler version 2.4.18
 ```
