@@ -1,9 +1,40 @@
 ---
 title: About - European Ordination Program
 layout: base
+itinerary:
+  headers: [Date, "&nbsp&nbspActivity"]
+  rows:
+    - [2 June, "&nbsp&nbspRegistration"]
+    - [8 June, "&nbsp&nbspOrdination day"]
+    - [9-15 June, "&nbsp&nbspMeditation retreat"]
+    - [16 -22 June, "&nbsp&nbspReturn to local Temple or disrobing"]
 ---
+<div id="index-header"></div>
 <div class="container">
-  <h1 class="display-3 mt-5">What is the European Ordination Program?</h1>
+  <p class="lead mt-5">
+    While many are searching for peace outside, we believe that world peace MUST begin from each and everyone of us.
+    That is why we promote the use of meditation in order to help individuals cultivate peace from within.
+  </p>
+  <p>
+    Open to men of all ethnicities and backgrounds, the European Ordination Program provides the opportunity to
+    learn about Buddhism and a monk's way of life. Taking part in the experience will aid in the cultivation of one's
+    inner peace.
+  </p>
+  <p>
+    The Dhammakaya Foundation is a non-profit organisation, based on personal development, aiming to promote activities
+    for the restoration of morality in individuals, families, societies, and the world.
+  </p>
+  <h1 class="text-center mt-5">Latest news and announcements</h1>
+  <p>
+    The ordination program for 2025 will be held in in Wat Phra Dhammakaya London, between
+    2<sup>nd</sup>-22<sup>nd</sup> June 2025.
+  </p>
+  {% include table.html table=page.itinerary %}
+  <p class="mt-3">
+    Latest news and announcements can be found on our
+    <a href="https://chat.whatsapp.com/KVo372q1OoPFKYfjVtVU6T">Whatsapp group</a>
+  </p>
+  <h1 class="text-center mt-5">What is the European Ordination Program?</h1>
   <p>
     The European Ordination Program (EOP) has been established by the vision of Luang Por Dhammajayo, the Abbot of Wat
     Phra Dhammakaya, to introduce Buddhism to the people in The European Union (EU), and others around the world. The
@@ -82,13 +113,6 @@ layout: base
     The ordination program for 2025 will be held in in Wat Phra Dhammakaya London, between
     2<sup>nd</sup>-22<sup>nd</sup> June 2025.
   </p>
-  <h2>Previous programs</h2>
-  <p>
-    The European ordination program started in 2012 and has been running since.
-  </p>
-  <p>
-    <a class="btn btn-primary" href="{{ "/about/previous-programs" | relative_url }}">See all previous programs</a>
-  </p>
   <h2>Things to do before your arrival</h2>
   <p>
     You will need to memorise some text for the ordination ceremony
@@ -105,4 +129,106 @@ layout: base
     Click on the registration button below and fill out the form to join the ordination program
   </p>
   <a class="btn btn-primary" href="{{ "/sign-up/" | relative_url }}">Register</a>
+  <h1 class="text-center mt-5">European Ordination Program 2023</h1>
+  <p>
+    Between 8<sup>th</sup>-30<sup>th</sup> July 2023, the ninth batch of EOP was ordinated at Wat Phra Dhammakaya
+    Benelux and trained by experienced teaching monks at Wat Dhammakaya Korsør Lystskov.
+  </p>
+  <div class="row">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/1.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/2.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/3.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/4.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/5.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/6.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/7.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/8.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/9.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/10.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/11.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/12.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/13.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/14.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/15.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/16.jpg" | relative_url }}">
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/17.jpg" | relative_url }}">
+  </div>
+  <p class="text-center mt-3">
+    <a class="btn btn-primary" href="{{ "/about/previous-programs" | relative_url }}">See previous programs</a>
+  </p>
+  <h1 class="text-center mt-5">Temples in Europe</h1>
+  <div class="row">
+    <div class="col-12 px-3"><h4 class="mb-0">🇦🇹 Austria</h4></div>
+    {% for temple in site.data.temples.austria %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇧🇪 Belgium</h4></div>
+    {% for temple in site.data.temples.belgium %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇩🇰 Denmark</h4></div>
+    {% for temple in site.data.temples.denmark %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇫🇷 France</h4></div>
+    {% for temple in site.data.temples.france %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇩🇪 Germany</h4></div>
+    {% for temple in site.data.temples.germany %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇮🇸 Iceland</h4></div>
+    {% for temple in site.data.temples.iceland %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇮🇹 Italy</h4></div>
+    {% for temple in site.data.temples.italy %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇳🇱 Netherlands</h4></div>
+    {% for temple in site.data.temples.netherlands %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇳🇴 Norway</h4></div>
+    {% for temple in site.data.temples.norway %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇸🇪 Sweden</h4></div>
+    {% for temple in site.data.temples.sweden %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇨🇭 Switzerland</h4></div>
+    {% for temple in site.data.temples.switzerland %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇬🇧 United Kingdom</h4></div>
+    {% for temple in site.data.temples.united_kingdom %}
+    <div class="col-6 col-md-6 px-3">
+      {% include card.html title=temple.title content=temple.content %}
+    </div>
+    {% endfor %}
+  </div>
 </div>

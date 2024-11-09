@@ -1,0 +1,30 @@
+<div class="row flex-grow-1" id="{{ include.id }}">
+  <!-- xs sm -->
+  <div class="d-md-none col-12 d-flex flex-column justify-content-center">
+    <div class="display-6 pb-4">
+      {{ include.title }}
+    </div>
+    <div class="ratio ratio-16x9">
+      <iframe
+        class="rounded" src="{{ include.src }}" title="YouTube video player" frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+  <!-- md and wider -->
+  <div class="d-none d-md-flex col-12 col-md-7 align-items-center justify-content-center">
+    <div class="ratio ratio-16x9">
+      <iframe
+        class="rounded" src="{{ include.src }}" title="YouTube video player" frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+  <div class="d-none d-md-flex col-12 col-md-5 flex-column justify-content-center text-end">
+    <div class="display-6">
+      {{ include.title }}
+    </div>
+  </div>
+</div>

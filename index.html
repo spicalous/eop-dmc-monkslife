@@ -1,157 +1,63 @@
 ---
 title: European Ordination Program
 layout: base
-itinerary:
-  headers: [Date, "&nbsp&nbspActivity"]
-  rows:
-    - [2 June, "&nbsp&nbspRegistration"]
-    - [8 June, "&nbsp&nbspOrdination day"]
-    - [9-15 June, "&nbsp&nbspMeditation retreat"]
-    - [16 -22 June, "&nbsp&nbspReturn to local Temple or disrobing"]
 ---
-<div id="index-header"></div>
-<h1 class="display-1 text-center my-5">European Ordination Program</h1>
-<img class="img-fluid w-100" src="assets/images/index-banner.png"/>
 <div class="container">
-  <p class="lead mt-3">
-    While many are searching for peace outside, we believe that world peace MUST begin from each and everyone of us.
-    That is why we promote the use of meditation in order to help individuals cultivate peace from within.
-  </p>
-  <p>
-    Open to men of all ethnicities and backgrounds, the European Ordination Program provides the opportunity to
-    learn about Buddhism and a monk's way of life. Taking part in the experience will aid in the cultivation of one's
-    inner peace.
-  </p>
-  <p>
-    The Dhammakaya Foundation is a non-profit organisation, based on personal development, aiming to promote activities
-    for the restoration of morality in individuals, families, societies, and the world.
-  </p>
-  <p class="text-center">
-    <a class="btn btn-primary" href="{{ "/about/" | relative_url }}">Read more about the program</a>
-  </p>
-  <h1 class="text-center mt-5">Latest news and announcements</h1>
-  <p>
-    The ordination program for 2025 will be held in in Wat Phra Dhammakaya London, between
-    2<sup>nd</sup>-22<sup>nd</sup> June 2025.
-  </p>
-  {% include table.html table=page.itinerary %}
-  <p class="mt-3">
-    Latest news and announcements can be found on our
-    <a href="https://chat.whatsapp.com/KVo372q1OoPFKYfjVtVU6T">Whatsapp group</a>
-  </p>
-  <h1 class="text-center mt-5">European Ordination Program 2023</h1>
-  <p>
-    Between 8<sup>th</sup>-30<sup>th</sup> July 2023, the ninth batch of EOP was ordinated at Wat Phra Dhammakaya
-    Benelux and trained by experienced teaching monks at Wat Dhammakaya Korsør Lystskov.
-  </p>
-  <div class="row">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/1.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/2.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/3.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/4.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/5.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/6.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/7.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/8.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/9.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/10.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/11.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/12.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/13.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/14.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/15.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/16.jpg" | relative_url }}">
-    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ "assets/images/2023/17.jpg" | relative_url }}">
+  <div class="min-vh-100 d-flex flex-column">
+    <div class="row flex-grow-1" id="choosing-the-monastic-life">
+      <div class="col-12 col-md-5 d-flex align-items-end align-items-md-center">
+        <img src="{{ "assets/images/Mass-Ordination-4.webp" | relative_url }}" class="img-fluid rounded mx-auto d-block shadow opacity-75 z-n1" alt="...">
+      </div>
+      <div class="col-12 col-md-7 d-flex flex-column justify-content-center">
+        <div class="display-3">
+          Choosing the monastic life
+        </div>
+        <p>
+          Why were we born? What is our purpose in life? How do we attain Happiness in life? What did the Buddha teach?
+        </p>
+      </div>
+    </div>
+    {% include next-section-link.html link-href="#path-of-ordination" link-text="The path of ordination" %}
   </div>
-  <p class="text-center mt-3">
-    <a class="btn btn-primary" href="{{ "/about/previous-programs" | relative_url }}">See all previous programs</a>
-  </p>
-  <h1 class="text-center mt-5">Temples in Europe</h1>
-  <div class="row">
-
-    <div class="col-12 px-3"><h4 class="mb-0">🇦🇹 Austria</h4></div>
-    {% for temple in site.data.temples.austria %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
+  <div class="min-vh-100 d-flex flex-column">
+    {% include index-title-video.html id="path-of-ordination"
+                                      src="https://www.youtube-nocookie.com/embed/p_iDIYavbwU"
+                                      title="The path of ordination"
+    %}
+    {% include next-section-link.html link-href="#why-ordain" link-text="Why ordain?" %}
     </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇧🇪 Belgium</h4></div>
-    {% for temple in site.data.temples.belgium %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
+  <div class="min-vh-100 d-flex flex-column">
+    {% include index-video-title.html id="why-ordain"
+                                      src="https://www.youtube-nocookie.com/embed/U5VxytexduI"
+                                      title="Why ordain as a monk?"
+    %}
+    {% include next-section-link.html link-href="#steps-to-ordination" link-text="Steps to ordaining" %}
+  </div>
+  <div class="min-vh-100 d-flex flex-column">
+    {% include index-title-video.html id="steps-to-ordination"
+                                      src="https://www.youtube-nocookie.com/embed/iNUeMI4GzU8"
+                                      title="The steps in ordaining"
+    %}
+    {% include next-section-link.html link-href="#inspiration" link-text="Inspiration" %}
+  </div>
+  <div class="min-vh-100 d-flex flex-column">
+    {% include index-video-title.html id="inspiration"
+                                      src="https://www.youtube-nocookie.com/embed/3kiXPFnRLxU"
+                                      title="What inspired you to enter the Buddhist monkhood?"
+    %}
+    {% include next-section-link.html link-href="#benefits" link-text="Benefits" %}
+  </div>
+  <div class="min-vh-100 d-flex flex-column">
+    {% include index-title-video.html id="benefits"
+                                      src="https://www.youtube-nocookie.com/embed/G7s6eyVNwkw"
+                                      title="Stress and how meditation can relieve it"
+    %}
+    <div class="row text-center flex-grow-0">
+      <a href="#choosing-the-monastic-life" class="link-underline link-underline-opacity-0 py-2 lead">
+        Back to top
+        <br>
+        {% include icons/arrow-up.html %}
+      </a>
     </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇩🇰 Denmark</h4></div>
-    {% for temple in site.data.temples.denmark %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇫🇷 France</h4></div>
-    {% for temple in site.data.temples.france %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇩🇪 Germany</h4></div>
-    {% for temple in site.data.temples.germany %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇮🇸 Iceland</h4></div>
-    {% for temple in site.data.temples.iceland %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇮🇹 Italy</h4></div>
-    {% for temple in site.data.temples.italy %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇳🇱 Netherlands</h4></div>
-    {% for temple in site.data.temples.netherlands %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇳🇴 Norway</h4></div>
-    {% for temple in site.data.temples.norway %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇸🇪 Sweden</h4></div>
-    {% for temple in site.data.temples.sweden %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇨🇭 Switzerland</h4></div>
-    {% for temple in site.data.temples.switzerland %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
-    <div class="col-12 px-3"><h4 class="mb-0 mt-4">🇬🇧 United Kingdom</h4></div>
-    {% for temple in site.data.temples.united_kingdom %}
-    <div class="col-6 col-md-6 px-3">
-      {% include card.html title=temple.title content=temple.content %}
-    </div>
-    {% endfor %}
-
   </div>
 </div>
