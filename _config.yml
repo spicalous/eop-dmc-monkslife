@@ -10,5 +10,3 @@ nav_list:
     nav_title: "About"
   - path: sign-up.html
     nav_title: "Sign up"
-  - path: mailing-list.html
-    nav_title: "Mailing list"
