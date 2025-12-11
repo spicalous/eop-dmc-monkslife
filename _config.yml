@@ -5,6 +5,6 @@ permalink: "pretty"
 
 nav_list:
   - path: index.html
-    nav_title: "Home"
+    nav_title: "Being a Monk"
   - path: about/index.html
-    nav_title: "About"
+    nav_title: "Program details"
