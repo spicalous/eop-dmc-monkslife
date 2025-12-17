@@ -8,5 +8,7 @@ nav_list:
     nav_title: "Being a Monk"
   - path: about/index.html
     nav_title: "Program details"
+  - path: media/index.html
+    nav_title: "Media"
 
 form_link: https://forms.gle/KxcHbeLUMkrtbVQ68
