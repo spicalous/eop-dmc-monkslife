@@ -49,7 +49,8 @@ a {
 a:hover {
   color: shift-color($orange-700, 20%);
 }
-.nav-item .nav-link {
+.nav-item .nav-link,
+.nav-item .nav-link.show {
   color: shade-color($orange-600, 10%);
 }
 .nav-item .nav-link.active {
@@ -65,4 +66,10 @@ a:hover {
   background-position: center;
   margin-top: 40px;
   height: 320px;
+}
+
+.offset-anchor-for-fixed-nav {
+  position: relative;
+  top: -60px; /* nav height */
+  visibility: hidden;
 }

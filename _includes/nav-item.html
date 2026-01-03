@@ -1,6 +1,6 @@
 {% assign matching_page = site.pages | where: "path", include.path | first %}
 {% if matching_page %}
-<li class="nav-item text-center">
+<li class="nav-item text-center{{ include.extra_classes }}">
   <a class="nav-link{% if matching_page.path == page.path %} active{% endif %}" href="{{ matching_page.url | relative_url }}" {% if matching_page.path == page.path %}aria-current="page"{% endif %}>
     {{ include.nav_title }}
   </a>
