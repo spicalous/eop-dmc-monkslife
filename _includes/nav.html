@@ -8,14 +8,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        {% for nav in site.nav_list %}
-          {% assign matching_page = site.pages | where: "path", nav.path | first %}
-          {% if matching_page %}
-            <li class="nav-item text-center">
-              <a class="nav-link{% if matching_page.path == page.path %} active{% endif %}" href="{{ matching_page.url | relative_url }}" {% if matching_page.path == page.path %}aria-current="page"{% endif %}>{{ nav.nav_title }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
+        {% include nav-item.html path="index.html" nav_title="Being a Monk" %}
+        {% include nav-item.html path="about/index.html" nav_title="Program details" %}
+        {% include nav-item.html path="media/index.html" nav_title="Media" %}
         <li class="nav-item text-center">
           <a class="nav-link d-inline-flex align-items-baseline" href="{{ site.form_link }}" target="_blank" rel="noopener noreferrer">
             Apply
