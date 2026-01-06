@@ -9,15 +9,19 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         {% include nav-item.html path="index.html" nav_title="Being a Monk" %}
-        {% assign matching_page = site.pages | where: "path", "about/index.html" | first %}
+
+        {% assign about_index_page = site.pages | where: "path", "about/index.html" | first %}
+        {% assign target_paths = "about/index.html,about/teachers.html" | split: "," %}
         <li class="nav-item dropdown d-none d-sm-block">
-          <a class="nav-link dropdown-toggle{% if matching_page.path == page.path %} active{% endif %}" data-bs-toggle="dropdown" href="{{ matching_page.url | relative_url }}" {% if matching_page.path == page.path %}aria-current="page"{% endif %} role="button" aria-expanded="false">Program details</a>
+          <a class="nav-link dropdown-toggle{% if target_paths contains page.path %} active{% endif %}" data-bs-toggle="dropdown" href="{{ about_index_page.url | relative_url }}" {% if about_index_page.path == page.path %}aria-current="page"{% endif %} role="button" aria-expanded="false">Program details</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ matching_page.url | relative_url }}">About</a></li>
-            <li><a class="dropdown-item" href="{{ matching_page.url | relative_url }}#program-details--latest-news">Latest news</a></li>
-            <li><a class="dropdown-item" href="{{ matching_page.url | relative_url }}#program-details--what-is-the-eop">What is the EOP?</a></li>
+            <li><a class="dropdown-item" href="{{ about_index_page.url | relative_url }}">About</a></li>
+            <li><a class="dropdown-item" href="{{ about_index_page.url | relative_url }}#program-details--latest-news">Latest news</a></li>
+            <li><a class="dropdown-item" href="{{ about_index_page.url | relative_url }}#program-details--what-is-the-eop">What is the EOP?</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ matching_page.url | relative_url }}#program-details--temples-in-europe">Temples in Europe</a></li>
+            <li><a class="dropdown-item" href="{{ "about/teachers/index.html" | relative_url }}">Teachers</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ about_index_page.url | relative_url }}#program-details--temples-in-europe">Temples in Europe</a></li>
           </ul>
         </li>
         {% include nav-item.html path="about/index.html" nav_title="Program details" extra_classes=" d-sm-none" %}
