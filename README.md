@@ -13,8 +13,5 @@ Run `./start.sh`
 Tested with
 ```
 > ruby -v
-ruby 3.1.6p260 (2024-05-29 revision a777087be6) [x86_64-linux]
-
-> bundler -v
-Bundler version 2.4.18
+ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [x86_64-linux]
 ```
