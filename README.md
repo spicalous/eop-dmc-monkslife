@@ -1,4 +1,4 @@
-# eop-website
+# european-ordination-program-website
 
 ## Dependencies
 
