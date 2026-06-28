@@ -1,0 +1,32 @@
+// Media gallery tiles.
+// Photos are shown as uniform 3:2 tiles (cropped with object-fit) so mixed
+// landscape/portrait sources line up. While a lazy-loaded photo is still
+// downloading, an animated shimmer placeholder is shown; the opaque photo
+// paints over it once loaded.
+.gallery-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background-color: var(--bs-gray-200);
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: gallery-shimmer 1.4s linear infinite;
+}
+
+@keyframes gallery-shimmer {
+  from { background-position: 150% 0; }
+  to   { background-position: -50% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-img {
+    animation: none;
+  }
+}

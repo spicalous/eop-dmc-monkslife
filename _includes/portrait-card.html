@@ -1,5 +1,5 @@
 <div class="portrait-card">
-  <img class="img-fluid" src="{{ include.person.portraitURL | relative_url }}" />
+  <img class="img-fluid" src="{{ include.person.portraitURL | relative_url }}" loading="lazy" decoding="async" />
   <div>{{ include.person.name }}</div>
   <div>{{ include.person.location }}</div>
   <div>{{ include.person.flag }}</div>

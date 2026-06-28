@@ -19,6 +19,7 @@ $orange-A700: #FF6D00;
 
 @import "includes/footer";
 @import "includes/portrait-card";
+@import "includes/gallery";
 
 @function to-rgb($value) {
   @return color.channel($value, "red", $space: rgb), color.channel($value, "green", $space: rgb), color.channel($value, "blue", $space: rgb);
