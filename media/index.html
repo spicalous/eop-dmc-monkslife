@@ -4,6 +4,28 @@ todo: assets/images/2025/1754779983024.jpg
 title: Media - European Ordination Program
 layout: base
 images:
+  2026:
+    - assets/images/2026/01.jpeg
+    - assets/images/2026/02.jpeg
+    - assets/images/2026/03.jpeg
+    - assets/images/2026/04.jpeg
+    - assets/images/2026/05.jpeg
+    - assets/images/2026/06.jpeg
+    - assets/images/2026/07.jpeg
+    - assets/images/2026/08.jpeg
+    - assets/images/2026/09.jpeg
+    - assets/images/2026/10.jpeg
+    - assets/images/2026/11.jpeg
+    - assets/images/2026/12.jpeg
+    - assets/images/2026/13.jpeg
+    - assets/images/2026/14.jpeg
+    - assets/images/2026/15.jpeg
+    - assets/images/2026/16.jpeg
+    - assets/images/2026/17.jpeg
+    - assets/images/2026/18.jpeg
+    - assets/images/2026/19.jpeg
+    - assets/images/2026/20.jpeg
+    - assets/images/2026/21.jpeg
   2025:
     - assets/images/2025/1754780415260-min.jpg
     - assets/images/2025/1754780574722-min.jpg
@@ -79,6 +101,17 @@ images:
     - assets/images/2019/misc/10.jpg
 ---
 <div class="container mt-5">
+  <h1 class="display-2 pt-5">
+    European Ordination Program 2026
+  </h1>
+  <p>
+
+  </p>
+  <div class="row">
+    {% for src in page.images[2026] %}
+    <img class="p-3 col-12 col-sm-6 img-fluid" src="{{ src | relative_url }}">
+    {% endfor %}
+  </div>
   <h1 class="display-2 pt-5">
     European Ordination Program 2025
   </h1>
