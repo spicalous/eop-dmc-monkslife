@@ -1,6 +1,5 @@
 ---
 ---
-@use "sass:color";
 $gutter-width: 16px;
 $orange-50: #FFF3E0;
 $orange-100: #FFE0B2;
@@ -22,16 +21,16 @@ $orange-A700: #FF6D00;
 @import "includes/gallery";
 
 @function to-rgb($value) {
-  @return color.channel($value, "red", $space: rgb), color.channel($value, "green", $space: rgb), color.channel($value, "blue", $space: rgb);
+  @return red($value), green($value), blue($value);
 }
 @function tint-color($color, $weight) {
-  @return color.mix(white, $color, $weight);
+  @return mix(white, $color, $weight);
 }
 @function shade-color($color, $weight) {
-  @return color.mix(black, $color, $weight);
+  @return mix(black, $color, $weight);
 }
 @function shift-color($color, $weight) {
-  @return if(sass($weight > 0): shade-color($color, $weight); else: tint-color($color, -$weight));
+  @return if($weight > 0, shade-color($color, $weight), tint-color($color, -$weight));
 }
 
 .btn-primary {
@@ -39,7 +38,7 @@ $orange-A700: #FF6D00;
   --bs-btn-border-color: #{$orange-600};
   --bs-btn-hover-bg: #{tint-color($orange-600, 15%)};
   --bs-btn-hover-border-color: #{tint-color($orange-600, 10%)};
-  --bs-btn-focus-shadow-rgb: #{to-rgb(color.mix($orange-600, $orange-600, 15%))};
+  --bs-btn-focus-shadow-rgb: #{to-rgb(mix($orange-600, $orange-600, 15%))};
   --bs-btn-active-bg: #{tint-color($orange-600, 10%)};
   --bs-btn-active-border-color: #{tint-color($orange-600, 20%)};
   --bs-btn-disabled-bg: #{$orange-600};
