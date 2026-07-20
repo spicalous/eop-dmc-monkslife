@@ -109,11 +109,34 @@ images:
     8<sup>th</sup>-28<sup>th</sup> June 2026.
   </p>
   <div class="row">
+    <div class="col-12 p-3">
+      <div class="ratio ratio-16x9">
+        <iframe
+            class="rounded" src="https://www.youtube-nocookie.com/embed/mA6R8_K2Kb0?si=W121NrcqDxxEREXM"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     {% for src in page.images[2026] %}
     <div class="col-12 col-sm-6 p-3">
       <img class="gallery-img" src="{{ src | relative_url }}" {% if forloop.index <= 6 %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
     </div>
     {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-12 p-3">
+      <div class="ratio ratio-16x9">
+        <iframe
+            class="rounded" src="https://www.youtube-nocookie.com/embed/QC0HZYnOhaE?si=LhQ8aQ2bSQL-r54u"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
   <h1 class="display-2 pt-5">
     European Ordination Program 2025
