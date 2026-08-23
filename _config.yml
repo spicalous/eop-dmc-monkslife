@@ -1,6 +1,0 @@
-exclude: ["README.md", "eop-website.iml", "assets-original", "start.sh"]
-sass:
-  sass_dir: "_scss"
-permalink: "pretty"
-
-form_link: https://forms.gle/KxcHbeLUMkrtbVQ68

@@ -1,0 +1,21 @@
+{
+  "name": "eop-dmc-monkslife",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "7.1.6",
+    "bootstrap": "5.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0"
+  }
+}
