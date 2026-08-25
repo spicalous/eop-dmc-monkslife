@@ -1,5 +1,10 @@
 ---
+import { Image } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
+import lpRonnapop from '../../assets/images/teachers/lp-ronnapop.jpeg'
+import lpPisit from '../../assets/images/teachers/lp-pisit.png'
+import lpSander from '../../assets/images/teachers/lp-sander.jpeg'
+import lpPuttipong from '../../assets/images/teachers/lp-puttipong.jpeg'
 ---
 
 <Base title="Teachers - European Ordination Program">
@@ -7,7 +12,15 @@ import Base from '../../layouts/Base.astro'
     <div class="display-1 text-center py-5">Teachers</div>
     <div class="row">
       <div class="col-6 offset-3 col-lg-4 offset-lg-4">
-        <img class="img-fluid rounded shadow" src="/assets/images/teachers/lp-ronnapop.jpeg" alt="Portrait of Phra Khru Vithet Sutakom">
+        <Image
+          class="img-fluid rounded shadow"
+          src={lpRonnapop}
+          widths={[300, 450, 600]}
+          sizes="(min-width: 992px) 33vw, 50vw"
+          format="webp"
+          alt="Portrait of Phra Khru Vithet Sutakom"
+          loading="lazy"
+        />
       </div>
       <h2 class="my-3 text-center">Phra Khru Vithet Sutakom<br>(Ronnapop Jotilabho)</h2>
       <div class="col-12">
@@ -42,7 +55,15 @@ import Base from '../../layouts/Base.astro'
     <hr class="my-5">
     <div class="row">
       <div class="col-6 offset-3 col-lg-4 offset-lg-4">
-        <img class="img-fluid rounded shadow" src="/assets/images/teachers/lp-pisit.png" alt="Portrait of Venerable Pisit Jittasutdho">
+        <Image
+          class="img-fluid rounded shadow"
+          src={lpPisit}
+          widths={[300, 450, 600]}
+          sizes="(min-width: 992px) 33vw, 50vw"
+          format="webp"
+          alt="Portrait of Venerable Pisit Jittasutdho"
+          loading="lazy"
+        />
       </div>
       <h2 class="my-3 text-center">Venerable Pisit Jittasutdho</h2>
       <div class="col-12">
@@ -76,7 +97,15 @@ import Base from '../../layouts/Base.astro'
     <hr class="my-5">
     <div class="row">
       <div class="col-6 offset-3 col-lg-4 offset-lg-4">
-        <img class="img-fluid rounded shadow" src="/assets/images/teachers/lp-sander.jpeg" alt="Portrait of Venerable Sander Khemadhammo">
+        <Image
+          class="img-fluid rounded shadow"
+          src={lpSander}
+          widths={[300, 450, 600]}
+          sizes="(min-width: 992px) 33vw, 50vw"
+          format="webp"
+          alt="Portrait of Venerable Sander Khemadhammo"
+          loading="lazy"
+        />
       </div>
       <h2 class="my-3 text-center">Venerable Sander Khemadhammo</h2>
       <div class="col-12">
@@ -99,7 +128,15 @@ import Base from '../../layouts/Base.astro'
     <hr class="my-5">
     <div class="row">
       <div class="col-6 offset-3 col-lg-4 offset-lg-4">
-        <img class="img-fluid rounded shadow" src="/assets/images/teachers/lp-puttipong.jpeg" alt="Portrait of Venerable Puttipong Varajoto">
+        <Image
+          class="img-fluid rounded shadow"
+          src={lpPuttipong}
+          widths={[300, 450, 600]}
+          sizes="(min-width: 992px) 33vw, 50vw"
+          format="webp"
+          alt="Portrait of Venerable Puttipong Varajoto"
+          loading="lazy"
+        />
       </div>
       <h2 class="my-3 text-center">Venerable Puttipong Varajoto </h2>
       <div class="col-12">

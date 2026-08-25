@@ -1,10 +1,12 @@
 ---
+import { Image } from 'astro:assets'
 import Base from '../layouts/Base.astro'
 import ApplyCta from '../components/ApplyCta.astro'
 import NextSectionLink from '../components/NextSectionLink.astro'
 import IndexTitleVideo from '../components/IndexTitleVideo.astro'
 import IndexVideoTitle from '../components/IndexVideoTitle.astro'
 import IconArrowUp from '../components/icons/IconArrowUp.astro'
+import hero from '../assets/images/Mass-Ordination-4.webp'
 ---
 
 <Base title="European Ordination Program">
@@ -12,7 +14,16 @@ import IconArrowUp from '../components/icons/IconArrowUp.astro'
     <div class="min-vh-100 d-flex flex-column">
       <div class="row flex-grow-1" id="choosing-the-monastic-life">
         <div class="col-12 col-md-6 col-lg-5 d-flex align-items-end align-items-md-center">
-          <img src="/assets/images/Mass-Ordination-4.webp" class="img-fluid rounded mx-auto d-block shadow opacity-75 z-n1" alt="...">
+          <Image
+            src={hero}
+            widths={[400, 500]}
+            sizes="(min-width: 768px) 42vw, 92vw"
+            format="webp"
+            class="img-fluid rounded mx-auto d-block shadow opacity-75 z-n1"
+            alt="Newly ordained monks seated together at a mass ordination ceremony"
+            loading="eager"
+            fetchpriority="high"
+          />
         </div>
         <div class="col-12 col-md-6 col-lg-7 d-flex flex-column justify-content-center">
           <div class="display-3">

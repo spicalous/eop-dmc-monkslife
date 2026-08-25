@@ -1,15 +1,30 @@
 ---
+import { Image } from 'astro:assets'
 import type { Participant } from '../data/programs'
+import { portrait } from '../data/galleries'
 
 interface Props {
   person: Participant
 }
 
 const { person } = Astro.props
+
+/* Rendered in a 6/4/3/2-column grid, so the tile is ~200px at its widest. */
+const WIDTHS = [140, 200, 400]
+const SIZES = '(min-width: 992px) 200px, (min-width: 576px) 25vw, 45vw'
 ---
 
 <div class="portrait-card">
-  <img class="img-fluid" src={person.portraitURL} alt={`Portrait of ${person.name}`} loading="lazy" decoding="async" />
+  <Image
+    class="img-fluid"
+    src={portrait(person.portrait)}
+    widths={WIDTHS}
+    sizes={SIZES}
+    format="webp"
+    alt={`Portrait of ${person.name}`}
+    loading="lazy"
+    decoding="async"
+  />
   <div>{person.name}</div>
   <div>{person.location}</div>
   <div>{person.flag}</div>

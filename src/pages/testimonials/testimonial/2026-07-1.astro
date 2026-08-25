@@ -1,11 +1,25 @@
 ---
+import { Image } from 'astro:assets'
+import img2026071 from '../../../assets/images/testimonials/2026-07-1.jpeg'
+import img2026071Image1 from '../../../assets/images/testimonials/2026-07-1/image-1.jpeg'
+import img2026071Image2 from '../../../assets/images/testimonials/2026-07-1/image-2.jpeg'
 import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial title="Testimonial | Jay Mutsuddi" heading="Jay Mutsuddi">
   <div class="row py-5">
     <div class="col-6 offset-3">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-07-1.jpeg" alt="Portrait of Jay Mutsuddi">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026071}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="Portrait of Jay Mutsuddi"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </div>
   <p>11th European Ordination Program participant</p>
@@ -36,7 +50,16 @@ import Testimonial from '../../../layouts/Testimonial.astro'
   </p>
   <div class="row py-4">
     <div class="col-12 col-lg-8 offset-lg-2">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-07-1/image-1.jpeg" alt="">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026071Image1}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="Rows of newly ordained monks kneeling in the hall with palms pressed together"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
   <p>
@@ -64,7 +87,16 @@ import Testimonial from '../../../layouts/Testimonial.astro'
   </p>
   <div class="row py-4">
     <div class="col-12 col-lg-8 offset-lg-2">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-07-1/image-2.jpeg" alt="">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026071Image2}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="Monks walking in single file holding alms bowls as seated guests greet them with palms together"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
   <h1>Returning home</h1>

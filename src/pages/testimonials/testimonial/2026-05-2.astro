@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets'
+import img2026052 from '../../../assets/images/testimonials/2026-05-2.jpg'
+import img2026052Image1 from '../../../assets/images/testimonials/2026-05-2/image-1.jpeg'
+import img2026052Image2 from '../../../assets/images/testimonials/2026-05-2/image-2.jpeg'
 import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
@@ -8,7 +12,17 @@ import Testimonial from '../../../layouts/Testimonial.astro'
 >
   <div class="row pt-5">
     <div class="col-6 offset-3">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-05-2.jpg" alt="Buddist monk">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026052}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="Buddist monk"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </div>
   <div class="row pt-5">
@@ -36,7 +50,16 @@ import Testimonial from '../../../layouts/Testimonial.astro'
   </p>
   <div class="row py-4">
     <div class="col-12 col-lg-8 offset-lg-2">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-05-2/image-1.jpeg" alt="">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026052Image1}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="Monks in orange robes processing along a red carpet outside the temple while people in white kneel in front of them"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
   <p>
@@ -62,7 +85,16 @@ import Testimonial from '../../../layouts/Testimonial.astro'
   </p>
   <div class="row py-4">
     <div class="col-12 col-lg-8 offset-lg-2">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-05-2/image-2.jpeg" alt="">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026052Image2}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="A long line of monks and guests in white walking a pink carpet through the temple grounds past marquees"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
   <p>

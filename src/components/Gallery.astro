@@ -1,0 +1,39 @@
+---
+import { Picture } from 'astro:assets'
+import type { Gallery } from '../data/galleries'
+
+interface Props {
+  gallery: Gallery
+  /** The first gallery on the page is above the fold, so its lead images load eagerly. */
+  priority?: boolean
+}
+
+const { gallery, priority = false } = Astro.props
+
+/*
+ * Tiles are half the container from sm upwards, full width below it. The
+ * container tops out at 1320px, so a tile is never wider than ~620px; the
+ * larger candidates exist for high-density screens.
+ */
+const SIZES = '(min-width: 576px) 46vw, 94vw'
+const WIDTHS = [400, 620, 900]
+const EAGER_COUNT = 4
+---
+
+<div class="row">
+  {gallery.photos.map((photo, index) => (
+    <div class="col-12 col-sm-6 p-3">
+      <Picture
+        src={photo}
+        formats={['avif', 'webp']}
+        widths={WIDTHS}
+        sizes={SIZES}
+        alt={`${gallery.alt} — photo ${index + 1} of ${gallery.photos.length}`}
+        class="gallery-img"
+        loading={priority && index < EAGER_COUNT ? 'eager' : 'lazy'}
+        fetchpriority={priority && index < EAGER_COUNT ? 'high' : undefined}
+        decoding="async"
+      />
+    </div>
+  ))}
+</div>

@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
 import Card from '../../components/Card.astro'
 import DataTable from '../../components/DataTable.astro'
@@ -6,6 +7,10 @@ import Location from '../../components/Location.astro'
 import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
 import { FORM_LINK } from '../../config/site'
 import { templesByCountry } from '../../data/temples'
+import logo from '../../assets/images/logo-monks-life.png'
+
+/* Decorative banner, so it is a CSS background rather than an <img>. */
+const banner = await getImage({ src: logo, width: 640, format: 'webp' })
 
 const itinerary = {
   headers: ['Date', '&nbsp;&nbsp;Activity'],
@@ -21,7 +26,8 @@ const itinerary = {
 ---
 
 <Base title="Program details - European Ordination Program">
-  <div id="index-header"></div>
+  {/* Decorative banner: the navbar already carries the labelled logo. */}
+  <div id="index-header" role="presentation" style={`background-image: url(${banner.src})`}></div>
   <div class="container">
     <p class="lead mt-5">
       While many are searching for peace outside, we believe that world peace MUST begin from each and everyone of us.

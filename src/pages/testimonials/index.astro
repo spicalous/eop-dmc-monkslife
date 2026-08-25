@@ -1,4 +1,13 @@
 ---
+import { Image } from 'astro:assets'
+import img2026075 from '../../assets/images/testimonials/2026-07-5.jpeg'
+import img2026071 from '../../assets/images/testimonials/2026-07-1.jpeg'
+import img2026051 from '../../assets/images/testimonials/2026-05-1.jpeg'
+import img2026052 from '../../assets/images/testimonials/2026-05-2.jpg'
+import img2026041 from '../../assets/images/testimonials/2026-04-1.jpeg'
+import img2026074 from '../../assets/images/testimonials/2026-07-4.jpg'
+import img2026073 from '../../assets/images/testimonials/2026-07-3.jpg'
+import img2026072 from '../../assets/images/testimonials/2026-07-2.jpg'
 import Base from '../../layouts/Base.astro'
 ---
 
@@ -10,7 +19,17 @@ import Base from '../../layouts/Base.astro'
     <div class="row row-cols-1 row-cols-lg-2 g-4">
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-07-5.jpeg" class="card-img-top" alt="Portrait of Heiko Elswyk">
+          <Image
+            class="card-img-top"
+            src={img2026075}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Portrait of Heiko Elswyk"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">Heiko Elswyk</h3>
             <p class="card-text">
@@ -22,7 +41,17 @@ import Base from '../../layouts/Base.astro'
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-07-1.jpeg" class="card-img-top" alt="Portrait of Jay Mutsuddi">
+          <Image
+            class="card-img-top"
+            src={img2026071}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Portrait of Jay Mutsuddi"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">Jay Mutsuddi</h3>
             <p class="card-text">
@@ -34,7 +63,16 @@ import Base from '../../layouts/Base.astro'
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-05-1.jpeg" class="card-img-top" alt="Monk meditation">
+          <Image
+            class="card-img-top"
+            src={img2026051}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Monk meditation"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">My month as a Buddhist monk has made me mentally richer</h3>
             <p class="card-text">
@@ -47,7 +85,16 @@ import Base from '../../layouts/Base.astro'
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-05-2.jpg" class="card-img-top" alt="Buddist monk">
+          <Image
+            class="card-img-top"
+            src={img2026052}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Buddist monk"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">Next step? Maybe a month of training in Thailand</h3>
             <p class="card-text">
@@ -59,7 +106,16 @@ import Base from '../../layouts/Base.astro'
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-04-1.jpeg" class="card-img-top" alt="Portrait of Cas">
+          <Image
+            class="card-img-top"
+            src={img2026041}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Portrait of Cas"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">Cas</h3>
             <p class="card-text">
@@ -75,7 +131,16 @@ import Base from '../../layouts/Base.astro'
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-07-4.jpg" class="card-img-top" alt="Portrait of Enevald Horve">
+          <Image
+            class="card-img-top"
+            src={img2026074}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Portrait of Enevald Horve"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">Enevald Horve</h3>
             <p class="card-text">
@@ -87,7 +152,16 @@ import Base from '../../layouts/Base.astro'
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-07-3.jpg" class="card-img-top" alt="Portrait of Martin Boonsanoh">
+          <Image
+            class="card-img-top"
+            src={img2026073}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Portrait of Martin Boonsanoh"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">Martin Boonsanoh</h3>
             <p class="card-text">
@@ -99,7 +173,16 @@ import Base from '../../layouts/Base.astro'
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="/assets/images/testimonials/2026-07-2.jpg" class="card-img-top" alt="Portrait of Gino Nérèo">
+          <Image
+            class="card-img-top"
+            src={img2026072}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 992px) 46vw, 94vw"
+            format="webp"
+            alt="Portrait of Gino Nérèo"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="card-body">
             <h3 class="card-title">Gino Nérèo</h3>
             <p class="card-text">

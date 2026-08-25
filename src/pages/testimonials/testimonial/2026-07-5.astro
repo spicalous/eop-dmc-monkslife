@@ -1,11 +1,24 @@
 ---
+import { Image } from 'astro:assets'
+import img2026075 from '../../../assets/images/testimonials/2026-07-5.jpeg'
+import img2026075Image1 from '../../../assets/images/testimonials/2026-07-5/image-1.jpeg'
 import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial title="Testimonial | Heiko Elswyk" heading="Heiko Elswyk">
   <div class="row py-5">
     <div class="col-6 offset-3">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-07-5.jpeg" alt="Portrait of Heiko Elswyk">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026075}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="Portrait of Heiko Elswyk"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </div>
   <p>11th European Ordination Program participant</p>
@@ -33,7 +46,16 @@ import Testimonial from '../../../layouts/Testimonial.astro'
   <p>Watch the full video <a href="https://www.youtube.com/watch?v=g1f04MWA_p4" target="_blank" rel="noopener">on YouTube</a></p>
   <div class="row py-4">
     <div class="col-12 col-lg-8 offset-lg-2">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-07-5/image-1.jpeg">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026075Image1}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="A monk meditating cross-legged on a wooden deck in front of rocks and greenery"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
 </Testimonial>

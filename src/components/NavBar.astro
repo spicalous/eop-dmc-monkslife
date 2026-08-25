@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets'
 import NavItem from './NavItem.astro'
 import IconBoxArrowUpRight from './icons/IconBoxArrowUpRight.astro'
 import { FORM_LINK } from '../config/site'
+import logo from '../assets/images/logo-monks-life.png'
 
 /* Trailing slashes differ between dev and the built site, so compare without them. */
 const normalize = (path: string) => path.replace(/\/+$/, '') || '/'
@@ -13,7 +15,7 @@ const mediaActive = ['/media', '/media/podcast'].includes(path)
 <nav class="navbar fixed-top navbar-expand-sm bg-body">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-      <img src="/assets/images/logo-monks-life.png" width="32" height="32" alt="Monk's Life logo" />
+      <Image src={logo} width={32} height={32} densities={[1, 2]} format="webp" alt="Monk's Life logo" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

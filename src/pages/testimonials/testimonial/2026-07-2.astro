@@ -1,11 +1,23 @@
 ---
+import { Image } from 'astro:assets'
+import img2026072 from '../../../assets/images/testimonials/2026-07-2.jpg'
 import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial title="Testimonial | Gino Nérèo" heading="Gino Nérèo">
   <div class="row py-5">
     <div class="col-6 offset-3">
-      <img class="img-fluid rounded shadow" src="/assets/images/testimonials/2026-07-2.jpg" alt="Portrait of Gino Nérèo">
+      <Image
+        class="img-fluid rounded shadow"
+        src={img2026072}
+        widths={[400, 640, 900]}
+        sizes="(min-width: 992px) 60vw, 92vw"
+        format="webp"
+        alt="Portrait of Gino Nérèo"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </div>
   <p>11th European Ordination Program participant</p>
