@@ -1,7 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.monkslife.org'
+  site: 'https://www.monkslife.org',
+  integrations: [sitemap()]
 });
