@@ -49,6 +49,14 @@ a:hover {
   border-radius: 0.375rem;
 }
 
+/*
+ * Bootstrap sets width:100% here but no height, so the intrinsic height Astro
+ * emits would otherwise stretch the card image.
+ */
+.card-img-top {
+  height: auto;
+}
+
 /* The image itself is set inline so the hashed asset URL comes from Astro. */
 #index-header {
   background-repeat: no-repeat;

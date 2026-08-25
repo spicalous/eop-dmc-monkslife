@@ -6,6 +6,13 @@
 .gallery-img {
   display: block;
   width: 100%;
+  /*
+   * Astro emits intrinsic width/height on processed images. Without this the
+   * height attribute makes the height definite, and aspect-ratio is then
+   * ignored (it only applies when one dimension is auto), so tiles render at
+   * the photo's full height instead of 3:2.
+   */
+  height: auto;
   aspect-ratio: 3 / 2;
   object-fit: cover;
   background-color: var(--bs-gray-200);
