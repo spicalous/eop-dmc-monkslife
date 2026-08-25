@@ -1,0 +1,12 @@
+@use "../variables" as *;
+
+.portrait-card {
+  padding: $gutter-width;
+  font-size: 0.8rem;
+
+  img {
+    border-radius: 50%;
+    box-shadow: 0 12px 10px -10px var(--bs-gray-400);
+    background-color: var(--bs-gray-200);
+  }
+}

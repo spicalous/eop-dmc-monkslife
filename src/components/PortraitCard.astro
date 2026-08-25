@@ -1,0 +1,16 @@
+---
+import type { Participant } from '../data/programs'
+
+interface Props {
+  person: Participant
+}
+
+const { person } = Astro.props
+---
+
+<div class="portrait-card">
+  <img class="img-fluid" src={person.portraitURL} alt={`Portrait of ${person.name}`} loading="lazy" decoding="async" />
+  <div>{person.name}</div>
+  <div>{person.location}</div>
+  <div>{person.flag}</div>
+</div>

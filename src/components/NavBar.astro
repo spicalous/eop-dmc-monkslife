@@ -1,0 +1,63 @@
+---
+import NavItem from './NavItem.astro'
+import IconBoxArrowUpRight from './icons/IconBoxArrowUpRight.astro'
+import { FORM_LINK } from '../config/site'
+
+/* Trailing slashes differ between dev and the built site, so compare without them. */
+const normalize = (path: string) => path.replace(/\/+$/, '') || '/'
+const path = normalize(Astro.url.pathname)
+const aboutActive = ['/about', '/about/teachers'].includes(path)
+const mediaActive = ['/media', '/media/podcast'].includes(path)
+---
+
+<nav class="navbar fixed-top navbar-expand-sm bg-body">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="/assets/images/logo-monks-life.png" width="32" height="32" alt="Monk's Life logo" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <NavItem href="/" title="Being a Monk" />
+
+        <li class="nav-item dropdown d-none d-sm-block">
+          <a class={`nav-link dropdown-toggle${aboutActive ? ' active' : ''}`} data-bs-toggle="dropdown" href="/about/" aria-current={path === '/about' ? 'page' : undefined} role="button" aria-expanded="false">Program details</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/about/">About</a></li>
+            <li><a class="dropdown-item" href="/about/#program-details--latest-news">Latest news</a></li>
+            <li><a class="dropdown-item" href="/about/#program-details--what-is-the-european-ordination-program">What is the European Ordination Program?</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/about/teachers/">Teachers</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/about/#program-details--temples-in-europe">Temples in Europe</a></li>
+          </ul>
+        </li>
+        {/* regular menu items for xs */}
+        <NavItem href="/about/" title="Program details" extraClasses=" d-sm-none" />
+        <NavItem href="/about/teachers/" title={'  └─ Teachers'} extraClasses=" d-sm-none" />
+
+        <li class="nav-item dropdown d-none d-sm-block">
+          <a class={`nav-link dropdown-toggle${mediaActive ? ' active' : ''}`} data-bs-toggle="dropdown" href="/media/" aria-current={path === '/media' ? 'page' : undefined} role="button" aria-expanded="false">Media</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/media/">European ordination program</a></li>
+            <li><a class="dropdown-item" href="/media/podcast/">Podcast</a></li>
+          </ul>
+        </li>
+        {/* regular menu items for xs */}
+        <NavItem href="/media/" title="Media" extraClasses=" d-sm-none" />
+        <NavItem href="/media/podcast/" title={'  └─ Podcast'} extraClasses=" d-sm-none" />
+
+        <NavItem href="/testimonials/" title="Testimonials" />
+        <li class="nav-item text-center">
+          <a class="nav-link d-inline-flex align-items-baseline" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+            Apply
+            &nbsp;
+            <IconBoxArrowUpRight />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

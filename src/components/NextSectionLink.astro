@@ -1,0 +1,18 @@
+---
+import IconArrowDown from './icons/IconArrowDown.astro'
+
+interface Props {
+  href: string
+  text: string
+}
+
+const { href, text } = Astro.props
+---
+
+<div class="row text-center flex-grow-0">
+  <a href={href} class="link-underline link-underline-opacity-0 py-2 lead">
+    {text}
+    <br>
+    <IconArrowDown />
+  </a>
+</div>

@@ -1,0 +1,65 @@
+@use "sass:color";
+@use "variables" as *;
+@use "includes/footer";
+@use "includes/portrait-card";
+@use "includes/gallery";
+
+@function to-rgb($value) {
+  @return color.channel($value, "red", $space: rgb),
+    color.channel($value, "green", $space: rgb),
+    color.channel($value, "blue", $space: rgb);
+}
+@function tint-color($color, $weight) {
+  @return color.mix(white, $color, $weight);
+}
+@function shade-color($color, $weight) {
+  @return color.mix(black, $color, $weight);
+}
+@function shift-color($color, $weight) {
+  @if $weight > 0 {
+    @return shade-color($color, $weight);
+  }
+  @return tint-color($color, -$weight);
+}
+
+.btn-primary {
+  --bs-btn-bg: #{$orange-600};
+  --bs-btn-border-color: #{$orange-600};
+  --bs-btn-hover-bg: #{tint-color($orange-600, 15%)};
+  --bs-btn-hover-border-color: #{tint-color($orange-600, 10%)};
+  --bs-btn-focus-shadow-rgb: #{to-rgb($orange-600)};
+  --bs-btn-active-bg: #{tint-color($orange-600, 10%)};
+  --bs-btn-active-border-color: #{tint-color($orange-600, 20%)};
+  --bs-btn-disabled-bg: #{$orange-600};
+  --bs-btn-disabled-border-color: #{$orange-600};
+}
+a {
+  color: $orange-700;
+}
+a:hover {
+  color: shift-color($orange-700, 20%);
+}
+.nav-item .nav-link,
+.nav-item .nav-link.show {
+  color: shade-color($orange-600, 10%);
+}
+.nav-item .nav-link.active {
+  background-color: $orange-600;
+  color: #fff;
+  border-radius: 0.375rem;
+}
+
+#index-header {
+  background-image: url("/assets/images/logo-monks-life.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-top: 60px;
+  height: 320px;
+}
+
+.offset-anchor-for-fixed-nav {
+  position: relative;
+  top: -60px; /* nav height */
+  visibility: hidden;
+}

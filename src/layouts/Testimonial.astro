@@ -1,0 +1,22 @@
+---
+import Base from './Base.astro'
+
+interface Props {
+  title: string
+  heading: string
+}
+
+const { title, heading } = Astro.props
+---
+
+<Base title={title}>
+  <div class="container">
+    <div class="display-1 text-center pt-5">{heading}</div>
+    <slot />
+    <div class="row">
+      <div class="col text-center">
+        <a href="/testimonials/" class="btn btn-primary">Back</a>
+      </div>
+    </div>
+  </div>
+</Base>

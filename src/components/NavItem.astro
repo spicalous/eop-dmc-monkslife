@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string
+  title: string
+  extraClasses?: string
+}
+
+const { href, title, extraClasses = '' } = Astro.props
+
+/* Trailing slashes differ between dev and the built site, so compare without them. */
+const normalize = (path: string) => path.replace(/\/+$/, '') || '/'
+const active = normalize(Astro.url.pathname) === normalize(href)
+---
+
+<li class={`nav-item text-center${extraClasses}`}>
+  <a class={`nav-link${active ? ' active' : ''}`} href={href} aria-current={active ? 'page' : undefined}>
+    {title}
+  </a>
+</li>

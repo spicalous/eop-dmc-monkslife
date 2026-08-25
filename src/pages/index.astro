@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro'
+import ApplyCta from '../components/ApplyCta.astro'
+import NextSectionLink from '../components/NextSectionLink.astro'
+import IndexTitleVideo from '../components/IndexTitleVideo.astro'
+import IndexVideoTitle from '../components/IndexVideoTitle.astro'
+import IconArrowUp from '../components/icons/IconArrowUp.astro'
+---
+
+<Base title="European Ordination Program">
+  <div class="container">
+    <div class="min-vh-100 d-flex flex-column">
+      <div class="row flex-grow-1" id="choosing-the-monastic-life">
+        <div class="col-12 col-md-6 col-lg-5 d-flex align-items-end align-items-md-center">
+          <img src="/assets/images/Mass-Ordination-4.webp" class="img-fluid rounded mx-auto d-block shadow opacity-75 z-n1" alt="...">
+        </div>
+        <div class="col-12 col-md-6 col-lg-7 d-flex flex-column justify-content-center">
+          <div class="display-3">
+            Choosing the monastic life
+          </div>
+          <p>
+            Why were we born? What is our purpose in life? How do we attain Happiness in life? What did the Buddha teach?
+          </p>
+          <div>
+            <ApplyCta />
+          </div>
+        </div>
+      </div>
+      <NextSectionLink href="#path-of-ordination" text="The path of ordination" />
+    </div>
+    <div class="min-vh-100 d-flex flex-column">
+      <IndexTitleVideo
+        id="path-of-ordination"
+        src="https://www.youtube-nocookie.com/embed/p_iDIYavbwU"
+        title="The path of ordination"
+      />
+      <NextSectionLink href="#why-ordain" text="Why ordain?" />
+    </div>
+    <div class="min-vh-100 d-flex flex-column">
+      <IndexVideoTitle
+        id="why-ordain"
+        src="https://www.youtube-nocookie.com/embed/U5VxytexduI"
+        title="Why ordain as a monk?"
+      />
+      <NextSectionLink href="#steps-to-ordination" text="Steps to ordaining" />
+    </div>
+    <div class="min-vh-100 d-flex flex-column">
+      <IndexTitleVideo
+        id="steps-to-ordination"
+        src="https://www.youtube-nocookie.com/embed/iNUeMI4GzU8"
+        title="The steps in ordaining"
+      />
+      <NextSectionLink href="#inspiration" text="Inspiration" />
+    </div>
+    <div class="min-vh-100 d-flex flex-column">
+      <IndexVideoTitle
+        id="inspiration"
+        src="https://www.youtube-nocookie.com/embed/3kiXPFnRLxU"
+        title="What inspired you to enter the Buddhist monkhood?"
+      />
+      <NextSectionLink href="#benefits" text="Benefits" />
+    </div>
+    <div class="min-vh-100 d-flex flex-column">
+      <IndexTitleVideo
+        id="benefits"
+        src="https://www.youtube-nocookie.com/embed/G7s6eyVNwkw"
+        title="Stress and how meditation can relieve it"
+      />
+      <NextSectionLink href="#european-ordination-program" text="European Ordination Program" />
+    </div>
+    <div class="min-vh-100 d-flex flex-column">
+      <IndexVideoTitle
+        id="european-ordination-program"
+        src="https://www.youtube-nocookie.com/embed/YnYkqjQ1iLE?si=Np-gtirxS9jFo_eh"
+        title="European Ordination Program"
+      >
+        <div slot="extra-xs" class="my-2 text-center">
+          <ApplyCta />
+        </div>
+        <div slot="extra-md" class="my-2">
+          <ApplyCta />
+        </div>
+      </IndexVideoTitle>
+      <div class="row text-center flex-grow-0">
+        <a href="#choosing-the-monastic-life" class="link-underline link-underline-opacity-0 py-2 lead">
+          Back to top
+          <br>
+          <IconArrowUp />
+        </a>
+      </div>
+    </div>
+  </div>
+</Base>

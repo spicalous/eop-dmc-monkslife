@@ -1,0 +1,14 @@
+---
+interface Props {
+  title: string
+  /** HTML fragment for the card body. */
+  content: string
+}
+
+const { title, content } = Astro.props
+---
+
+<div>
+  <h5 class="mt-3">{title}</h5>
+  <Fragment set:html={content} />
+</div>

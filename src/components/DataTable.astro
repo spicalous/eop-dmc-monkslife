@@ -1,0 +1,26 @@
+---
+interface Props {
+  table: {
+    /** Cells may contain HTML entities (e.g. &nbsp;), so they are rendered as HTML. */
+    headers: string[]
+    rows: string[][]
+  }
+}
+
+const { table } = Astro.props
+---
+
+<table>
+  <thead>
+    <tr>
+      {table.headers.map((header) => <th scope="col" set:html={header} />)}
+    </tr>
+  </thead>
+  <tbody>
+    {table.rows.map((row) => (
+      <tr>
+        {row.map((cell) => <td set:html={cell} />)}
+      </tr>
+    ))}
+  </tbody>
+</table>
