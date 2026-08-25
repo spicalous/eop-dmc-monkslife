@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro'
+import YouTube from '../../components/YouTube.astro'
 import Gallery from '../../components/Gallery.astro'
 import PortraitCard from '../../components/PortraitCard.astro'
 import { galleryByYear } from '../../data/galleries'
@@ -17,26 +18,13 @@ import { programs } from '../../data/programs'
     </p>
     <div class="row">
       <div class="col-12 p-3">
-        <div class="ratio ratio-16x9">
-          <iframe
-              class="rounded" src="https://www.youtube-nocookie.com/embed/mA6R8_K2Kb0?si=W121NrcqDxxEREXM"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
-          ></iframe>
-        </div>
+        <YouTube id="mA6R8_K2Kb0" title="European Ordination Program 2026" />
       </div>
     </div>
     <Gallery gallery={galleryByYear.get(2026)!} priority />
     <div class="row">
       <div class="col-12 p-3">
-        <div class="ratio ratio-16x9">
-          <iframe
-              class="rounded" src="https://www.youtube-nocookie.com/embed/QC0HZYnOhaE?si=LhQ8aQ2bSQL-r54u"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+        <YouTube id="QC0HZYnOhaE" title="European Ordination Program 2026 highlights" />
       </div>
     </div>
 

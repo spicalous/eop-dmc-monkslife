@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro'
+import YouTube from '../../components/YouTube.astro'
 ---
 
 <Base title="Podcast - European Ordination Program">
@@ -9,14 +10,7 @@ import Base from '../../layouts/Base.astro'
     </h1>
     <div class="row">
       <div class="col-12 p-3">
-        <div class="ratio ratio-16x9">
-          <iframe
-              class="rounded" src="https://www.youtube-nocookie.com/embed/Di0Hrq2xk-Q?si=C0IN_OnNTq79ylY8"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
-          ></iframe>
-        </div>
+        <YouTube id="Di0Hrq2xk-Q" title="European Ordination Program podcast" />
       </div>
     </div>
   </div>

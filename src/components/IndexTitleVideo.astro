@@ -1,11 +1,15 @@
 ---
+import YouTube from './YouTube.astro'
+
 interface Props {
+  /** Anchor id for the in-page section link. */
   id: string
-  src: string
+  /** YouTube video id. */
+  videoId: string
   title: string
 }
 
-const { id, src, title } = Astro.props
+const { id, videoId, title } = Astro.props
 ---
 
 <div class="row flex-grow-1" id={id}>
@@ -14,13 +18,7 @@ const { id, src, title } = Astro.props
     <div class="display-6 pb-4">
       {title}
     </div>
-    <div class="ratio ratio-16x9">
-      <iframe
-        class="rounded" src={src} title="YouTube video player" frameborder="0"
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-    </div>
+    <YouTube id={videoId} title={title} />
     <slot name="extra-xs" />
   </div>
   <!-- md and wider -->
@@ -31,12 +29,6 @@ const { id, src, title } = Astro.props
     <slot name="extra-md" />
   </div>
   <div class="d-none d-md-flex col-12 col-md-7 align-items-center justify-content-center">
-    <div class="ratio ratio-16x9">
-      <iframe
-        class="rounded" src={src} title="YouTube video player" frameborder="0"
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-    </div>
+    <YouTube id={videoId} title={title} />
   </div>
 </div>
