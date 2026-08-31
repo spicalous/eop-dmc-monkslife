@@ -1,0 +1,200 @@
+@use "sass:color";
+@use "../variables" as *;
+
+/* Mirrors the `navbar-expand-md` class in NavBar.astro. Above it the bar is a
+ * row of links; below it everything lives in the collapsed panel. */
+$nav-expand: 768px;
+
+/* Published as --nav-height so anchor offsets stay in step with the bar. */
+$nav-height: 60px;
+$nav-link-color: color.mix(black, $orange-600, 10%);
+$nav-inset: 0.85rem;
+
+:root {
+  --nav-height: #{$nav-height};
+}
+
+.site-nav {
+  --bs-navbar-padding-y: 0;
+  --bs-navbar-toggler-focus-width: 0;
+  /* A data URI cannot interpolate a Sass colour: this stroke is #{$orange-700}. */
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23F57C00' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.2' d='M4 8h22M4 15h22M4 22h22'/%3e%3c/svg%3e");
+
+  min-height: var(--nav-height);
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid rgba($orange-600, 0.14);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+
+  /* Without the blur there is nothing to soften what scrolls underneath. */
+  @supports not (backdrop-filter: blur(1px)) {
+    background-color: rgba(255, 255, 255, 0.97);
+  }
+
+  /* Set by NavBar.astro once the page leaves the top, so the bar lifts off the
+   * content instead of carrying a shadow it has not earned. */
+  &.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    padding-block: 0;
+  }
+
+  .navbar-toggler {
+    border: 0;
+    padding: 0.4rem 0.5rem;
+    border-radius: 0.5rem;
+
+    &:focus-visible {
+      outline: 2px solid rgba($orange-600, 0.6);
+      outline-offset: 2px;
+    }
+  }
+
+  /*
+   * The bar's height comes from centring a short row inside min-height. Opening
+   * the collapsed menu adds a second flex line, leaving nothing to centre, and
+   * the row drops to the top — so the row carries the height itself.
+   */
+  .navbar-brand,
+  .navbar-toggler {
+    min-height: var(--nav-height);
+  }
+
+  /* In the collapsed panel sub-menus sit inline under their parent, so the
+   * current page is marked by a rule down the left rather than an underline. */
+  .navbar-collapse {
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    position: relative;
+    padding-left: $nav-inset;
+    color: $nav-link-color;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+      bottom: 0.4rem;
+      width: 3px;
+      border-radius: 3px;
+      background-color: $orange-600;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &.active,
+    &.show {
+      color: $orange-800;
+    }
+
+    &.active::before {
+      opacity: 1;
+    }
+  }
+
+  .dropdown-menu {
+    --bs-dropdown-padding-x: 0.4rem;
+    --bs-dropdown-padding-y: 0.4rem;
+    --bs-dropdown-item-padding-y: 0.45rem;
+    --bs-dropdown-item-padding-x: 0.85rem;
+    --bs-dropdown-link-hover-bg: #{$orange-50};
+    --bs-dropdown-link-hover-color: #{$orange-900};
+    --bs-dropdown-link-active-bg: #{$orange-600};
+    --bs-dropdown-divider-bg: #{rgba($orange-600, 0.18)};
+  }
+
+  .dropdown-item {
+    border-radius: 0.4rem;
+    white-space: normal;
+  }
+
+  .nav-apply {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    /* Lines the button up with the indented links in the collapsed panel. */
+    margin-left: $nav-inset;
+  }
+
+  @media (min-width: $nav-expand) {
+    .navbar-collapse {
+      padding-bottom: 0;
+    }
+
+    .navbar-nav .nav-link {
+      padding-inline: $nav-inset;
+
+      /* Grows out from the middle on hover, and stays put on the current page. */
+      &::before {
+        left: $nav-inset;
+        right: $nav-inset;
+        top: auto;
+        bottom: 0.3rem;
+        width: auto;
+        height: 2px;
+        opacity: 1;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+
+      &:hover::before,
+      &:focus-visible::before,
+      &.active::before {
+        transform: scaleX(1);
+      }
+    }
+
+    /* Sub-menu labels run long, so give them room without stretching the bar. */
+    .dropdown-menu {
+      min-width: 15rem;
+      max-width: 22rem;
+      margin-top: 0.35rem;
+      border-color: transparent;
+      border-radius: 0.75rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-apply {
+      margin-left: 0.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .navbar-brand {
+      transition: transform 0.2s ease;
+    }
+
+    .navbar-brand:hover {
+      transform: translateY(-1px);
+    }
+
+    .dropdown-menu.show {
+      animation: site-nav-drop-in 0.18s ease-out;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar-nav .nav-link,
+    .navbar-nav .nav-link::before {
+      transition: none;
+    }
+  }
+}
+
+@keyframes site-nav-drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.35rem);
+  }
+}
