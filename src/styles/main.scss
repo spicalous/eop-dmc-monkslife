@@ -72,6 +72,16 @@ a:hover {
 }
 
 /*
+ * Bootstrap measures 100vh with the mobile browser's URL bar hidden, so the
+ * "next section" arrow at the foot of each home-page section sat behind the
+ * bar whenever it was showing. svh is the height with the bar showing;
+ * browsers without the unit keep Bootstrap's vh.
+ */
+.min-vh-100 {
+  min-height: 100svh;
+}
+
+/*
  * Bootstrap sets width:100% here but no height, so the intrinsic height Astro
  * emits would otherwise stretch the card image.
  */
