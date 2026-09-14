@@ -7,16 +7,20 @@ interface Props {
   /** YouTube video id. */
   videoId: string
   title: string
+  summary?: string
 }
 
-const { id, videoId, title } = Astro.props
+const { id, videoId, title, summary } = Astro.props
 ---
 
 <div class="row flex-grow-1" id={id}>
   <!-- xs sm -->
   <div class="d-md-none col-12 d-flex flex-column justify-content-center">
-    <div class="display-6 pb-4">
-      {title}
+    <div class="pb-4">
+      <div class="display-6 video-title">
+        {title}
+      </div>
+      {summary && <p class="video-summary mb-0">{summary}</p>}
     </div>
     <YouTube id={videoId} title={title} />
     <slot name="extra-xs" />
@@ -26,9 +30,10 @@ const { id, videoId, title } = Astro.props
     <YouTube id={videoId} title={title} />
   </div>
   <div class="d-none d-md-flex col-12 col-md-5 flex-column justify-content-center">
-    <div class="display-6">
+    <div class="display-6 video-title">
       {title}
     </div>
+    {summary && <p class="video-summary">{summary}</p>}
     <slot name="extra-md" />
   </div>
 </div>

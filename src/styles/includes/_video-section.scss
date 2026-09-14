@@ -1,0 +1,25 @@
+@use "../variables" as *;
+
+.video-title {
+  &::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 0.4rem;
+    border-radius: 2px;
+    background-color: $orange-600;
+  }
+
+  /* Follows the text when the column is right-aligned. */
+  .text-end &::after {
+    margin-left: auto;
+  }
+}
+
+.video-summary {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--bs-secondary-color);
+}
