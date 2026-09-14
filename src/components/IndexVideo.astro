@@ -1,0 +1,35 @@
+---
+import YouTube from './YouTube.astro'
+
+interface Props {
+  /** Anchor id for the in-page section link. */
+  id: string
+  /** YouTube video id. */
+  videoId: string
+  title: string
+  /** One-sentence description shown under the title. */
+  summary?: string
+  /** Puts the video on the left of the title from md up. Below that the title always stacks above the video. */
+  videoFirst?: boolean
+}
+
+const { id, videoId, title, summary, videoFirst = false } = Astro.props
+const hasCta = Astro.slots.has('cta')
+---
+
+<div class="row flex-grow-1 align-content-center" id={id}>
+  <div class:list={[
+    'col-12 col-md-5 d-flex flex-column justify-content-center pb-2 pb-md-0',
+    videoFirst ? 'order-md-last' : 'text-md-end',
+  ]}>
+    <div class="display-6 video-title">
+      {title}
+    </div>
+    {summary && <p class="video-summary">{summary}</p>}
+    {hasCta && <div class="d-none d-md-block my-2"><slot name="cta" /></div>}
+  </div>
+  <div class="col-12 col-md-7 d-flex align-items-center justify-content-center">
+    <YouTube id={videoId} title={title} />
+  </div>
+  {hasCta && <div class="col-12 d-md-none my-2 text-center"><slot name="cta" /></div>}
+</div>

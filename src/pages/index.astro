@@ -3,8 +3,7 @@ import { Image } from 'astro:assets'
 import Base from '../layouts/Base.astro'
 import ApplyCta from '../components/ApplyCta.astro'
 import NextSectionLink from '../components/NextSectionLink.astro'
-import IndexTitleVideo from '../components/IndexTitleVideo.astro'
-import IndexVideoTitle from '../components/IndexVideoTitle.astro'
+import IndexVideo from '../components/IndexVideo.astro'
 import IconArrowUp from '../components/icons/IconArrowUp.astro'
 import hero from '../assets/images/Mass-Ordination-4.webp'
 ---
@@ -41,7 +40,7 @@ import hero from '../assets/images/Mass-Ordination-4.webp'
       <NextSectionLink href="#path-of-ordination" text="The path of ordination" />
     </div>
     <div class="min-vh-100 d-flex flex-column">
-      <IndexTitleVideo
+      <IndexVideo
         id="path-of-ordination"
         videoId="p_iDIYavbwU"
         title="The path of ordination"
@@ -50,7 +49,8 @@ import hero from '../assets/images/Mass-Ordination-4.webp'
       <NextSectionLink href="#why-ordain" text="Why ordain?" />
     </div>
     <div class="min-vh-100 d-flex flex-column">
-      <IndexVideoTitle
+      <IndexVideo
+        videoFirst
         id="why-ordain"
         videoId="U5VxytexduI"
         title="Why ordain as a monk?"
@@ -59,7 +59,7 @@ import hero from '../assets/images/Mass-Ordination-4.webp'
       <NextSectionLink href="#steps-to-ordination" text="Steps to ordaining" />
     </div>
     <div class="min-vh-100 d-flex flex-column">
-      <IndexTitleVideo
+      <IndexVideo
         id="steps-to-ordination"
         videoId="iNUeMI4GzU8"
         title="The steps in ordaining"
@@ -68,7 +68,8 @@ import hero from '../assets/images/Mass-Ordination-4.webp'
       <NextSectionLink href="#inspiration" text="Inspiration" />
     </div>
     <div class="min-vh-100 d-flex flex-column">
-      <IndexVideoTitle
+      <IndexVideo
+        videoFirst
         id="inspiration"
         videoId="3kiXPFnRLxU"
         title="What inspired you to enter the Buddhist monkhood?"
@@ -77,7 +78,7 @@ import hero from '../assets/images/Mass-Ordination-4.webp'
       <NextSectionLink href="#benefits" text="Benefits" />
     </div>
     <div class="min-vh-100 d-flex flex-column">
-      <IndexTitleVideo
+      <IndexVideo
         id="benefits"
         videoId="G7s6eyVNwkw"
         title="Stress and how meditation can relieve it"
@@ -86,19 +87,15 @@ import hero from '../assets/images/Mass-Ordination-4.webp'
       <NextSectionLink href="#european-ordination-program" text="European Ordination Program" />
     </div>
     <div class="min-vh-100 d-flex flex-column">
-      <IndexVideoTitle
+      <IndexVideo
+        videoFirst
         id="european-ordination-program"
         videoId="YnYkqjQ1iLE"
         title="European Ordination Program"
         summary="In a world that moves too fast, this is your invitation to pause: join people from around the world in Belgium to live simply, practice mindfulness, and discover the wisdom of the Theravada tradition for yourself."
       >
-        <div slot="extra-xs" class="my-2 text-center">
-          <ApplyCta />
-        </div>
-        <div slot="extra-md" class="my-2">
-          <ApplyCta />
-        </div>
-      </IndexVideoTitle>
+        <ApplyCta slot="cta" />
+      </IndexVideo>
       <div class="row text-center flex-grow-0">
         <a href="#choosing-the-monastic-life" class="link-underline link-underline-opacity-0 py-2 lead">
           Back to top

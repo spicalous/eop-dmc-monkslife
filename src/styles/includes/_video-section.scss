@@ -11,9 +11,12 @@
     background-color: $orange-600;
   }
 
-  /* Follows the text when the column is right-aligned. */
-  .text-end &::after {
-    margin-left: auto;
+  /* Follows the text once the column is right-aligned; 768px is Bootstrap's
+   * md breakpoint, where `text-md-end` takes effect. */
+  @media (min-width: 768px) {
+    .text-md-end &::after {
+      margin-left: auto;
+    }
   }
 }
 
