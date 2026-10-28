@@ -19,9 +19,11 @@ interface Props {
   description: string
   /** Overrides the shared preview image. Must be landscape and at least 1200x630. */
   socialImage?: ImageMetadata
+  /** Keeps an unlisted page out of search results. Pair it with the sitemap filter in astro.config.mjs. */
+  noindex?: boolean
 }
 
-const { title, description, socialImage } = Astro.props
+const { title, description, socialImage, noindex = false } = Astro.props
 
 if (!description) {
   throw new Error(`Base layout: "${title}" has no description — every page needs one for search results and link previews.`)
@@ -65,6 +67,7 @@ const socialUrl = new URL(social.src, Astro.site)
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{title}</title>
     <meta name="description" content={description}>
+    {noindex && <meta name="robots" content="noindex">}
     <link rel="canonical" href={canonical}>
 
     <meta property="og:type" content="website">

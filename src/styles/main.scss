@@ -5,6 +5,7 @@
 @use "includes/portrait-card";
 @use "includes/gallery";
 @use "includes/video-section";
+@use "includes/landing";
 
 @function to-rgb($value) {
   @return color.channel($value, "red", $space: rgb),

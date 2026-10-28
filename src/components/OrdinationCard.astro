@@ -1,0 +1,42 @@
+---
+import IconBoxArrowUpRight from './icons/IconBoxArrowUpRight.astro'
+import { FORM_LINK } from '../config/site'
+import { formatDate, formatRange, lengthInDays, type Ordination } from '../data/ordinations'
+
+interface Props {
+  ordination: Ordination
+}
+
+const { ordination } = Astro.props
+---
+
+<article class="iop-card" id={ordination.id}>
+  <div class="iop-card-top">
+    <span class="iop-card-flag" aria-hidden="true">{ordination.flag}</span>
+    <span class="iop-card-month">{formatDate(ordination.start, { month: 'long' })}</span>
+  </div>
+  <h3 class="iop-card-name">{ordination.name}</h3>
+  <p class="iop-card-temple">{ordination.temple}<br>{ordination.place}</p>
+
+  <p class="iop-card-dates">
+    {formatRange(ordination)}
+    <span>{lengthInDays(ordination)} days</span>
+  </p>
+
+  <div class="iop-card-ceremony">
+    <span>Ordination day</span>
+    <strong>{formatDate(ordination.ceremony, { weekday: 'long', day: 'numeric', month: 'long' })}</strong>
+  </div>
+
+  <div class="iop-card-languages">
+    <span>{ordination.languages.length > 1 ? 'Languages' : 'Language'}</span>
+    <ul>
+      {ordination.languages.map((language) => <li>{language}</li>)}
+    </ul>
+  </div>
+
+  <a class="btn btn-primary iop-card-apply" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+    Apply for {ordination.name}
+    <IconBoxArrowUpRight width="1em" height="1em" />
+  </a>
+</article>

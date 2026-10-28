@@ -1,0 +1,66 @@
+---
+import { DAY_MS, formatDate, formatRange, parseDate, type Ordination } from '../data/ordinations'
+
+interface Props {
+  ordinations: Ordination[]
+}
+
+const { ordinations } = Astro.props
+
+/* The track runs from the first of the earliest month to the end of the latest one. */
+const first = new Date(Math.min(...ordinations.map((o) => parseDate(o.start).getTime())))
+const last = new Date(Math.max(...ordinations.map((o) => parseDate(o.end).getTime())))
+const seasonStart = Date.UTC(first.getUTCFullYear(), first.getUTCMonth(), 1)
+const seasonEnd = Date.UTC(last.getUTCFullYear(), last.getUTCMonth() + 1, 1)
+
+const percent = (ms: number) => `${((ms / (seasonEnd - seasonStart)) * 100).toFixed(2)}%`
+const offset = (iso: string) => parseDate(iso).getTime() - seasonStart
+
+const months: { label: string; left: string; width: string }[] = []
+for (let month = seasonStart; month < seasonEnd;) {
+  const date = new Date(month)
+  const next = Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 1)
+  months.push({
+    label: formatDate(date.toISOString().slice(0, 10), { month: 'long' }),
+    left: percent(month - seasonStart),
+    width: percent(next - month),
+  })
+  month = next
+}
+---
+
+<div class="iop-timeline">
+  <div class="iop-timeline-row iop-timeline-head" aria-hidden="true">
+    <span></span>
+    <span class="iop-timeline-track">
+      {months.map((month) => (
+        <span class="iop-timeline-month" style={{ left: month.left, width: month.width }}>{month.label}</span>
+      ))}
+    </span>
+  </div>
+  {ordinations.map((ordination) => (
+    <a class="iop-timeline-row" href={`#${ordination.id}`}>
+      <span class="iop-timeline-label">
+        <span aria-hidden="true">{ordination.flag}</span>
+        <span>
+          <strong>{ordination.name}</strong>
+          <small>{formatRange(ordination)}</small>
+        </span>
+      </span>
+      <span class="iop-timeline-track" aria-hidden="true">
+        {months.map((month) => (
+          <span class="iop-timeline-divider" style={{ left: month.left }}></span>
+        ))}
+        <span
+          class="iop-timeline-bar"
+          style={{ left: percent(offset(ordination.start)), width: percent(offset(ordination.end) + DAY_MS - offset(ordination.start)) }}
+        ></span>
+        <span class="iop-timeline-ceremony" style={{ left: percent(offset(ordination.ceremony) + DAY_MS / 2) }}></span>
+      </span>
+    </a>
+  ))}
+  <p class="iop-timeline-legend">
+    <span class="iop-timeline-ceremony" aria-hidden="true"></span>
+    Ordination day
+  </p>
+</div>

@@ -1,0 +1,691 @@
+@use "sass:color";
+@use "../variables" as *;
+
+// International Ordination Program landing page (src/pages/iop-preview-7q4m2x.astro).
+
+$iop-ink: #2b1d0e;
+$iop-radius: 1.25rem;
+
+/* Section anchors land below the fixed nav rather than under it. */
+#dates,
+.iop-card {
+  scroll-margin-top: calc(var(--nav-height) + 1rem);
+}
+
+/* ---- Hero ---- */
+
+.iop-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: 92svh;
+  padding-top: var(--nav-height);
+  /* Leaves room for the stats card, which is pulled up over the photo. */
+  padding-bottom: 7rem;
+  overflow: hidden;
+  color: #fff;
+  background-color: #1f2a17;
+
+  /* Darkens the forest floor where the text sits, leaving the canopy bright. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.25) 45%,
+      rgba(0, 0, 0, 0.78) 100%
+    );
+  }
+}
+
+.iop-hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+.iop-eyebrow {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.4rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50rem;
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  /* Keeps the pill to one line on a phone. */
+  @media (max-width: 575.98px) {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+.iop-headline {
+  max-width: 14ch;
+  margin-bottom: 1.25rem;
+  font-size: clamp(2.75rem, 8.5vw, 6.25rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+
+  span {
+    color: $orange-300;
+  }
+}
+
+.iop-lead {
+  max-width: 36rem;
+  margin-bottom: 2rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.iop-hero-actions,
+.iop-finale-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+/* ---- Stats card ---- */
+
+.iop-stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
+  margin: -4.5rem 0 0;
+  padding: 1.75rem;
+  border-radius: $iop-radius;
+  background-color: #fff;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+
+  dt {
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: $orange-800;
+  }
+
+  dd {
+    margin: 0.2rem 0 0;
+    font-size: 0.9rem;
+    color: var(--bs-secondary-color);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2rem 2.25rem;
+
+    > div + div {
+      padding-left: 1.5rem;
+      border-left: 1px solid rgba($orange-600, 0.18);
+    }
+  }
+}
+
+/* ---- Shared section furniture ---- */
+
+.iop-section {
+  padding-block: clamp(4rem, 9vw, 6.5rem);
+}
+
+.iop-section-tinted {
+  background-color: color.mix(#fff, $orange-50, 45%);
+}
+
+.iop-kicker {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $orange-800;
+}
+
+.iop-title {
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: $iop-ink;
+}
+
+.iop-intro {
+  max-width: 42rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--bs-secondary-color);
+}
+
+/* ---- Summer timeline ---- */
+
+$timeline-label: 8.5rem;
+
+.iop-timeline {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border: 1px solid rgba($orange-600, 0.16);
+  border-radius: $iop-radius;
+  background-color: color.mix(#fff, $orange-50, 60%);
+}
+
+.iop-timeline-row {
+  display: grid;
+  grid-template-columns: $timeline-label 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding-block: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: inherit;
+
+    .iop-timeline-bar {
+      filter: brightness(1.08);
+      box-shadow: 0 4px 14px rgba($orange-700, 0.4);
+    }
+  }
+}
+
+.iop-timeline-head {
+  padding-block: 0 0.25rem;
+}
+
+.iop-timeline-label {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  font-size: 1.4rem;
+  line-height: 1.1;
+
+  strong {
+    display: block;
+    font-size: 0.95rem;
+    color: $iop-ink;
+  }
+
+  small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--bs-secondary-color);
+  }
+}
+
+.iop-timeline-track {
+  position: relative;
+  height: 2rem;
+}
+
+.iop-timeline-head .iop-timeline-track {
+  height: 1.25rem;
+}
+
+.iop-timeline-month {
+  position: absolute;
+  top: 0;
+  padding-left: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $orange-900;
+}
+
+.iop-timeline-divider {
+  position: absolute;
+  top: -0.5rem;
+  bottom: -0.5rem;
+  border-left: 1px dashed rgba($orange-700, 0.25);
+}
+
+.iop-timeline-bar {
+  position: absolute;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  border-radius: 50rem;
+  background: linear-gradient(90deg, $orange-500, $orange-800);
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.iop-timeline-ceremony {
+  position: absolute;
+  top: 50%;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 3px solid $orange-900;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.iop-timeline-legend {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+
+  .iop-timeline-ceremony {
+    position: static;
+    transform: none;
+  }
+
+  @media (min-width: 576px) {
+    padding-left: calc(#{$timeline-label} + 1rem);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .iop-timeline {
+    padding: 1.25rem 1rem;
+  }
+
+  .iop-timeline-row {
+    grid-template-columns: 7rem 1fr;
+    gap: 0.75rem;
+  }
+
+  .iop-timeline-label {
+    gap: 0.45rem;
+    font-size: 1.1rem;
+
+    small {
+      font-size: 0.68rem;
+      white-space: nowrap;
+    }
+  }
+
+  /* The bars are only a finger wide here, so the marker shrinks to leave some orange showing. */
+  .iop-timeline-ceremony {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-width: 2px;
+  }
+
+  .iop-timeline-month {
+    padding-left: 0.25rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* ---- Temple cards ---- */
+
+.iop-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.75rem 1.5rem 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba($orange-600, 0.18);
+  border-radius: $iop-radius;
+  background-color: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    background: linear-gradient(90deg, $orange-500, $orange-800);
+  }
+
+  /* Picks out the card a timeline row or the stats card jumped to. */
+  &:target {
+    border-color: $orange-600;
+    box-shadow: 0 0 0 3px rgba($orange-600, 0.25), 0 14px 36px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.iop-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.iop-card-flag {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.iop-card-month {
+  padding: 0.3rem 0.75rem;
+  border-radius: 50rem;
+  background-color: $orange-50;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $orange-900;
+}
+
+.iop-card-name {
+  margin-bottom: 0.25rem;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: $iop-ink;
+}
+
+.iop-card-temple {
+  font-size: 0.9rem;
+  color: var(--bs-secondary-color);
+}
+
+.iop-card-dates {
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: $iop-ink;
+
+  span {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--bs-secondary-color);
+  }
+}
+
+.iop-card-ceremony,
+.iop-card-languages {
+  > span {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+.iop-card-ceremony {
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, $orange-50, color.mix(#fff, $orange-100, 30%));
+
+  > span {
+    color: $orange-900;
+  }
+
+  strong {
+    font-size: 1.05rem;
+    color: $iop-ink;
+  }
+}
+
+.iop-card-languages {
+  margin-bottom: 1.5rem;
+
+  > span {
+    color: var(--bs-secondary-color);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.2rem 0.7rem;
+    border: 1px solid rgba($orange-700, 0.3);
+    border-radius: 50rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $orange-900;
+  }
+}
+
+.iop-card-apply {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* ---- Experiences ---- */
+
+.iop-experience {
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 1.25rem;
+    object-fit: cover;
+    border-radius: $iop-radius;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    background-color: var(--bs-gray-200);
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: $iop-ink;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--bs-secondary-color);
+  }
+}
+
+/* ---- Testimonials ---- */
+
+.iop-voice {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 1.75rem 1.5rem 1.5rem;
+  border-radius: $iop-radius;
+  background-color: color.mix(#fff, $orange-50, 50%);
+
+  blockquote {
+    position: relative;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: $iop-ink;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  figcaption {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  img {
+    flex-shrink: 0;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px rgba($orange-600, 0.4);
+    background-color: var(--bs-gray-200);
+  }
+
+  strong,
+  small {
+    display: block;
+  }
+
+  strong {
+    font-size: 1rem;
+    color: $iop-ink;
+  }
+
+  small {
+    color: var(--bs-secondary-color);
+  }
+}
+
+/* ---- Eligibility ---- */
+
+.iop-checklist {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding: 1rem 1.25rem 1rem 3.25rem;
+    border-radius: 0.85rem;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    font-size: 1.05rem;
+    color: $iop-ink;
+
+    /* A tick drawn in CSS, so the list needs no icon markup. */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 1.15rem;
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 50%;
+      background-color: $orange-600;
+      transform: translateY(-50%);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 1.6rem;
+      width: 0.4rem;
+      height: 0.7rem;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: translateY(-62%) rotate(45deg);
+    }
+  }
+}
+
+/* ---- Finale ---- */
+
+.iop-finale {
+  padding-block: clamp(4rem, 10vw, 7rem);
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.18), transparent 55%),
+    linear-gradient(135deg, $orange-600, $orange-900);
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.1rem, 6vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .iop-finale-actions {
+    justify-content: center;
+  }
+
+  .btn-light {
+    --bs-btn-color: #{$orange-900};
+    --bs-btn-hover-color: #{$orange-900};
+    --bs-btn-active-color: #{$orange-900};
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  }
+}
+
+/* The footer's own margin would leave a white strip under the orange band. */
+.iop-finale ~ .footer {
+  margin-top: 0;
+}
+
+/* ---- Sticky mobile Apply ---- */
+
+.iop-sticky-apply {
+  position: fixed;
+  right: 0.75rem;
+  bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  left: 0.75rem;
+  z-index: 1020;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.6rem 0.6rem 1.1rem;
+  border-radius: 50rem;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: saturate(180%) blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $iop-ink;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iop-timeline-bar,
+  .iop-sticky-apply {
+    transition: none;
+  }
+}

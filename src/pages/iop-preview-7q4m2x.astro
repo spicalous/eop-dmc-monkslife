@@ -1,0 +1,284 @@
+---
+import { Image, Picture } from 'astro:assets'
+import Base from '../layouts/Base.astro'
+import OrdinationCard from '../components/OrdinationCard.astro'
+import OrdinationTimeline from '../components/OrdinationTimeline.astro'
+import IconBoxArrowUpRight from '../components/icons/IconBoxArrowUpRight.astro'
+import { FORM_LINK } from '../config/site'
+import { ordinations } from '../data/ordinations'
+import hero from '../assets/images/2025/1754780918399-min.jpg'
+import robes from '../assets/images/2026/03.jpeg'
+import meditation from '../assets/images/2026/08.jpeg'
+import almsRound from '../assets/images/2026/09.jpeg'
+import dhamma from '../assets/images/2026/14.jpeg'
+import jay from '../assets/images/testimonials/2026-07-1.jpeg'
+import martin from '../assets/images/testimonials/2026-07-3.jpg'
+import enevald from '../assets/images/testimonials/2026-07-4.jpg'
+import heiko from '../assets/images/testimonials/2026-07-5.jpeg'
+
+/*
+ * Unlisted while it is reviewed: kept out of search results and the sitemap
+ * (see astro.config.mjs), and nothing links here. It is meant to replace the
+ * home page once approved.
+ */
+
+const experiences = [
+  {
+    image: robes,
+    alt: 'A senior monk placing saffron robes over the shoulder of a candidate dressed in white',
+    title: 'Receive the robes',
+    text: 'Shave your head, dress in white and be given the saffron robes in a ceremony your family can be part of.',
+  },
+  {
+    image: meditation,
+    alt: 'Newly ordained monks meditating on the grass beneath a large tree',
+    title: 'Learn to meditate',
+    text: 'Sit every day alongside experienced monks and take home a practice that keeps working long after the robes come off.',
+  },
+  {
+    image: almsRound,
+    alt: 'A line of monks holding alms bowls in the early morning sun',
+    title: 'Walk the alms round',
+    text: 'Set out in the early morning with your alms bowl, eat in mindful silence and discover how little you really need.',
+  },
+  {
+    image: dhamma,
+    alt: 'Newly ordained monks seated in rows in the meditation hall, palms together',
+    title: 'Study the Dhamma',
+    text: 'Learn what the Buddha taught from monks who make it clear, practical and relevant to modern life.',
+  },
+]
+
+const voices = [
+  {
+    image: martin,
+    name: 'Martin',
+    detail: 'Berlin, Germany. Ordained at 27',
+    quote: 'Since arriving here I meditate every day with the monks. Their teaching and the practice have helped me gain more control over myself, more inner peace, more happiness, and greater mindfulness.',
+    href: '/testimonials/testimonial/2026-07-3/',
+  },
+  {
+    image: enevald,
+    name: 'Enevald',
+    detail: 'Norway. Ordained at 60',
+    quote: 'I used to carry a lot of anger. The teachings and the daily life as a monk have helped me become a better person and more peaceful every day.',
+    href: '/testimonials/testimonial/2026-07-4/',
+  },
+  {
+    image: jay,
+    name: 'Jay',
+    detail: 'United Kingdom',
+    quote: 'It almost felt like a bitesize university degree on Buddhism. My daily meditation practice has helped me to quiet the loud inner voice.',
+    href: '/testimonials/testimonial/2026-07-1/',
+  },
+  {
+    image: heiko,
+    name: 'Heiko',
+    detail: 'Returning participant',
+    quote: "It's much more than a normal retreat I would say, and that's why I'm here again.",
+    href: '/testimonials/testimonial/2026-07-5/',
+  },
+]
+---
+
+<Base title="International Ordination Program"
+  description="Live as a Theravada Buddhist monk this summer at one of four temples in Belgium, Denmark, Germany or the UK. Dates, languages and how to apply."
+  socialImage={hero}
+  noindex>
+  <section class="iop-hero">
+    <Picture
+      src={hero}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280]}
+      sizes="100vw"
+      class="iop-hero-img"
+      alt="Monks meditating alone among the beech trees of a sunlit forest"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="container">
+      <p class="iop-eyebrow">Summer 2027 · Four temples across Europe</p>
+      <h1 class="iop-headline">International <span>Ordination</span> Program</h1>
+      <p class="iop-lead">
+        Trade your phone for saffron robes. Spend two to three weeks living as a Theravada Buddhist monk, and come home
+        with a calm that stays.
+      </p>
+      <div class="iop-hero-actions">
+        <a class="btn btn-primary btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+          Apply now
+          <IconBoxArrowUpRight width="1em" height="1em" />
+        </a>
+        <a class="btn btn-outline-light btn-lg" href="#dates">Find your dates</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <dl class="iop-stats">
+      <div>
+        <dt>4 temples</dt>
+        <dd>Belgium, Denmark, Germany and the UK</dd>
+      </div>
+      <div>
+        <dt>2 to 3 weeks</dt>
+        <dd>Between June and August</dd>
+      </div>
+      <div>
+        <dt>English &amp; German</dt>
+        <dd>Choose the language that suits you</dd>
+      </div>
+      <div>
+        <dt>Men 18 to 70</dt>
+        <dd>Every background welcome</dd>
+      </div>
+    </dl>
+  </div>
+
+  <section class="iop-section" id="dates">
+    <div class="container">
+      <p class="iop-kicker">Summer 2027</p>
+      <h2 class="iop-title">Choose your temple</h2>
+      <p class="iop-intro">
+        Four ordinations, one summer. Pick the dates and language that fit your life. Each program builds to its
+        ordination day, when you receive the saffron robes in front of family and friends.
+      </p>
+      <OrdinationTimeline ordinations={ordinations} />
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+        {ordinations.map((ordination) => (
+          <div class="col">
+            <OrdinationCard ordination={ordination} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section iop-section-tinted">
+    <div class="container">
+      <p class="iop-kicker">What you will experience</p>
+      <h2 class="iop-title">More than a retreat</h2>
+      <p class="iop-intro">
+        For a few weeks you live exactly as a monk does, with the same robes, the same rules and the same daily rhythm
+        that has been handed down for over 2,500 years.
+      </p>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+        {experiences.map((experience) => (
+          <div class="col">
+            <div class="iop-experience">
+              <Image
+                src={experience.image}
+                widths={[400, 640]}
+                sizes="(min-width: 992px) 23vw, (min-width: 576px) 46vw, 92vw"
+                format="webp"
+                alt={experience.alt}
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>{experience.title}</h3>
+              <p>{experience.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section">
+    <div class="container">
+      <p class="iop-kicker">In their own words</p>
+      <h2 class="iop-title">What changed for them</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mt-2">
+        {voices.map((voice) => (
+          <div class="col">
+            <figure class="iop-voice">
+              <blockquote>
+                <p>“{voice.quote}”</p>
+              </blockquote>
+              <figcaption>
+                <Image
+                  src={voice.image}
+                  width={112}
+                  height={112}
+                  densities={[1, 2]}
+                  fit="cover"
+                  position="top"
+                  format="webp"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span>
+                  <strong>{voice.name}</strong>
+                  <small>{voice.detail}</small>
+                  <a href={voice.href}>Read the full story</a>
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section iop-section-tinted">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-12 col-lg-5">
+          <p class="iop-kicker">Is this for you?</p>
+          <h2 class="iop-title">You do not need to be a Buddhist</h2>
+          <p class="iop-intro">
+            The training is built for people who were not raised in the tradition. Curiosity and an open mind are
+            enough to begin.
+          </p>
+        </div>
+        <div class="col-12 col-lg-7">
+          <ul class="iop-checklist">
+            <li>You are a man aged between 18 and 70</li>
+            <li>You come from any country, culture or faith</li>
+            <li>You are in good health, with no drug addictions or criminal record</li>
+            <li>You have not already received full ordination as a monk</li>
+          </ul>
+          <a href="/about/">See the full requirements and what to bring</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-finale">
+    <div class="container">
+      <h2>Your summer in robes starts here</h2>
+      <p>Pick your temple and send in your application today.</p>
+      <div class="iop-finale-actions">
+        <a class="btn btn-light btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+          Apply now
+          <IconBoxArrowUpRight width="1em" height="1em" />
+        </a>
+        <a class="btn btn-outline-light btn-lg" href="/mailing-list/">Not ready? Join the mailing list</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Below md the nav's Apply button is folded away, so this follows the reader between the hero and the finale. */}
+  <div class="iop-sticky-apply d-md-none">
+    <span>Summer 2027 · 4 temples</span>
+    <a class="btn btn-primary" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+      Apply now
+      <IconBoxArrowUpRight width="1em" height="1em" />
+    </a>
+  </div>
+
+  <script>
+    const bar = document.querySelector('.iop-sticky-apply')
+    const anchors = document.querySelectorAll('.iop-hero, .iop-finale, .footer')
+
+    if (bar && anchors.length) {
+      /* The hero and finale carry their own Apply buttons, and the footer should not be covered. */
+      const visible = new Set<Element>()
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target))
+        bar.classList.toggle('is-visible', visible.size === 0)
+      })
+      anchors.forEach((anchor) => observer.observe(anchor))
+    }
+  </script>
+</Base>
