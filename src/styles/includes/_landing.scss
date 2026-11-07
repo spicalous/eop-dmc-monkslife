@@ -559,6 +559,51 @@ $timeline-label: 8.5rem;
   }
 }
 
+/* ---- Videos ---- */
+
+/* A dark band, so the video section stands apart from the light and tinted sections on either side of it. */
+.iop-section-dark {
+  color: #fff;
+  background-color: $iop-ink;
+
+  .iop-kicker {
+    color: $orange-300;
+  }
+
+  .iop-title {
+    color: #fff;
+  }
+
+  .iop-intro {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.iop-video {
+  h3 {
+    margin: 1.25rem 0 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+  }
+}
+
+.iop-more {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-weight: 600;
+  color: $orange-300;
+
+  &:hover {
+    color: $orange-200;
+  }
+}
+
 /* ---- Eligibility ---- */
 
 .iop-checklist {

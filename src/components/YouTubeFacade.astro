@@ -1,0 +1,47 @@
+---
+interface Props {
+  /** YouTube video id on its own, with no URL or query string. */
+  id: string
+  /** Names the play link, and the player once it loads. */
+  title: string
+}
+
+const { id, title } = Astro.props
+---
+
+{/*
+  * Shows the video's thumbnail and loads YouTube's player only when it is played, so a page of several videos
+  * costs a few small images rather than several players. Without JavaScript the link opens the video on YouTube.
+  */}
+<div class="ratio ratio-16x9 yt-facade">
+  <a
+    href={`https://www.youtube.com/watch?v=${id}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`Play video: ${title}`}
+    data-video-id={id}
+    data-title={title}
+  >
+    <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" decoding="async">
+    <span class="yt-facade-play" aria-hidden="true"></span>
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('.yt-facade a').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      /* Leaves modified clicks alone, so they still open YouTube in a new tab or window. */
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      event.preventDefault()
+
+      const iframe = document.createElement('iframe')
+      iframe.src = `https://www.youtube-nocookie.com/embed/${link.dataset.videoId}?autoplay=1`
+      iframe.title = link.dataset.title ?? ''
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin'
+      iframe.allowFullscreen = true
+      link.replaceWith(iframe)
+      iframe.focus()
+    })
+  })
+</script>
