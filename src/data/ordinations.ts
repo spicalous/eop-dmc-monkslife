@@ -30,7 +30,7 @@ export const ordinations: Ordination[] = [
     id: 'sjaelland',
     name: 'Sjælland',
     temple: 'Wat Phra Dhammakaya Sjælland',
-    place: 'Zealand, Denmark',
+    place: 'Denmark',
     flag: '🇩🇰',
     start: '2027-07-05',
     end: '2027-07-18',
