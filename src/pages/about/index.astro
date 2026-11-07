@@ -3,14 +3,18 @@ import { getImage } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
 import Card from '../../components/Card.astro'
 import DataTable from '../../components/DataTable.astro'
-import Location from '../../components/Location.astro'
+import OrdinationCard from '../../components/OrdinationCard.astro'
+import OrdinationTimeline from '../../components/OrdinationTimeline.astro'
 import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
 import { FORM_LINK } from '../../config/site'
+import { formatRange, ordinations } from '../../data/ordinations'
 import { templesByCountry } from '../../data/temples'
 import logo from '../../assets/images/logo-monks-life.png'
 
 /* Decorative banner, so it is a CSS background rather than an <img>. */
 const banner = await getImage({ src: logo, width: 640, format: 'webp' })
+
+const listFormat = new Intl.ListFormat('en-GB', { type: 'conjunction' })
 
 const itinerary = {
   headers: ['Date', '&nbsp;&nbsp;Activity'],
@@ -46,8 +50,19 @@ const itinerary = {
     <div id="program-details--latest-news" class="offset-anchor-for-fixed-nav"></div>
     <h1 class="text-center mt-5">Latest news and announcements</h1>
     <p>
-      <Location />
+      In summer 2027 the program runs at four temples across Europe, in English, German or both. Pick the dates and
+      language that fit your life. Each program builds to its ordination day, when you receive the saffron robes in
+      front of family and friends.
     </p>
+    <OrdinationTimeline ordinations={ordinations} />
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+      {ordinations.map((ordination) => (
+        <div class="col">
+          <OrdinationCard ordination={ordination} />
+        </div>
+      ))}
+    </div>
+    <h2 class="mt-5">Itinerary at Wat Phra Dhammakaya Belgium</h2>
     <DataTable table={itinerary} />
     <div id="program-details--what-is-the-european-ordination-program" class="offset-anchor-for-fixed-nav"></div>
     <h1 class="text-center mt-5">What is the European Ordination Program?</h1>
@@ -76,6 +91,29 @@ const itinerary = {
       in training those who are not raised as Buddhists, enabling them to learn and apply the teachings in this short
       period of time after the program is concluded.
     </p>
+    <h2>What you will experience</h2>
+    <p>
+      For a few weeks you live exactly as a monk does, with the same robes, the same rules and the same daily rhythm
+      that has been handed down for over 2,500 years.
+    </p>
+    <ul>
+      <li>
+        <strong>Receive the robes.</strong> Shave your head, dress in white and be given the saffron robes in a ceremony
+        your family can be part of.
+      </li>
+      <li>
+        <strong>Learn to meditate.</strong> Sit every day alongside experienced monks and take home a practice that keeps
+        working long after the robes come off.
+      </li>
+      <li>
+        <strong>Walk the alms round.</strong> Set out in the early morning with your alms bowl, eat in mindful silence and
+        discover how little you really need.
+      </li>
+      <li>
+        <strong>Study the Dhamma.</strong> Learn what the Buddha taught from monks who make it clear, practical and
+        relevant to modern life.
+      </li>
+    </ul>
     <p>
       We therefore would like to invite all qualified persons for The Theravada-Monk Ordination to join the European
       Ordination Program again this year.
@@ -83,6 +121,10 @@ const itinerary = {
     <h2>
       Registration
     </h2>
+    <p>
+      You do not need to be a Buddhist. The training is built for people who were not raised in the tradition, and men
+      from any country, culture or faith are welcome. Curiosity and an open mind are enough to begin.
+    </p>
     <p>
       Qualifications for those who would like to join the program are:
     </p>
@@ -125,8 +167,16 @@ const itinerary = {
     </p>
     <h2>Location</h2>
     <p>
-      <Location />
+      The ordination program for summer 2027 will be held at the following temples, each for two to three weeks between
+      June and August:
     </p>
+    <ul>
+      {ordinations.map((ordination) => (
+        <li>
+          <strong>{ordination.temple}</strong>, {ordination.place}: {formatRange(ordination)} ({listFormat.format(ordination.languages)})
+        </li>
+      ))}
+    </ul>
     <h2>Things to do before your arrival</h2>
     <p>
       You will need to memorise chanting text for the ordination ceremony:
