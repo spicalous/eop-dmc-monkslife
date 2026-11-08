@@ -1,48 +1,19 @@
 ---
 import { Image, Picture } from 'astro:assets'
 import Base from '../layouts/Base.astro'
+import ExperienceGrid from '../components/ExperienceGrid.astro'
 import OrdinationCard from '../components/OrdinationCard.astro'
 import OrdinationTimeline from '../components/OrdinationTimeline.astro'
+import StickyApply from '../components/StickyApply.astro'
 import YouTubeFacade from '../components/YouTubeFacade.astro'
 import IconBoxArrowUpRight from '../components/icons/IconBoxArrowUpRight.astro'
 import { FORM_LINK } from '../config/site'
 import { ordinations } from '../data/ordinations'
 import hero from '../assets/images/2025/1754780918399-min.jpg'
-import robes from '../assets/images/2026/03.jpeg'
-import meditation from '../assets/images/2026/08.jpeg'
-import almsRound from '../assets/images/2026/09.jpeg'
-import dhamma from '../assets/images/2026/14.jpeg'
 import jay from '../assets/images/testimonials/2026-07-1.jpeg'
 import martin from '../assets/images/testimonials/2026-07-3.jpg'
 import enevald from '../assets/images/testimonials/2026-07-4.jpg'
 import heiko from '../assets/images/testimonials/2026-07-5.jpeg'
-
-const experiences = [
-  {
-    image: robes,
-    alt: 'A senior monk placing saffron robes over the shoulder of a candidate dressed in white',
-    title: 'Receive the robes',
-    text: 'Shave your head, dress in white and be given the saffron robes in a ceremony your family can be part of.',
-  },
-  {
-    image: meditation,
-    alt: 'Newly ordained monks meditating on the grass beneath a large tree',
-    title: 'Learn to meditate',
-    text: 'Sit every day alongside experienced monks and take home a practice that keeps working long after the robes come off.',
-  },
-  {
-    image: almsRound,
-    alt: 'A line of monks holding alms bowls in the early morning sun',
-    title: 'Walk the alms round',
-    text: 'Set out in the early morning with your alms bowl, eat in mindful silence and discover how little you really need.',
-  },
-  {
-    image: dhamma,
-    alt: 'Newly ordained monks seated in rows in the meditation hall, palms together',
-    title: 'Study the Dhamma',
-    text: 'Learn what the Buddha taught from monks who make it clear, practical and relevant to modern life.',
-  },
-]
 
 const voices = [
   {
@@ -189,25 +160,7 @@ const videos = [
         For a few weeks you live exactly as a monk does, with the same robes, the same rules and the same daily rhythm
         that has been handed down for over 2,500 years.
       </p>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
-        {experiences.map((experience) => (
-          <div class="col">
-            <div class="iop-experience">
-              <Image
-                src={experience.image}
-                widths={[400, 640]}
-                sizes="(min-width: 992px) 23vw, (min-width: 576px) 46vw, 92vw"
-                format="webp"
-                alt={experience.alt}
-                loading="lazy"
-                decoding="async"
-              />
-              <h3>{experience.title}</h3>
-              <p>{experience.text}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <ExperienceGrid />
     </div>
   </section>
 
@@ -308,27 +261,5 @@ const videos = [
     </div>
   </section>
 
-  {/* Below md the nav's Apply button is folded away, so this follows the reader between the hero and the finale. */}
-  <div class="iop-sticky-apply d-md-none">
-    <span>Summer 2027 · 4 temples</span>
-    <a class="btn btn-primary" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
-      Apply now
-      <IconBoxArrowUpRight width="1em" height="1em" />
-    </a>
-  </div>
-
-  <script>
-    const bar = document.querySelector('.iop-sticky-apply')
-    const anchors = document.querySelectorAll('.iop-hero, .iop-finale, .footer')
-
-    if (bar && anchors.length) {
-      /* The hero and finale carry their own Apply buttons, and the footer should not be covered. */
-      const visible = new Set<Element>()
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target))
-        bar.classList.toggle('is-visible', visible.size === 0)
-      })
-      anchors.forEach((anchor) => observer.observe(anchor))
-    }
-  </script>
+  <StickyApply />
 </Base>

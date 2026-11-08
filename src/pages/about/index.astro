@@ -1,227 +1,352 @@
 ---
-import { getImage } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
-import Card from '../../components/Card.astro'
-import DataTable from '../../components/DataTable.astro'
+import ExperienceGrid from '../../components/ExperienceGrid.astro'
 import OrdinationCard from '../../components/OrdinationCard.astro'
 import OrdinationTimeline from '../../components/OrdinationTimeline.astro'
+import StickyApply from '../../components/StickyApply.astro'
 import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
 import { FORM_LINK } from '../../config/site'
-import { formatRange, ordinations } from '../../data/ordinations'
+import { ordinations } from '../../data/ordinations'
 import { templesByCountry } from '../../data/temples'
-import logo from '../../assets/images/logo-monks-life.png'
+import hero from '../../assets/images/2026/10.jpeg'
 
-/* Decorative banner, so it is a CSS background rather than an <img>. */
-const banner = await getImage({ src: logo, width: 640, format: 'webp' })
-
-const listFormat = new Intl.ListFormat('en-GB', { type: 'conjunction' })
-
-const itinerary = {
-  headers: ['Date', '&nbsp;&nbsp;Activity'],
-  rows: [
-    ['12-18 June', '&nbsp;&nbsp;First week of training'],
-    ['12 June', '&nbsp;&nbsp;Registration'],
-    ['15 June', '&nbsp;&nbsp;Ceremony of shaving the hair for the first time'],
-    ['19 June', '&nbsp;&nbsp;Ordination day'],
-    ['20-30 June', '&nbsp;&nbsp;Training continues'],
-    ['1 July onwards', '&nbsp;&nbsp;Stay on as a monk at the Dhammakaya temple in your home country or in Belgium, dependent on assessment (optional)'],
-  ],
+/* The nav's Program details menu links to the first, second and last of these ids. */
+const sections = {
+  dates: 'program-details--latest-news',
+  program: 'program-details--what-is-the-european-ordination-program',
+  eligibility: 'program-details--who-can-join',
+  packing: 'program-details--what-to-bring',
+  faq: 'program-details--good-to-know',
+  temples: 'program-details--temples-in-europe',
 }
+
+const jumps = [
+  { href: sections.dates, label: 'Dates', detail: 'Four temples, summer 2027' },
+  { href: sections.program, label: 'The program', detail: 'Where it began and what you do' },
+  { href: sections.eligibility, label: 'Who can join', detail: 'The requirements to apply' },
+  { href: sections.packing, label: 'What to bring', detail: 'And what to leave at home' },
+  { href: sections.faq, label: 'Good to know', detail: 'Chanting, visas and monks' },
+  { href: sections.temples, label: 'Temples', detail: 'Find one near you' },
+]
+
+const itinerary = [
+  { date: '12 June', activity: 'Registration' },
+  { date: '12 to 18 June', activity: 'First week of training' },
+  { date: '15 June', activity: 'Ceremony of shaving the hair for the first time' },
+  { date: '19 June', activity: 'Ordination day', ceremony: true },
+  { date: '20 to 30 June', activity: 'Training continues' },
+  {
+    date: '1 July onwards',
+    activity: 'Stay on as a monk at the Dhammakaya temple in your home country or in Belgium, dependent on assessment (optional)',
+  },
+]
+
+const qualifications = [
+  'Male between 18-70 years old',
+  'A person with acceptable good behaviour as observed and can be attested to by their peers',
+  'A person who lives a simple life, has good health, has no contagious diseases, mental illnesses, or physical impairments',
+  'A person who has no drug addictions or criminal records',
+  'A written consent from a parent, guardian, spouse, or closest living relative is required for those who wish to join The European Ordination Program',
+  'Applicants requiring a guarantee letter for Europe must be vouched for by Dhammakaya Temple or one of its international branch temples i.e. by a monk or temple employee',
+]
+
+const required = [
+  '2 sets of white shirts and trousers',
+  '1 standard white shirt used by The EU Dhammakaya branches ceremonies',
+  'Sweaters',
+  '1 towel',
+  'Personal necessities such as soap, shampoo, toothpaste, and a toothbrush',
+  '1 pair of sandals',
+  'Any required medicine',
+]
+
+const notAllowed = [
+  'Dangerous sharp items that could be considered as weapons',
+  'Cigarettes',
+  'Valuable items',
+  'Mobile phones',
+  'Illegal drugs',
+  'Food',
+  "Music players, CD's, or radios",
+]
 ---
 
 <Base title="Program details - European Ordination Program"
-  description="Everything you need to apply: dates, itinerary, entry requirements, what to bring, and the Dhammakaya temples across Europe.">
-  {/* Decorative banner: the navbar already carries the labelled logo. */}
-  <div id="index-header" role="presentation" style={`background-image: url(${banner.src})`}></div>
+  description="Everything you need to apply: dates, itinerary, entry requirements, what to bring, and the Dhammakaya temples across Europe."
+  socialImage={hero}>
+  <section class="iop-hero iop-hero-compact">
+    <Picture
+      src={hero}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1600]}
+      sizes="100vw"
+      class="iop-hero-img"
+      alt="A long line of monks in saffron robes walking the alms round along a tree-lined road at sunrise"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="container">
+      <p class="iop-eyebrow">Summer 2027 · European Ordination Program</p>
+      <h1 class="iop-headline">Program <span>details</span></h1>
+      <p class="iop-lead">
+        While many are searching for peace outside, we believe that world peace MUST begin from each and everyone of us.
+        That is why we promote the use of meditation in order to help individuals cultivate peace from within.
+      </p>
+      <div class="iop-hero-actions">
+        <a class="btn btn-primary btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+          Apply now
+          <IconBoxArrowUpRight width="1em" height="1em" />
+        </a>
+        <a class="btn btn-outline-light btn-lg" href={`#${sections.dates}`}>Find your dates</a>
+      </div>
+    </div>
+  </section>
+
   <div class="container">
-    <p class="lead mt-5">
-      While many are searching for peace outside, we believe that world peace MUST begin from each and everyone of us.
-      That is why we promote the use of meditation in order to help individuals cultivate peace from within.
-    </p>
-    <p>
-      Open to men of all ethnicities and backgrounds, the European Ordination Program provides the opportunity to
-      learn about Buddhism and a monk's way of life. Taking part in the experience will aid in the cultivation of one's
-      inner peace.
-    </p>
-    <p>
-      The Dhammakaya Foundation is a non-profit organisation, based on personal development, aiming to promote activities
-      for the restoration of morality in individuals, families, societies, and the world.
-    </p>
-    <div id="program-details--latest-news" class="offset-anchor-for-fixed-nav"></div>
-    <h1 class="text-center mt-5">Latest news and announcements</h1>
-    <p>
-      In summer 2027 the program runs at four temples across Europe, in English, German or both. Pick the dates and
-      language that fit your life. Each program builds to its ordination day, when you receive the saffron robes in
-      front of family and friends.
-    </p>
-    <OrdinationTimeline ordinations={ordinations} />
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
-      {ordinations.map((ordination) => (
-        <div class="col">
-          <OrdinationCard ordination={ordination} />
-        </div>
-      ))}
-    </div>
-    <h2 class="mt-5">Itinerary at Wat Phra Dhammakaya Belgium</h2>
-    <DataTable table={itinerary} />
-    <div id="program-details--what-is-the-european-ordination-program" class="offset-anchor-for-fixed-nav"></div>
-    <h1 class="text-center mt-5">What is the European Ordination Program?</h1>
-    <p>
-      The European Ordination Program has been established by the vision of Luang Por Dhammajayo, the Abbot of Wat
-      Phra Dhammakaya, to introduce Buddhism to the people in Europe, and others around the world. The
-      program was organized for the first time in 2013 at Wat Phra Dhammakaya Belgium. Many participants in Europe
-      from different countries such as England, Belgium, France, Germany, Sweden, Denmark, The Netherlands, Italy,
-      Malta, Austria, and Switzerland joined the program. When it concluded, all were very satisfied with the program,
-      and many had the intention to join the same program again the following year.
-    </p>
-    <p>
-      The European committee, consisting of 29 branches of Wat Phra Dhammakaya decided to organise the program every year.
-      Subsequently, more and more participants in Europe have joined and participated in the European Ordination Program.
-    </p>
-    <p>
-      The European Ordination Program provides the opportunity for all qualified persons in Europe who have interest in
-      studying the Dhamma of the Buddha, to use the knowledge they learn and practice from the program to benefit their
-      lives with more happiness and prosperity.
-    </p>
-    <p>
-      In the program, all participants have the opportunity to learn about the Theravada Buddhist monk's life, to train
-      themselves with the Buddhist disciplines and Buddhist cultures, to practice meditation, to study a variety of
-      Buddhist Dhamma topics, and to understand more about the Theravada Buddhist monk's life. The course of study in the
-      program has been continuously well-developed from the beginning up until the present, by becoming more efficient
-      in training those who are not raised as Buddhists, enabling them to learn and apply the teachings in this short
-      period of time after the program is concluded.
-    </p>
-    <h2>What you will experience</h2>
-    <p>
-      For a few weeks you live exactly as a monk does, with the same robes, the same rules and the same daily rhythm
-      that has been handed down for over 2,500 years.
-    </p>
-    <ul>
-      <li>
-        <strong>Receive the robes.</strong> Shave your head, dress in white and be given the saffron robes in a ceremony
-        your family can be part of.
-      </li>
-      <li>
-        <strong>Learn to meditate.</strong> Sit every day alongside experienced monks and take home a practice that keeps
-        working long after the robes come off.
-      </li>
-      <li>
-        <strong>Walk the alms round.</strong> Set out in the early morning with your alms bowl, eat in mindful silence and
-        discover how little you really need.
-      </li>
-      <li>
-        <strong>Study the Dhamma.</strong> Learn what the Buddha taught from monks who make it clear, practical and
-        relevant to modern life.
-      </li>
-    </ul>
-    <p>
-      We therefore would like to invite all qualified persons for The Theravada-Monk Ordination to join the European
-      Ordination Program again this year.
-    </p>
-    <h2>
-      Registration
-    </h2>
-    <p>
-      You do not need to be a Buddhist. The training is built for people who were not raised in the tradition, and men
-      from any country, culture or faith are welcome. Curiosity and an open mind are enough to begin.
-    </p>
-    <p>
-      Qualifications for those who would like to join the program are:
-    </p>
-    <ol>
-      <li>Male between 18-70 years old</li>
-      <li>A person with acceptable good behaviour as observed and can be attested to by their peers</li>
-      <li>A person who lives a simple life, has good health, has no contagious diseases, mental illnesses, or physical
-        impairments.
-      </li>
-      <li>A person who has no drug addictions or criminal records</li>
-      <li>A written consent from a parent, guardian, spouse, or closest living relative is required for those who wish to
-        join The European Ordination Program.
-      </li>
-      <li>Applicants requiring a guarantee letter for Europe must be vouched for by Dhammakaya Temple or one of its international branch temples i.e. by a monk or temple employee.</li>
-    </ol>
-    <h2>
-      Items Required to Join the Program
-    </h2>
-    <ul>
-      <li>2 sets of white shirts and trousers</li>
-      <li>1 standard white shirt used by The EU Dhammakaya branches ceremonies</li>
-      <li>Sweaters</li>
-      <li>1 towel</li>
-      <li>Personal necessities such as soap, shampoo, toothpaste, and a toothbrush</li>
-      <li>1 pair of sandals</li>
-      <li>Any required medicine</li>
-    </ul>
-    <h2>Items that are not allowed during the Training Program</h2>
-    <ul>
-      <li>No dangerous sharp items that could be considered as weapons</li>
-      <li>No cigarettes</li>
-      <li>No valuable items</li>
-      <li>No mobile phones</li>
-      <li>No illegal drugs</li>
-      <li>No food</li>
-      <li>No music players, CD's, or radios</li>
-    </ul>
-    <p>
-      Thank you for your interest in the European Ordination Program and we look forward to your participation.
-    </p>
-    <h2>Location</h2>
-    <p>
-      The ordination program for summer 2027 will be held at the following temples, each for two to three weeks between
-      June and August:
-    </p>
-    <ul>
-      {ordinations.map((ordination) => (
-        <li>
-          <strong>{ordination.temple}</strong>, {ordination.place}: {formatRange(ordination)} ({listFormat.format(ordination.languages)})
-        </li>
-      ))}
-    </ul>
-    <h2>Things to do before your arrival</h2>
-    <p>
-      You will need to memorise chanting text for the ordination ceremony:
-    </p>
-    <ul>
-      <li><a href="/assets/docs/ordination-chanting.pdf">Download chanting texts</a></li>
-    <!-- TODO finish chanting section
-      <li><a href="/about/texts/#ordination-chanting-en">Online in English</a></li>
-      <li><a href="/about/texts/#ordination-chanting-th">Online in Thai</a></li>
-    -->
-    </ul>
-    <h2>Do you require a letter of guarantee for a visa?</h2>
-    <p>
-      If you require a letter from us to submit as part of your visa request, we ask you to find someone in our network of
-      Dhammakaya temples who can vouch for you. This is our policy, because we want to prevent our program from being used
-      as an excuse to stay in Europe illegally. If you don't know anyone in our network, you can find a Dhammakaya branch
-      temple near you and an interview can be arranged.
-    </p>
-    <h2>Are you already a monk?</h2>
-    <p>
-      If you want to join the program, but you have already received the full ordination (upasampadā), and are currently
-      still a monk, we cannot accept you in the program. We only accept lay people at the current moment.
-    </p>
-    <h2>How do I join?</h2>
-    <p>
-      Click on the button below and fill out the form to apply for the ordination program.<br>Note that this program is open to male participants only.
-    </p>
-    <a class="btn btn-primary d-inline-flex" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
-      Apply
-      &nbsp;
-      <IconBoxArrowUpRight />
-    </a>
-    <div id="program-details--temples-in-europe" class="offset-anchor-for-fixed-nav"></div>
-    <h1 class="text-center mt-5">Temples in Europe</h1>
-    <div class="row">
-      {templesByCountry.map(({ country, flag, temples }, index) => (
-        <>
-          <div class="col-12 px-3"><h4 class={index === 0 ? 'mb-0' : 'mb-0 mt-4'}>{flag} {country}</h4></div>
-          {temples.map((temple) => (
-            <div class="col-6 col-md-6 px-3">
-              <Card title={temple.title} content={temple.content} />
-            </div>
-          ))}
-        </>
-      ))}
-    </div>
+    <nav class="iop-jump" aria-label="On this page">
+      <ul>
+        {jumps.map((jump) => (
+          <li>
+            <a href={`#${jump.href}`}>
+              <strong>{jump.label}</strong>
+              <small>{jump.detail}</small>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </div>
+
+  <section class="iop-section" id={sections.dates}>
+    <div class="container">
+      <p class="iop-kicker">Latest news and announcements</p>
+      <h2 class="iop-title">Summer 2027 at four temples</h2>
+      <p class="iop-intro">
+        In summer 2027 the program runs at four temples across Europe, in English, German or both. Pick the dates and
+        language that fit your life. Each program builds to its ordination day, when you receive the saffron robes in
+        front of family and friends.
+      </p>
+      <OrdinationTimeline ordinations={ordinations} />
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+        {ordinations.map((ordination) => (
+          <div class="col">
+            <OrdinationCard ordination={ordination} />
+          </div>
+        ))}
+      </div>
+
+      <div class="row g-4 g-lg-5 mt-5">
+        <div class="col-12 col-lg-5">
+          <h3 class="iop-subtitle">Itinerary at Wat Phra Dhammakaya Belgium</h3>
+          <p class="iop-intro mb-0">
+            From registration to ordination day, and the weeks of training either side of it.
+          </p>
+        </div>
+        <div class="col-12 col-lg-7">
+          <ol class="iop-itinerary">
+            {itinerary.map((step) => (
+              <li class={step.ceremony ? 'is-ceremony' : undefined}>
+                <span class="iop-itinerary-date">{step.date}</span>
+                <span class="iop-itinerary-activity">{step.activity}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section iop-section-tinted" id={sections.program}>
+    <div class="container">
+      <div class="row g-4 g-lg-5">
+        <div class="col-12 col-lg-5">
+          <p class="iop-kicker">About the program</p>
+          <h2 class="iop-title">What is the European Ordination Program?</h2>
+          <p class="iop-intro mb-0">
+            Open to men of all ethnicities and backgrounds, the European Ordination Program provides the opportunity to
+            learn about Buddhism and a monk's way of life. Taking part in the experience will aid in the cultivation of
+            one's inner peace.
+          </p>
+        </div>
+        <div class="col-12 col-lg-7 iop-prose">
+          <p>
+            The European Ordination Program has been established by the vision of Luang Por Dhammajayo, the Abbot of Wat
+            Phra Dhammakaya, to introduce Buddhism to the people in Europe, and others around the world. The
+            program was organized for the first time in 2013 at Wat Phra Dhammakaya Belgium. Many participants in Europe
+            from different countries such as England, Belgium, France, Germany, Sweden, Denmark, The Netherlands, Italy,
+            Malta, Austria, and Switzerland joined the program. When it concluded, all were very satisfied with the
+            program, and many had the intention to join the same program again the following year.
+          </p>
+          <p>
+            The European committee, consisting of 29 branches of Wat Phra Dhammakaya decided to organise the program every
+            year. Subsequently, more and more participants in Europe have joined and participated in the European
+            Ordination Program.
+          </p>
+          <p>
+            The European Ordination Program provides the opportunity for all qualified persons in Europe who have interest
+            in studying the Dhamma of the Buddha, to use the knowledge they learn and practice from the program to benefit
+            their lives with more happiness and prosperity.
+          </p>
+          <p>
+            In the program, all participants have the opportunity to learn about the Theravada Buddhist monk's life, to
+            train themselves with the Buddhist disciplines and Buddhist cultures, to practice meditation, to study a
+            variety of Buddhist Dhamma topics, and to understand more about the Theravada Buddhist monk's life. The course
+            of study in the program has been continuously well-developed from the beginning up until the present, by
+            becoming more efficient in training those who are not raised as Buddhists, enabling them to learn and apply
+            the teachings in this short period of time after the program is concluded.
+          </p>
+          <p>
+            The Dhammakaya Foundation is a non-profit organisation, based on personal development, aiming to promote
+            activities for the restoration of morality in individuals, families, societies, and the world.
+          </p>
+          <p>
+            We therefore would like to invite all qualified persons for The Theravada-Monk Ordination to join the European
+            Ordination Program again this year.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section">
+    <div class="container">
+      <p class="iop-kicker">What you will experience</p>
+      <h2 class="iop-title">More than a retreat</h2>
+      <p class="iop-intro">
+        For a few weeks you live exactly as a monk does, with the same robes, the same rules and the same daily rhythm
+        that has been handed down for over 2,500 years.
+      </p>
+      <ExperienceGrid />
+    </div>
+  </section>
+
+  <section class="iop-section iop-section-tinted" id={sections.eligibility}>
+    <div class="container">
+      <div class="row g-4 g-lg-5">
+        <div class="col-12 col-lg-5">
+          <p class="iop-kicker">Registration</p>
+          <h2 class="iop-title">Who can join</h2>
+          <p class="iop-intro mb-0">
+            You do not need to be a Buddhist. The training is built for people who were not raised in the tradition, and
+            men from any country, culture or faith are welcome. Curiosity and an open mind are enough to begin.
+          </p>
+        </div>
+        <div class="col-12 col-lg-7">
+          <p class="iop-list-label">Qualifications for those who would like to join the program are:</p>
+          <ul class="iop-checklist mb-0">
+            {qualifications.map((qualification) => <li>{qualification}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section" id={sections.packing}>
+    <div class="container">
+      <p class="iop-kicker">Packing</p>
+      <h2 class="iop-title">What to bring</h2>
+      <p class="iop-intro">
+        Monastic life is simple, so the list is short.
+      </p>
+      <div class="row g-4 g-lg-5">
+        <div class="col-12 col-md-6">
+          <h3 class="iop-subtitle">Bring with you</h3>
+          <ul class="iop-checklist iop-checklist-soft mb-0">
+            {required.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="col-12 col-md-6">
+          <h3 class="iop-subtitle">Not allowed during the training</h3>
+          <ul class="iop-checklist iop-checklist-soft iop-checklist-no mb-0">
+            {notAllowed.map((item) => <li><span class="visually-hidden">No </span>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section iop-section-tinted" id={sections.faq}>
+    <div class="container">
+      <p class="iop-kicker">Before you apply</p>
+      <h2 class="iop-title">Good to know</h2>
+      <div class="row row-cols-1 row-cols-lg-3 g-4 mt-2">
+        <div class="col">
+          <article class="iop-note">
+            <h3>Things to do before your arrival</h3>
+            <p>You will need to memorise chanting text for the ordination ceremony.</p>
+            <a class="btn btn-primary" href="/assets/docs/ordination-chanting.pdf">Download chanting texts</a>
+            <!-- TODO finish chanting section
+              <a href="/about/texts/#ordination-chanting-en">Online in English</a>
+              <a href="/about/texts/#ordination-chanting-th">Online in Thai</a>
+            -->
+          </article>
+        </div>
+        <div class="col">
+          <article class="iop-note">
+            <h3>Do you require a letter of guarantee for a visa?</h3>
+            <p>
+              If you require a letter from us to submit as part of your visa request, we ask you to find someone in our
+              network of Dhammakaya temples who can vouch for you. This is our policy, because we want to prevent our
+              program from being used as an excuse to stay in Europe illegally. If you don't know anyone in our network,
+              you can <a href={`#${sections.temples}`}>find a Dhammakaya branch temple near you</a> and an interview can
+              be arranged.
+            </p>
+          </article>
+        </div>
+        <div class="col">
+          <article class="iop-note">
+            <h3>Are you already a monk?</h3>
+            <p>
+              If you want to join the program, but you have already received the full ordination (upasampadā), and are
+              currently still a monk, we cannot accept you in the program. We only accept lay people at the current
+              moment.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-section" id={sections.temples}>
+    <div class="container">
+      <p class="iop-kicker">Our network</p>
+      <h2 class="iop-title">Temples in Europe</h2>
+      <p class="iop-intro">
+        Visit a Dhammakaya temple near you to meet the monks before you apply, or to arrange an interview for a letter of
+        guarantee.
+      </p>
+      <div class="iop-temples">
+        {templesByCountry.map(({ country, flag, temples }) => (
+          <div class="iop-temple-country">
+            <h3><span aria-hidden="true">{flag}</span> {country}</h3>
+            {temples.map((temple) => (
+              <div class="iop-temple">
+                <h4>{temple.title}</h4>
+                <Fragment set:html={temple.content} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="iop-finale">
+    <div class="container">
+      <h2>How do I join?</h2>
+      <p>
+        Fill out the form to apply for the ordination program. Note that this program is open to male participants
+        only. We look forward to your participation.
+      </p>
+      <div class="iop-finale-actions">
+        <a class="btn btn-light btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+          Apply now
+          <IconBoxArrowUpRight width="1em" height="1em" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <StickyApply />
 </Base>

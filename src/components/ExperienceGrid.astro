@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets'
+import robes from '../assets/images/2026/03.jpeg'
+import meditation from '../assets/images/2026/08.jpeg'
+import almsRound from '../assets/images/2026/09.jpeg'
+import dhamma from '../assets/images/2026/14.jpeg'
+
+const experiences = [
+  {
+    image: robes,
+    alt: 'A senior monk placing saffron robes over the shoulder of a candidate dressed in white',
+    title: 'Receive the robes',
+    text: 'Shave your head, dress in white and be given the saffron robes in a ceremony your family can be part of.',
+  },
+  {
+    image: meditation,
+    alt: 'Newly ordained monks meditating on the grass beneath a large tree',
+    title: 'Learn to meditate',
+    text: 'Sit every day alongside experienced monks and take home a practice that keeps working long after the robes come off.',
+  },
+  {
+    image: almsRound,
+    alt: 'A line of monks holding alms bowls in the early morning sun',
+    title: 'Walk the alms round',
+    text: 'Set out in the early morning with your alms bowl, eat in mindful silence and discover how little you really need.',
+  },
+  {
+    image: dhamma,
+    alt: 'Newly ordained monks seated in rows in the meditation hall, palms together',
+    title: 'Study the Dhamma',
+    text: 'Learn what the Buddha taught from monks who make it clear, practical and relevant to modern life.',
+  },
+]
+---
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+  {experiences.map((experience) => (
+    <div class="col">
+      <div class="iop-experience">
+        <Image
+          src={experience.image}
+          widths={[400, 640]}
+          sizes="(min-width: 992px) 23vw, (min-width: 576px) 46vw, 92vw"
+          format="webp"
+          alt={experience.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <h3>{experience.title}</h3>
+        <p>{experience.text}</p>
+      </div>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,28 @@
+---
+import IconBoxArrowUpRight from './icons/IconBoxArrowUpRight.astro'
+import { FORM_LINK } from '../config/site'
+---
+
+{/* Below md the nav's Apply button is folded away, so this follows the reader between the hero and the finale. */}
+<div class="iop-sticky-apply d-md-none">
+  <span>Summer 2027 · 4 temples</span>
+  <a class="btn btn-primary" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+    Apply now
+    <IconBoxArrowUpRight width="1em" height="1em" />
+  </a>
+</div>
+
+<script>
+  const bar = document.querySelector('.iop-sticky-apply')
+  const anchors = document.querySelectorAll('.iop-hero, .iop-finale, .footer')
+
+  if (bar && anchors.length) {
+    /* The hero and finale carry their own Apply buttons, and the footer should not be covered. */
+    const visible = new Set<Element>()
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target))
+      bar.classList.toggle('is-visible', visible.size === 0)
+    })
+    anchors.forEach((anchor) => observer.observe(anchor))
+  }
+</script>

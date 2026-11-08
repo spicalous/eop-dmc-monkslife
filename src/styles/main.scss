@@ -89,18 +89,3 @@ a:hover {
 .card-img-top {
   height: auto;
 }
-
-/* The image itself is set inline so the hashed asset URL comes from Astro. */
-#index-header {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  margin-top: var(--nav-height);
-  height: 320px;
-}
-
-.offset-anchor-for-fixed-nav {
-  position: relative;
-  top: calc(-1 * var(--nav-height));
-  visibility: hidden;
-}

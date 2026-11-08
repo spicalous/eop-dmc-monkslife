@@ -5,7 +5,7 @@ $iop-ink: #2b1d0e;
 $iop-radius: 1.25rem;
 
 /* Section anchors land below the fixed nav rather than under it. */
-#dates,
+.iop-section[id],
 .iop-card {
   scroll-margin-top: calc(var(--nav-height) + 1rem);
 }
@@ -37,6 +37,15 @@ $iop-radius: 1.25rem;
       rgba(0, 0, 0, 0.25) 45%,
       rgba(0, 0, 0, 0.78) 100%
     );
+  }
+}
+
+/* An inner page's hero: the same photo treatment, but it hands over to the content sooner. */
+.iop-hero-compact {
+  min-height: min(78svh, 46rem);
+
+  .iop-headline {
+    font-size: clamp(2.75rem, 7.5vw, 5.25rem);
   }
 }
 
@@ -105,18 +114,23 @@ $iop-radius: 1.25rem;
   }
 }
 
-/* ---- Stats card ---- */
+/* ---- Stats card and jump links ---- */
 
-.iop-stats {
+/* The white card pulled up over the bottom of the hero. */
+%iop-float-card {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem 1rem;
   margin: -4.5rem 0 0;
   padding: 1.75rem;
   border-radius: $iop-radius;
   background-color: #fff;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+}
+
+.iop-stats {
+  @extend %iop-float-card;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
 
   dt {
     font-size: clamp(1.15rem, 2.4vw, 1.5rem);
@@ -137,6 +151,67 @@ $iop-radius: 1.25rem;
 
     > div + div {
       padding-left: 1.5rem;
+      border-left: 1px solid rgba($orange-600, 0.18);
+    }
+  }
+}
+
+.iop-jump {
+  @extend %iop-float-card;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover strong,
+    &:focus-visible strong {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+  }
+
+  strong {
+    display: block;
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: $orange-800;
+  }
+
+  small {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
+    color: var(--bs-secondary-color);
+  }
+
+  @media (min-width: 768px) {
+    padding: 2rem 2.25rem;
+
+    ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* One row, so the dividers can come back without starting a second line. */
+  @media (min-width: 1200px) {
+    ul {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    li + li {
+      padding-left: 1.25rem;
       border-left: 1px solid rgba($orange-600, 0.18);
     }
   }
@@ -176,6 +251,104 @@ $iop-radius: 1.25rem;
   font-size: 1.15rem;
   line-height: 1.65;
   color: var(--bs-secondary-color);
+}
+
+.iop-subtitle {
+  margin-bottom: 1rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: $iop-ink;
+}
+
+.iop-list-label {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: $iop-ink;
+}
+
+/* Long-form reading, held to a comfortable measure. */
+.iop-prose {
+  max-width: 44rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: color.mix($iop-ink, #fff, 85%);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ---- Itinerary ---- */
+
+$itinerary-dot: 0.9rem;
+
+.iop-itinerary {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding: 0 0 1.75rem 2.25rem;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.15rem;
+      left: 0;
+      z-index: 1;
+      width: $itinerary-dot;
+      height: $itinerary-dot;
+      border-radius: 50%;
+      background: linear-gradient(135deg, $orange-500, $orange-800);
+    }
+
+    /* The thread from this stop down to the next one's dot. */
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: calc(0.15rem + #{$itinerary-dot * 0.5});
+      bottom: calc(-0.15rem - #{$itinerary-dot * 0.5});
+      left: calc(#{$itinerary-dot * 0.5} - 1px);
+      border-left: 2px solid rgba($orange-600, 0.25);
+    }
+  }
+
+  /* Ordination day wears the same ring as the timeline's ceremony marker. */
+  .is-ceremony {
+    &::before {
+      border: 3px solid $orange-900;
+      background: #fff;
+    }
+
+    .iop-itinerary-activity {
+      font-weight: 800;
+    }
+  }
+}
+
+.iop-itinerary-date {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2rem;
+  text-transform: uppercase;
+  color: $orange-900;
+}
+
+.iop-itinerary-activity {
+  display: block;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: $iop-ink;
 }
 
 /* ---- Summer timeline ---- */
@@ -644,6 +817,112 @@ $timeline-label: 8.5rem;
       border-width: 0 2px 2px 0;
       transform: translateY(-62%) rotate(45deg);
     }
+  }
+}
+
+/* On a white section the white items would vanish, so they take the tint instead. */
+.iop-checklist-soft li {
+  background-color: color.mix(#fff, $orange-50, 50%);
+  box-shadow: none;
+}
+
+/* A cross in place of the tick, for things to leave at home. */
+.iop-checklist-no li {
+  &::before {
+    background-color: color.mix($iop-ink, #fff, 70%);
+  }
+
+  &::after {
+    left: 1.15rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    border: 0;
+    $stroke: transparent calc(50% - 1px), #fff calc(50% - 1px), #fff calc(50% + 1px), transparent calc(50% + 1px);
+    background:
+      linear-gradient(45deg, $stroke) center / 0.6rem 0.6rem no-repeat,
+      linear-gradient(-45deg, $stroke) center / 0.6rem 0.6rem no-repeat;
+    transform: translateY(-50%);
+  }
+}
+
+/* ---- Good to know ---- */
+
+.iop-note {
+  height: 100%;
+  padding: 1.75rem 1.5rem;
+  border-radius: $iop-radius;
+  background-color: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: $iop-ink;
+  }
+
+  p {
+    line-height: 1.65;
+    color: var(--bs-secondary-color);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ---- Temples directory ---- */
+
+/* Countries hold anywhere from one temple to seven, so they flow down columns rather than sit in rows. */
+.iop-temples {
+  columns: 1;
+  column-gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    columns: 2;
+  }
+
+  @media (min-width: 1200px) {
+    columns: 3;
+  }
+}
+
+.iop-temple-country {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba($orange-600, 0.18);
+  border-radius: $iop-radius;
+  background-color: #fff;
+  break-inside: avoid;
+
+  h3 {
+    margin-bottom: 0.25rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: $iop-ink;
+  }
+}
+
+.iop-temple {
+  padding-top: 1rem;
+
+  & + & {
+    margin-top: 1rem;
+    border-top: 1px solid rgba($orange-600, 0.14);
+  }
+
+  h4 {
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $orange-900;
+  }
+
+  address {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--bs-secondary-color);
   }
 }
 
