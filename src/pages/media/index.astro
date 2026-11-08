@@ -1,81 +1,137 @@
 ---
+import { Picture } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
-import YouTube from '../../components/YouTube.astro'
+import ApplyFinale from '../../components/ApplyFinale.astro'
 import Gallery from '../../components/Gallery.astro'
 import PortraitCard from '../../components/PortraitCard.astro'
+import StickyApply from '../../components/StickyApply.astro'
+import YouTube from '../../components/YouTube.astro'
+import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
+import { FORM_LINK } from '../../config/site'
 import { galleryByYear } from '../../data/galleries'
 import { programs } from '../../data/programs'
+import hero from '../../assets/images/2026/07.jpeg'
+
+const years = [
+  {
+    year: 2026,
+    intro: 'The European Ordination Program for 2026 was held in Wat Phra Dhammakaya Belgium, between 8 and 28 June 2026.',
+    films: [
+      { id: 'mA6R8_K2Kb0', title: 'European Ordination Program 2026' },
+      { id: 'QC0HZYnOhaE', title: 'European Ordination Program 2026 highlights' },
+    ],
+  },
+  {
+    year: 2025,
+    intro: 'The 2025 European Ordination program took place in June with 13 participants travelling across Europe to participate in London.',
+  },
+  {
+    year: 2023,
+    intro: 'Between 8 and 30 July 2023, the ninth group of the European Ordination Program participants were ordained at Wat Phra Dhammakaya Belgium and trained by experienced teaching monks at Wat Dhammakaya Korsør Lystskov.',
+  },
+  {
+    year: 2022,
+    intro: 'Between 3 and 19 June 2022, the eighth group of European Ordination Program participants were trained under the guidance of several experienced teaching monks at the Dhammakaya Korsør Lystskov Thai temple. In total, ten participants joined to train themselves in the monastic discipline, sleeping in simple tents and practicing meditation intensively for a period of two weeks. The program was a great success this year, and many of the participants have indicated they would like the program to be held longer and would not want to miss it next year.',
+  },
+  {
+    year: 2019,
+    intro: '20 people took part in the program which took place over 4 weeks, between 17 June and 14 July 2019.',
+  },
+  {
+    year: 2018,
+    intro: 'The program took place over two weeks, starting on 4 June and ending on 15 June 2018. A total of 25 people took part from 10 countries all over Europe.',
+    participants: programs[2018],
+  },
+].map((entry) => ({ ...entry, gallery: galleryByYear.get(entry.year) }))
+
+/* What each year holds, for the jump links. */
+function contents({ gallery, films, participants }: (typeof years)[number]): string {
+  const parts = []
+  if (gallery) parts.push(`${gallery.photos.length} photos`)
+  if (films?.length) parts.push(`${films.length} films`)
+  if (participants) parts.push('Participant portraits')
+  return parts.join(' · ')
+}
 ---
 
 <Base title="Media - European Ordination Program"
-  description="Photographs and films from the European Ordination Program.">
-  <div class="container mt-5">
-    <h1 class="display-2 pt-5">
-      European Ordination Program 2026
-    </h1>
-    <p>
-      The European Ordination Program for 2026 was held in Wat Phra Dhammakaya Belgium, between
-      8<sup>th</sup>-28<sup>th</sup> June 2026.
-    </p>
-    <div class="row">
-      <div class="col-12 p-3">
-        <YouTube id="mA6R8_K2Kb0" title="European Ordination Program 2026" />
+  description="Photographs and films from the European Ordination Program."
+  socialImage={hero}>
+  <section class="iop-hero iop-hero-compact">
+    <Picture
+      src={hero}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1600]}
+      sizes="100vw"
+      class="iop-hero-img"
+      alt="Newly ordained monks meditating in rows on the grass beneath a vast tree"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="container">
+      <p class="iop-eyebrow">Photos and films</p>
+      <h1 class="iop-headline">Past <span>programs</span></h1>
+      <p class="iop-lead">
+        Photographs and films from past European Ordination Programs, from 2018 to last summer.
+      </p>
+      <div class="iop-hero-actions">
+        <a class="btn btn-primary btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+          Apply now
+          <IconBoxArrowUpRight width="1em" height="1em" />
+        </a>
+        <a class="btn btn-outline-light btn-lg" href="/media/podcast/">The podcast</a>
       </div>
     </div>
-    <Gallery gallery={galleryByYear.get(2026)!} priority />
-    <div class="row">
-      <div class="col-12 p-3">
-        <YouTube id="QC0HZYnOhaE" title="European Ordination Program 2026 highlights" />
-      </div>
-    </div>
+  </section>
 
-    <h1 class="display-2 pt-5">
-      European Ordination Program 2025
-    </h1>
-    <p>
-      The 2025 European Ordination program took place in June with 13 participants travelling across Europe to participate
-      in London.
-    </p>
-    <Gallery gallery={galleryByYear.get(2025)!} />
-
-    <h1 class="display-2 mt-5">
-      European Ordination Program 2023
-    </h1>
-    <p>
-      Between 8<sup>th</sup>-30<sup>th</sup> July 2023, the ninth group of the European Ordination Program participants
-      were ordinated at Wat Phra Dhammakaya Belgium and trained by experienced teaching monks at Wat Dhammakaya Korsør
-      Lystskov.
-    </p>
-    <Gallery gallery={galleryByYear.get(2023)!} />
-
-    <h1 class="display-2 mt-5">2022</h1>
-    <p>
-      Between 3<sup>rd</sup>-19<sup>th</sup> June 2022, the eighth group of European Ordination Program participants were
-      trained under the guidance of several experienced teaching monks at the Dhammakaya Korsør Lystskov Thai temple. In
-      total, ten participants joined to train themselves in the monastic discipline, sleeping in simple tents and
-      practicing meditation intensively for a period of two weeks. The program was a great success this year, and many of
-      the participants have indicated they would like the program to be held longer and would not want to miss it next
-      year.
-    </p>
-    <Gallery gallery={galleryByYear.get(2022)!} />
-
-    <h1 class="display-2 mt-5">2019</h1>
-    <p>
-      20 people took part in the program which took place over 4 weeks, between 17th June and 14th July 2019.
-    </p>
-    <Gallery gallery={galleryByYear.get(2019)!} />
-
-    <h1 class="display-2 mt-5">2018</h1>
-    <p>
-      The program took place over two weeks, starting on the 4th June, and ending on the 15th June 2018. A total of 25
-      people took part from 10 countries all over europe.
-    </p>
-    <div class="row">
-      {programs[2018]!.map((person) => (
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
-          <PortraitCard person={person} />
-        </div>
-      ))}
-    </div>
+  <div class="container">
+    <nav class="iop-jump" aria-label="Years on this page">
+      <ul>
+        {years.map((entry) => (
+          <li>
+            <a href={`#media-${entry.year}`}>
+              <strong>{entry.year}</strong>
+              <small>{contents(entry)}</small>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </div>
+
+  {years.map((entry, index) => (
+    <section class={`iop-section${index % 2 ? ' iop-section-tinted' : ''}`} id={`media-${entry.year}`}>
+      <div class="container">
+        <p class="iop-kicker">European Ordination Program</p>
+        <h2 class="iop-title">{entry.year}</h2>
+        <p class="iop-intro">{entry.intro}</p>
+
+        {entry.films && (
+          <div class="row row-cols-1 row-cols-md-2 g-3 g-md-4 mb-4">
+            {entry.films.map((film) => (
+              <div class="col">
+                <YouTube id={film.id} title={film.title} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {entry.gallery && <Gallery gallery={entry.gallery} />}
+
+        {entry.participants && (
+          <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 g-4">
+            {entry.participants.map((person) => (
+              <div class="col">
+                <PortraitCard person={person} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <ApplyFinale showDates />
+
+  <StickyApply />
 </Base>

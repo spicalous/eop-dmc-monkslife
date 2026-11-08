@@ -1,19 +1,46 @@
-// Media gallery tiles.
+@use "../variables" as *;
+
+// Media gallery (src/components/Gallery.astro).
 // Photos are shown as uniform 3:2 tiles (cropped with object-fit) so mixed
-// landscape/portrait sources line up. While a lazy-loaded photo is still
-// downloading, an animated shimmer placeholder is shown; the opaque photo
-// paints over it once loaded.
-.gallery-img {
-  display: block;
-  width: 100%;
-  /*
-   * Astro emits intrinsic width/height on processed images. Without this the
-   * height attribute makes the height definite, and aspect-ratio is then
-   * ignored (it only applies when one dimension is auto), so tiles render at
-   * the photo's full height instead of 3:2.
-   */
-  height: auto;
+// landscape/portrait sources line up, led by one photo at double size. While
+// a lazy-loaded photo is still downloading, an animated shimmer placeholder is
+// shown; the opaque photo paints over it once loaded.
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* The tile sets the shape and the photo fills it, so no photo's own proportions can stretch a row. */
+.gallery-item {
+  position: relative;
   aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 0.85rem;
+
+  /* Below md the lead photo is a full-width row of its own; from md it takes two columns and two rows. */
+  &:first-child {
+    grid-column: span 2;
+
+    @media (min-width: 768px) {
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+  }
+}
+
+.gallery-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  /* Overrides the intrinsic height Astro emits, so the photo fills the tile instead. */
+  height: 100%;
   object-fit: cover;
   background-color: var(--bs-gray-200);
   background-image: linear-gradient(

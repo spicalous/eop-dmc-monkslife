@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro'
 import ExperienceGrid from '../components/ExperienceGrid.astro'
 import OrdinationCard from '../components/OrdinationCard.astro'
 import OrdinationTimeline from '../components/OrdinationTimeline.astro'
+import ApplyFinale from '../components/ApplyFinale.astro'
 import StickyApply from '../components/StickyApply.astro'
 import YouTubeFacade from '../components/YouTubeFacade.astro'
 import IconBoxArrowUpRight from '../components/icons/IconBoxArrowUpRight.astro'
@@ -248,18 +249,7 @@ const videos = [
     </div>
   </section>
 
-  <section class="iop-finale">
-    <div class="container">
-      <h2>Your summer in robes starts here</h2>
-      <p>Pick your temple and send in your application today.</p>
-      <div class="iop-finale-actions">
-        <a class="btn btn-light btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
-          Apply now
-          <IconBoxArrowUpRight width="1em" height="1em" />
-        </a>
-      </div>
-    </div>
-  </section>
+  <ApplyFinale />
 
   <StickyApply />
 </Base>

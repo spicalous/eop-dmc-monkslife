@@ -4,34 +4,29 @@ import type { Gallery } from '../data/galleries'
 
 interface Props {
   gallery: Gallery
-  /** The first gallery on the page is above the fold, so its lead images load eagerly. */
-  priority?: boolean
 }
 
-const { gallery, priority = false } = Astro.props
+const { gallery } = Astro.props
 
 /*
- * Tiles are half the container from sm upwards, full width below it. The
- * container tops out at 1320px, so a tile is never wider than ~620px; the
- * larger candidates exist for high-density screens.
+ * Three columns from md, two below. The lead photo spans two of them, so it
+ * gets its own, larger candidates. The container tops out at 1320px, so a
+ * single tile is never wider than ~430px and the lead never wider than ~870px.
  */
-const SIZES = '(min-width: 576px) 46vw, 94vw'
-const WIDTHS = [400, 620, 900]
-const EAGER_COUNT = 4
+const TILE = { widths: [400, 620, 900], sizes: '(min-width: 768px) 31vw, 46vw' }
+const LEAD = { widths: [620, 900, 1300], sizes: '(min-width: 768px) 62vw, 94vw' }
 ---
 
-<div class="row">
+<div class="gallery">
   {gallery.photos.map((photo, index) => (
-    <div class="col-12 col-sm-6 p-3">
+    <div class="gallery-item">
       <Picture
         src={photo}
         formats={['avif', 'webp']}
-        widths={WIDTHS}
-        sizes={SIZES}
-        alt={`${gallery.alt} — photo ${index + 1} of ${gallery.photos.length}`}
+        {...(index === 0 ? LEAD : TILE)}
+        alt={`${gallery.alt}, photo ${index + 1} of ${gallery.photos.length}`}
         class="gallery-img"
-        loading={priority && index < EAGER_COUNT ? 'eager' : 'lazy'}
-        fetchpriority={priority && index < EAGER_COUNT ? 'high' : undefined}
+        loading="lazy"
         decoding="async"
       />
     </div>

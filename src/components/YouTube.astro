@@ -9,9 +9,8 @@ interface Props {
 const { id, title } = Astro.props
 ---
 
-<div class="ratio ratio-16x9">
+<div class="ratio ratio-16x9 yt-embed">
   <iframe
-    class="rounded"
     src={`https://www.youtube-nocookie.com/embed/${id}`}
     title={title}
     loading="lazy"

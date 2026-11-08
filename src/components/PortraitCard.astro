@@ -9,14 +9,13 @@ interface Props {
 
 const { person } = Astro.props
 
-/* Rendered in a 6/4/3/2-column grid, so the tile is ~200px at its widest. */
-const WIDTHS = [140, 200, 400]
-const SIZES = '(min-width: 992px) 200px, (min-width: 576px) 25vw, 45vw'
+/* The portrait is capped at 8rem, and fills a third of the width on the smallest screens. */
+const WIDTHS = [128, 256, 384]
+const SIZES = '(min-width: 576px) 8rem, 28vw'
 ---
 
-<div class="portrait-card">
+<figure class="portrait-card">
   <Image
-    class="img-fluid"
     src={portrait(person.portrait)}
     widths={WIDTHS}
     sizes={SIZES}
@@ -25,7 +24,8 @@ const SIZES = '(min-width: 992px) 200px, (min-width: 576px) 25vw, 45vw'
     loading="lazy"
     decoding="async"
   />
-  <div>{person.name}</div>
-  <div>{person.location}</div>
-  <div>{person.flag}</div>
-</div>
+  <figcaption>
+    <strong>{person.name}</strong>
+    <span><span aria-hidden="true">{person.flag}</span> {person.location}</span>
+  </figcaption>
+</figure>

@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro'
 import ExperienceGrid from '../../components/ExperienceGrid.astro'
 import OrdinationCard from '../../components/OrdinationCard.astro'
 import OrdinationTimeline from '../../components/OrdinationTimeline.astro'
+import ApplyFinale from '../../components/ApplyFinale.astro'
 import StickyApply from '../../components/StickyApply.astro'
 import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
 import { FORM_LINK } from '../../config/site'
@@ -332,21 +333,10 @@ const notAllowed = [
     </div>
   </section>
 
-  <section class="iop-finale">
-    <div class="container">
-      <h2>How do I join?</h2>
-      <p>
-        Fill out the form to apply for the ordination program. Note that this program is open to male participants
-        only. We look forward to your participation.
-      </p>
-      <div class="iop-finale-actions">
-        <a class="btn btn-light btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
-          Apply now
-          <IconBoxArrowUpRight width="1em" height="1em" />
-        </a>
-      </div>
-    </div>
-  </section>
+  <ApplyFinale
+    title="How do I join?"
+    text="Fill out the form to apply for the ordination program. Note that this program is open to male participants only. We look forward to your participation."
+  />
 
   <StickyApply />
 </Base>
