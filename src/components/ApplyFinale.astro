@@ -1,0 +1,31 @@
+---
+import IconBoxArrowUpRight from './icons/IconBoxArrowUpRight.astro'
+import { FORM_LINK } from '../config/site'
+
+interface Props {
+  title?: string
+  text?: string
+  /** For pages that do not list the dates themselves, a second button leads to them. */
+  showDates?: boolean
+}
+
+const {
+  title = 'Your path to inner peace starts here',
+  text = 'Pick your temple and send in your application today.',
+  showDates = false,
+} = Astro.props
+---
+
+<section class="iop-finale">
+  <div class="container">
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <div class="iop-finale-actions">
+      <a class="btn btn-light btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+        Apply now
+        <IconBoxArrowUpRight width="1em" height="1em" />
+      </a>
+      {showDates && <a class="btn btn-outline-light btn-lg" href="/about/#program-details--latest-news">See the dates</a>}
+    </div>
+  </div>
+</section>
