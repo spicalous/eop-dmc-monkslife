@@ -7,31 +7,13 @@ import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial
-  description="Kris from Lede has been ordained as a Buddhist monk five times. He describes the ceremony at Wat Phra Dhammakaya and what draws him back."
   title="Testimonial | Next step? Maybe a month of training in Thailand"
   heading="Next step? Maybe a month of training in Thailand"
+  description="Kris from Lede has been ordained as a Buddhist monk five times. He describes the ceremony at Wat Phra Dhammakaya and what draws him back."
+  lead="Kris (52) from Lede has already been ordained as a Buddhist monk for the fifth time. Next step? Maybe a month of training in Thailand."
+  portrait={img2026052}
+  portraitAlt="Two rows of monks in saffron robes kneeling with palms together before a golden Buddha statue"
 >
-  <div class="row pt-5">
-    <div class="col-6 offset-3">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026052}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Buddist monk"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <div class="row pt-5">
-    <h1>
-      Kris (52) from Lede has already been ordained as a Buddhist monk for the fifth time. Next step? Maybe a month of
-      training in Thailand.
-    </h1>
-  </div>
   <p>
     On Sunday, the Buddhist center Wat Phra Dhammakaya along Ronkenburgstraat in Lede served as the setting for an
     impressive ceremony with 800 guests for the ordination of fourteen men from Germany, France, the Netherlands,
@@ -49,20 +31,16 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     Dhammakaya Buddhist center for Benelux, was not unknown to him, however. “As a little boy, I came here on retreat
     when this was still a convent with nuns,” he says.
   </p>
-  <div class="row py-4">
-    <div class="col-12 col-lg-8 offset-lg-2">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026052Image1}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Monks in orange robes processing along a red carpet outside the temple while people in white kneel in front of them"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
+  <Image
+    class="iop-article-img"
+    src={img2026052Image1}
+    widths={[400, 640, 900]}
+    sizes="(min-width: 768px) 44rem, 94vw"
+    format="webp"
+    alt="Monks in orange robes processing along a red carpet outside the temple while people in white kneel in front of them"
+    loading="lazy"
+    decoding="async"
+  />
   <p>
     Kris became fascinated by his introduction to the new approach. He delved into meditation and became a regular
     volunteer who can be found at the center almost every week. “Everyone should actually learn to meditate. Something
@@ -84,20 +62,16 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     to monk requires many rituals. “This week, my fourteen fellow candidates and I received a lot of training, our hair
     was shaved off, we took our vows, and we received our orange robes and our alms bowls.”
   </p>
-  <div class="row py-4">
-    <div class="col-12 col-lg-8 offset-lg-2">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026052Image2}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="A long line of monks and guests in white walking a pink carpet through the temple grounds past marquees"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
+  <Image
+    class="iop-article-img"
+    src={img2026052Image2}
+    widths={[400, 640, 900]}
+    sizes="(min-width: 768px) 44rem, 94vw"
+    format="webp"
+    alt="A long line of monks and guests in white walking a pink carpet through the temple grounds past marquees"
+    loading="lazy"
+    decoding="async"
+  />
   <p>
     Now that the ordination is complete, fifteen new monks are temporarily living in the temple to follow the regular
     routines alongside the resident monks over the coming week. On Wednesday, July 19, they will go on an alms round.

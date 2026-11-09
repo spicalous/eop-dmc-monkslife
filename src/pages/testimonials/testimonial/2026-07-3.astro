@@ -1,27 +1,16 @@
 ---
-import { Image } from 'astro:assets'
 import img2026073 from '../../../assets/images/testimonials/2026-07-3.jpg'
 import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial
-  description="Martin from Berlin turned 27 the week he ordained alongside 40 monks from many countries, after months of overwork left him unhappy." title="Testimonial | Martin Boonsanoh" heading="Martin Boonsanoh">
-  <div class="row py-5">
-    <div class="col-6 offset-3">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026073}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Portrait of Martin Boonsanoh"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <p>11th European Ordination Program participant</p>
+  title="Testimonial | Martin Boonsanoh"
+  heading="Martin Boonsanoh"
+  description="Martin from Berlin turned 27 the week he ordained alongside 40 monks from many countries, after months of overwork left him unhappy."
+  detail="11th European Ordination Program participant"
+  portrait={img2026073}
+  portraitAlt="Portrait of Martin Boonsanoh"
+>
   <p>
     I’m Martin from Berlin, Germany. This week I turn 27, and it feels especially meaningful because I am ordaining
     together with 40 monks from many different countries. It is the first time we have been so many, and that makes this

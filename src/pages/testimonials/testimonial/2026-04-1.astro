@@ -7,31 +7,18 @@ import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial
-  description="Trapped by negative thoughts in his early twenties, Cas left the Netherlands for a remote Thai jungle monastery and ordained as a monk for four months." title="Testimonial | Why did I become a Buddhist monk?" heading="Cas">
-  <div class="row pt-5">
-    <div class="col-6 offset-3 col-lg-4 offset-lg-4">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026041}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Portrait of Cas"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <div class="row pt-5">
-    <h1>Why did I become a Buddhist monk?</h1>
-  </div>
+  title="Testimonial | Why did I become a Buddhist monk?"
+  heading="Why did I become a Buddhist monk?"
+  description="Trapped by negative thoughts in his early twenties, Cas left the Netherlands for a remote Thai jungle monastery and ordained as a monk for four months."
+  portrait={img2026041}
+  portraitAlt="Portrait of Cas"
+>
   <figure>
     <blockquote class="blockquote">
       <p>“Look not for refuge in anyone besides yourself.”</p>
     </blockquote>
   </figure>
-  <h1>1. Intro</h1>
+  <h2>1. Intro</h2>
   <p>
     I became a Buddhist monk twice, for four months in total. To do so, I went to a Buddhist monastery in Thailand,
     somewhere between Chiang Mai and Pai. I lived there for three months. The monastery was located in the middle of the
@@ -41,15 +28,15 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     What’s the appeal? That’s exactly what this article ‘Why did I become a Buddhist monk?’ is going to be about. I hope
     it brings some sort of value to you. Without further ado, let’s get into it!
   </p>
-  <h1>2. My story</h1>
-  <h2>2.1 Inner turmoil</h2>
+  <h2>2. My story</h2>
+  <h3>2.1 Inner turmoil</h3>
   <p>
     In my early twenties I was living a very <b>‘ordinary’</b> life, not much happened really. First I went to school,
     then to university, and then I got various typical office desk jobs, mostly within tech. I had a few hobbies, like
     football, snowboarding, going out with friends, etc. So from the outside perspective, I was living a very decent,
     and quite typical lifestyle, my circumstances were definitely not bad. My inner world was a different story though.
   </p>
-  <h3>2.1.1 Thoughts running around</h3>
+  <h4>2.1.1 Thoughts running around</h4>
   <p>
     On the inside, I actually felt very disconnected from the world around me. That was because I was completely and
     utterly <b>consumed by my own thought patterns</b>. The thoughts that kept rambling through my mind were almost all
@@ -58,7 +45,7 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     where I was able to momentarily escape my overly active- and critical mind were the times when I got drunk, which
     isn’t the best long-term strategy. Life just seemed very bland and meaningless.
   </p>
-  <h3>2.1.2 Stressed out</h3>
+  <h4>2.1.2 Stressed out</h4>
   <p>
     The biggest contributor to my downward spiraling thoughts, I believe, (retrospectively) is that I was quite a vain
     guy. A bit too obsessed with external looks, while at the same time, my hair was thinning from a very young age.
@@ -80,7 +67,7 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     that time being in a relationship seemed like the one good thing I had left in my life. When it ended, all that
     remained was me with my own tormenting thoughts. I hit rock bottom and I knew I had to do something.
   </p>
-  <h2>2.2 Getting back up</h2>
+  <h3>2.2 Getting back up</h3>
   <p>
     Somehow I had the feeling that <b>my situation didn’t have to define me</b>, that I could get out of this negative
     thought pattern, and that I could go back to enjoying life again. I still remembered what it was like to truly enjoy
@@ -102,8 +89,8 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     sharper, healthier, fitter, and <b>happier</b>. The script in my head flipped from mainly negative to mainly
     positive. It felt like I had found the pot of gold at the end of a rainbow.
   </p>
-  <h1>3. My meditation journey</h1>
-  <h2>3.1 Finding meditation</h2>
+  <h2>3. My meditation journey</h2>
+  <h3>3.1 Finding meditation</h3>
   <p>
     Thanks to my interest in self-improvement, I came across the beautiful practice of <b>meditation</b>. On the podcast
     Impact Theory, many guests came on who seemed very wise, eloquent, and well-spoken. They were all endorsing
@@ -125,7 +112,7 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     something profound, even better than a pot of gold. At that moment I realized my (negative) thoughts didn’t have to
     define me, as I could distance myself from my thoughts. I knew I found the way out of (my) suffering.
   </p>
-  <h2>3.2 Deepening the practice</h2>
+  <h3>3.2 Deepening the practice</h3>
   <p>
     Over the course of the next 6.5 years, I deepened my meditation practice. I started out using <b>guided meditations
     on YouTube</b>. Not long after that, I started using apps like Headspace and Calm for a few years. In those years my
@@ -140,8 +127,8 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     meditation, but it also includes quite a bit of Buddhist philosophy, and I got intrigued even more. I started
     reading books from Buddhist monks and I felt the deep wisdom through the words.
   </p>
-  <h1>4. Becoming a Buddhist monk</h1>
-  <h2>4.1 Buddhism</h2>
+  <h2>4. Becoming a Buddhist monk</h2>
+  <h3>4.1 Buddhism</h3>
   <p>
     Buddhism is a no-nonsense <b>philosophy/path/religion</b>, whatever you want to call it, I’m not big on semantics.
     I’ve heard Buddhist monks say it is simply a way to attain liberation and all the other stuff is like nice
@@ -151,21 +138,17 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     Buddhism is not a religion. Either way, it doesn’t really matter, it really is just semantics. Getting worked up
     over semantics is very non-Buddhist-like, you know.
   </p>
-  <div class="row py-4">
-    <div class="col-12 col-lg-8 offset-lg-2">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img20260411}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Four ordinands in white robes standing in line with palms together, each holding folded orange robes"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <h2>4.2 The Path</h2>
+  <Image
+    class="iop-article-img"
+    src={img20260411}
+    widths={[400, 640, 900]}
+    sizes="(min-width: 768px) 44rem, 94vw"
+    format="webp"
+    alt="Four ordinands in white robes standing in line with palms together, each holding folded orange robes"
+    loading="lazy"
+    decoding="async"
+  />
+  <h3>4.2 The Path</h3>
   <p>
     What intrigued me the most about Buddhism is its extreme practicality, with a strong focus on meditation and
     exploring the human mind. It is almost like a self-improvement version of spirituality, a guide to help you along
@@ -176,7 +159,7 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     through complete disidentification from the mind will we be able to see reality as it actually is. The main practice
     to achieve that is... you probably guessed it: meditation.
   </p>
-  <h3>4.2.1 Self exploration</h3>
+  <h4>4.2.1 Self exploration</h4>
   <p>
     It is a path of <b>Self-exploration</b>. We believe we know who we are, but do we? If you strip away all the labels
     and roles you put on, like your gender, age, job, hobbies, etc. Strip away all the thoughts and emotions that are
@@ -184,7 +167,7 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     intrinsic gut feeling of who/what you are, but through close observation you’ll find that even that is not you.
     Sorry about the vagueness, I’m afraid it comes with the field.
   </p>
-  <h3>4.2.2 The fruits of The Path</h3>
+  <h4>4.2.2 The fruits of The Path</h4>
   <p>
     Through practicing The Dharma we become <b>more open, compassionate, and loving</b>. We become more at ease and calm
     regardless of whatever life offers us. We see reality more clearly for what it is, we see the mind and its workings
@@ -192,21 +175,17 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     Buddhism doesn’t just hold the promise of final salvation over our heads like a carrot on a stick, we become happier
     beings every step we take on the path.
   </p>
-  <div class="row py-4">
-    <div class="col-12 col-lg-8 offset-lg-2">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img20260412}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="A monk in orange robes meditating cross-legged on a rock at the water's edge"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <h2>4.3 All-in</h2>
+  <Image
+    class="iop-article-img"
+    src={img20260412}
+    widths={[400, 640, 900]}
+    sizes="(min-width: 768px) 44rem, 94vw"
+    format="webp"
+    alt="A monk in orange robes meditating cross-legged on a rock at the water's edge"
+    loading="lazy"
+    decoding="async"
+  />
+  <h3>4.3 All-in</h3>
   <p>
     I found there is so much wisdom in Buddhism, especially about meditation, which resonated with me on the deepest
     level. I knew I was barely scratching the surface with this online course, so I decided I <b>wanted to experience it
@@ -228,7 +207,7 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     what I learned as a monk. But at least now you know ‘Why I became a Buddhist monk’.
   </p>
   <!--  <p>The Buddha shows The Way</p>-->
-  <h1>5. Conclusion</h1>
+  <h2>5. Conclusion</h2>
   <p>
     <b>Meditation has brought me a long way</b>, from constantly feeling the need to distract myself, to now enjoying
     the peace and quietude of stillness and just Being. I know there is so much more for me to learn. In meditation, you

@@ -37,6 +37,13 @@
   }
 }
 
+/* For a bright photo with people right behind the text: shades the left, where the text sits, as well as the bottom. */
+.iop-hero-shaded::before {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 85%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.82) 100%);
+}
+
 /* An inner page's hero: the same photo treatment, but it hands over to the content sooner. */
 .iop-hero-compact {
   min-height: min(78svh, 46rem);
@@ -44,6 +51,11 @@
   .iop-headline {
     font-size: clamp(2.75rem, 7.5vw, 5.25rem);
   }
+}
+
+/* A hero with no card pulled up over it, so it needs no room left at the bottom. */
+.iop-hero-bare {
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
 .iop-hero-img {
@@ -933,7 +945,7 @@ $timeline-label: 8.5rem;
   background-color: #fff;
   break-inside: avoid;
 
-  h3 {
+  h2 {
     margin-bottom: 0.25rem;
     font-size: 1.3rem;
     font-weight: 800;
@@ -988,6 +1000,228 @@ $timeline-label: 8.5rem;
     top: calc(var(--nav-height) + 2rem);
     max-width: none;
   }
+}
+
+/* ---- Testimonial cards (src/pages/testimonials/index.astro) ---- */
+
+/* The whole card is the link, through the stretched link in its heading. */
+.iop-story {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: $iop-radius;
+  background-color: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
+  }
+
+  /* The focus ring goes round the card, since the link covers all of it. */
+  &:has(a:focus-visible) {
+    outline: 3px solid rgba($orange-600, 0.6);
+    outline-offset: 3px;
+  }
+
+  h2 {
+    margin-bottom: 0.25rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: $iop-ink;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+
+  blockquote {
+    margin: 0 0 1.25rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: $iop-ink;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+/* One shape for every card. The 2:3 portraits are cropped to head and shoulders. */
+.iop-story-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 20%;
+  background-color: var(--bs-gray-200);
+}
+
+.iop-story-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+
+.iop-story-detail {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--bs-secondary-color);
+}
+
+.iop-story-summary {
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  color: var(--bs-secondary-color);
+}
+
+/* Pinned to the bottom, so the links line up across a row. */
+.iop-story-more {
+  margin-top: auto;
+  font-weight: 600;
+  color: $orange-800;
+}
+
+/* ---- Testimonial article (src/layouts/Testimonial.astro) ---- */
+
+.iop-testimonial-top {
+  .iop-headline-long {
+    max-width: 20ch;
+    font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+    line-height: 1.05;
+  }
+
+  .iop-lead:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.iop-byline {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $orange-300;
+}
+
+/* The photos run from landscape to 2:3, so tall ones are cropped from the top to keep the face. */
+.iop-testimonial-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 24rem;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: $iop-radius;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  background-color: rgba(255, 255, 255, 0.08);
+
+  @media (min-width: 768px) {
+    max-height: min(36rem, 75svh);
+  }
+}
+
+.iop-article {
+  margin-inline: auto;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  h2,
+  h3,
+  h4 {
+    color: $iop-ink;
+  }
+
+  h2 {
+    margin: 3rem 0 1rem;
+    font-size: clamp(1.5rem, 3.2vw, 1.85rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  h3 {
+    margin: 2.25rem 0 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  h4 {
+    margin: 1.75rem 0 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  /* The original-language title under a translated heading. */
+  h2 small,
+  h3 small {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.6em;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  blockquote {
+    margin: 2.25rem 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid $orange-600;
+    font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.4;
+    color: $iop-ink;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  hr {
+    margin: 2.5rem 0;
+  }
+
+  a {
+    color: $orange-800;
+
+    &:hover {
+      color: $orange-900;
+    }
+  }
+}
+
+.iop-article-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2.25rem 0;
+  border-radius: $iop-radius;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  background-color: var(--bs-gray-200);
+}
+
+.iop-article .iop-article-more {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--bs-border-color);
+  font-weight: 600;
 }
 
 /* ---- Finale ---- */
@@ -1071,7 +1305,8 @@ $timeline-label: 8.5rem;
 
 @media (prefers-reduced-motion: reduce) {
   .iop-timeline-bar,
-  .iop-sticky-apply {
+  .iop-sticky-apply,
+  .iop-story {
     transition: none;
   }
 }

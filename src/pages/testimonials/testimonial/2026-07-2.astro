@@ -1,27 +1,16 @@
 ---
-import { Image } from 'astro:assets'
 import img2026072 from '../../../assets/images/testimonials/2026-07-2.jpg'
 import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial
-  description="Gino travelled from the Netherlands to ordain in Belgium and offer a blessing to his mother, and found that feelings pass rather than hold you." title="Testimonial | Gino Nérèo" heading="Gino Nérèo">
-  <div class="row py-5">
-    <div class="col-6 offset-3">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026072}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Portrait of Gino Nérèo"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <p>11th European Ordination Program participant</p>
+  title="Testimonial | Gino Nérèo"
+  heading="Gino Nérèo"
+  description="Gino travelled from the Netherlands to ordain in Belgium and offer a blessing to his mother, and found that feelings pass rather than hold you."
+  detail="11th European Ordination Program participant"
+  portrait={img2026072}
+  portraitAlt="Portrait of Gino Nérèo"
+>
   <p>
     My name is Gino. I came from the Netherlands to Belgium to be ordained as a monk, and to offer a blessing to my
     family - especially to my mother. As a son, this is a way to give back to the one who carried me and brought me into

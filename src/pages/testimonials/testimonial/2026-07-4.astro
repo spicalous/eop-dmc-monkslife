@@ -1,27 +1,16 @@
 ---
-import { Image } from 'astro:assets'
 import img2026074 from '../../../assets/images/testimonials/2026-07-4.jpg'
 import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial
-  description="Enevald, 60, from Norway on how the chanting and meditation of monastic life in Belgium helped him set down years of anger." title="Testimonial | Enevald Horve" heading="Enevald Horve">
-  <div class="row py-5">
-    <div class="col-6 offset-3">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026074}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Portrait of Enevald Horve"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <p>11th European Ordination Program participant</p>
+  title="Testimonial | Enevald Horve"
+  heading="Enevald Horve"
+  description="Enevald, 60, from Norway on how the chanting and meditation of monastic life in Belgium helped him set down years of anger."
+  detail="11th European Ordination Program participant"
+  portrait={img2026074}
+  portraitAlt="Portrait of Enevald Horve"
+>
   <p>
     My name is Enevald. I come from Norway and I am 60 years old. Before coming here I was a lay person. The monastic
     life in Belgium, the chanting, and the meditation have helped me calm down and become happier.

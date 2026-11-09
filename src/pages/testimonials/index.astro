@@ -1,198 +1,150 @@
 ---
-import { Image } from 'astro:assets'
-import img2026075 from '../../assets/images/testimonials/2026-07-5.jpeg'
-import img2026071 from '../../assets/images/testimonials/2026-07-1.jpeg'
-import img2026051 from '../../assets/images/testimonials/2026-05-1.jpeg'
-import img2026052 from '../../assets/images/testimonials/2026-05-2.jpg'
-import img2026041 from '../../assets/images/testimonials/2026-04-1.jpeg'
-import img2026074 from '../../assets/images/testimonials/2026-07-4.jpg'
-import img2026073 from '../../assets/images/testimonials/2026-07-3.jpg'
-import img2026072 from '../../assets/images/testimonials/2026-07-2.jpg'
+import { Image, Picture } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
+import ApplyFinale from '../../components/ApplyFinale.astro'
+import StickyApply from '../../components/StickyApply.astro'
+import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
+import { FORM_LINK } from '../../config/site'
+import hero from '../../assets/images/2026/18.jpeg'
+import heiko from '../../assets/images/testimonials/2026-07-5.jpeg'
+import jay from '../../assets/images/testimonials/2026-07-1.jpeg'
+import enevald from '../../assets/images/testimonials/2026-07-4.jpg'
+import martin from '../../assets/images/testimonials/2026-07-3.jpg'
+import gino from '../../assets/images/testimonials/2026-07-2.jpg'
+import allan from '../../assets/images/testimonials/2026-05-1.jpeg'
+import kris from '../../assets/images/testimonials/2026-05-2.jpg'
+import cas from '../../assets/images/testimonials/2026-04-1.jpeg'
+
+/* In the order the page has always listed them. Each quote is taken word for word from that person's own page. */
+const testimonials = [
+  {
+    href: '/testimonials/testimonial/2026-07-5/',
+    image: heiko,
+    alt: 'Portrait of Heiko Elswyk',
+    title: 'Heiko Elswyk',
+    detail: 'Returning participant',
+    quote: "It's much more than a normal retreat I would say, and that's why I'm here again.",
+  },
+  {
+    href: '/testimonials/testimonial/2026-07-1/',
+    image: jay,
+    alt: 'Portrait of Jay Mutsuddi',
+    title: 'Jay Mutsuddi',
+    detail: 'United Kingdom',
+    quote: 'It almost felt like a bitesize university degree on Buddhism. My daily meditation practice has helped me to quiet the loud inner voice.',
+  },
+  {
+    href: '/testimonials/testimonial/2026-05-1/',
+    image: allan,
+    alt: 'Portrait of Allan Chemnitz',
+    title: 'My month as a Buddhist monk has made me mentally richer',
+    detail: 'Allan Chemnitz, Denmark',
+    summary: 'Allan Chemnitz talks about his path to being ordained as a monk in Thailand, about physical exertion and about gratitude for life.',
+  },
+  {
+    href: '/testimonials/testimonial/2026-05-2/',
+    image: kris,
+    alt: 'Two rows of monks in saffron robes kneeling with palms together before a golden Buddha statue',
+    title: 'Next step? Maybe a month of training in Thailand',
+    detail: 'Kris, Lede, Belgium',
+    summary: 'Kris (52) from Lede has already been ordained as a Buddhist monk for the fifth time.',
+  },
+  {
+    href: '/testimonials/testimonial/2026-04-1/',
+    image: cas,
+    alt: 'Portrait of Cas',
+    title: 'Why did I become a Buddhist monk?',
+    detail: 'Cas, the Netherlands',
+    summary: 'Trapped by negative thoughts in his early twenties, Cas left the Netherlands for a remote Thai jungle monastery and ordained as a monk for four months.',
+  },
+  {
+    href: '/testimonials/testimonial/2026-07-4/',
+    image: enevald,
+    alt: 'Portrait of Enevald Horve',
+    title: 'Enevald Horve',
+    detail: 'Norway. Ordained at 60',
+    quote: 'I used to carry a lot of anger. The teachings and the daily life as a monk have helped me become a better person and more peaceful every day.',
+  },
+  {
+    href: '/testimonials/testimonial/2026-07-3/',
+    image: martin,
+    alt: 'Portrait of Martin Boonsanoh',
+    title: 'Martin Boonsanoh',
+    detail: 'Berlin, Germany. Ordained at 27',
+    quote: 'Since arriving here I meditate every day with the monks. Their teaching and the practice have helped me gain more control over myself, more inner peace, more happiness, and greater mindfulness.',
+  },
+  {
+    href: '/testimonials/testimonial/2026-07-2/',
+    image: gino,
+    alt: 'Portrait of Gino Nérèo',
+    title: 'Gino Nérèo',
+    detail: 'The Netherlands',
+    quote: 'Through meditation, I have found greater peace. Feelings arise and then simply pass.',
+  },
+]
 ---
 
 <Base title="Testimonials - European Ordination Program"
-  description="Participants from across Europe describe why they ordained, what the training asked of them, and what changed once they returned to lay life.">
-  <div class="container mt-5">
-    <div class="display-1 text-center py-5">
-      Testimonials
-    </div>
-    <div class="row row-cols-1 row-cols-lg-2 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026075}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Portrait of Heiko Elswyk"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">Heiko Elswyk</h3>
-            <p class="card-text">
-              11th European Ordination Program participant
-            </p>
-            <a href="/testimonials/testimonial/2026-07-5/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026071}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Portrait of Jay Mutsuddi"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">Jay Mutsuddi</h3>
-            <p class="card-text">
-              11th European Ordination Program participant
-            </p>
-            <a href="/testimonials/testimonial/2026-07-1/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026051}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Monk meditation"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">My month as a Buddhist monk has made me mentally richer</h3>
-            <p class="card-text">
-              Allan Chemnitz talks about his path to being ordained as a monk in Thailand, about physical exertion and
-              about gratitude for life.
-            </p>
-            <a href="/testimonials/testimonial/2026-05-1/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026052}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Buddist monk"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">Next step? Maybe a month of training in Thailand</h3>
-            <p class="card-text">
-              Kris (52) from Lede has already been ordained as a Buddhist monk for the fifth time.
-            </p>
-            <a href="/testimonials/testimonial/2026-05-2/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026041}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Portrait of Cas"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">Cas</h3>
-            <p class="card-text">
-              Trapped in his early twenties by constant negative thoughts, and a deep sense of meaninglessness that left him
-              at rock bottom, turned to self-improvement and meditation, which released years of tension and helped him
-              disidentify from his overactive mind. This led him to quit his comfortable life in the Netherlands, move to a
-              remote Thai jungle monastery, and become a Buddhist monk for four months to fully immerse himself to find
-              lasting peace and clarity.
-            </p>
-            <a href="/testimonials/testimonial/2026-04-1/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026074}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Portrait of Enevald Horve"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">Enevald Horve</h3>
-            <p class="card-text">
-              11th European Ordination Program participant
-            </p>
-            <a href="/testimonials/testimonial/2026-07-4/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026073}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Portrait of Martin Boonsanoh"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">Martin Boonsanoh</h3>
-            <p class="card-text">
-              11th European Ordination Program participant
-            </p>
-            <a href="/testimonials/testimonial/2026-07-3/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <Image
-            class="card-img-top"
-            src={img2026072}
-            widths={[400, 640, 900]}
-            sizes="(min-width: 992px) 46vw, 94vw"
-            format="webp"
-            alt="Portrait of Gino Nérèo"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="card-body">
-            <h3 class="card-title">Gino Nérèo</h3>
-            <p class="card-text">
-              11th European Ordination Program participant
-            </p>
-            <a href="/testimonials/testimonial/2026-07-2/" class="btn btn-primary">Read more</a>
-          </div>
-        </div>
+  description="Participants from across Europe describe why they ordained, what the training asked of them, and what changed once they returned to lay life."
+  socialImage={hero}>
+  <section class="iop-hero iop-hero-compact iop-hero-shaded iop-hero-bare">
+    <Picture
+      src={hero}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1600]}
+      sizes="100vw"
+      class="iop-hero-img"
+      alt="Monks in saffron robes gathered for a group photo outside Wat Phra Dhammakaya Rheinland"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="container">
+      <p class="iop-eyebrow">European Ordination Program</p>
+      <h1 class="iop-headline">In their <span>own words</span></h1>
+      <p class="iop-lead">
+        Participants from across Europe describe why they ordained, what the training asked of them, and what changed
+        once they returned to lay life.
+      </p>
+      <div class="iop-hero-actions">
+        <a class="btn btn-primary btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+          Apply now
+          <IconBoxArrowUpRight width="1em" height="1em" />
+        </a>
+        <a class="btn btn-outline-light btn-lg" href="/about/">Program details</a>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="iop-section">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 justify-content-center">
+        {testimonials.map((story) => (
+          <div class="col">
+            <article class="iop-story">
+              <Image
+                src={story.image}
+                alt={story.alt}
+                class="iop-story-img"
+                widths={[320, 480, 640, 900]}
+                sizes="(min-width: 992px) 30vw, (min-width: 576px) 46vw, 94vw"
+                format="webp"
+              />
+              <div class="iop-story-body">
+                <h2><a class="stretched-link" href={story.href}>{story.title}</a></h2>
+                <p class="iop-story-detail">{story.detail}</p>
+                {story.quote
+                  ? <blockquote><p>“{story.quote}”</p></blockquote>
+                  : <p class="iop-story-summary">{story.summary}</p>}
+                <span class="iop-story-more" aria-hidden="true">Read the story</span>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ApplyFinale showDates />
+
+  <StickyApply />
 </Base>

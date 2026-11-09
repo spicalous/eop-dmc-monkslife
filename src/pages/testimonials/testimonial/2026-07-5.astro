@@ -6,23 +6,13 @@ import Testimonial from '../../../layouts/Testimonial.astro'
 ---
 
 <Testimonial
-  description="Heiko Elswyk, a returning participant, on practising mindfulness, learning the Dhamma from the monks, and the family the group becomes." title="Testimonial | Heiko Elswyk" heading="Heiko Elswyk">
-  <div class="row py-5">
-    <div class="col-6 offset-3">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026075}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="Portrait of Heiko Elswyk"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </div>
-  <p>11th European Ordination Program participant</p>
+  title="Testimonial | Heiko Elswyk"
+  heading="Heiko Elswyk"
+  description="Heiko Elswyk, a returning participant, on practising mindfulness, learning the Dhamma from the monks, and the family the group becomes."
+  detail="11th European Ordination Program participant"
+  portrait={img2026075}
+  portraitAlt="Portrait of Heiko Elswyk"
+>
   <p>
     I already knew about the program from last year. I knew what the program would entail as I had participated in prior
     programs. I have been interested in Buddhism for a long time and here are some of the best opportunities to learn
@@ -45,18 +35,14 @@ import Testimonial from '../../../layouts/Testimonial.astro'
     about the life of the Lord Buddha.
   </p>
   <p>Watch the full video <a href="https://www.youtube.com/watch?v=g1f04MWA_p4" target="_blank" rel="noopener">on YouTube</a></p>
-  <div class="row py-4">
-    <div class="col-12 col-lg-8 offset-lg-2">
-      <Image
-        class="img-fluid rounded shadow"
-        src={img2026075Image1}
-        widths={[400, 640, 900]}
-        sizes="(min-width: 992px) 60vw, 92vw"
-        format="webp"
-        alt="A monk meditating cross-legged on a wooden deck in front of rocks and greenery"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  </div>
+  <Image
+    class="iop-article-img"
+    src={img2026075Image1}
+    widths={[400, 640, 900]}
+    sizes="(min-width: 768px) 44rem, 94vw"
+    format="webp"
+    alt="A monk meditating cross-legged on a wooden deck in front of rocks and greenery"
+    loading="lazy"
+    decoding="async"
+  />
 </Testimonial>
