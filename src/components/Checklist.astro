@@ -1,0 +1,89 @@
+---
+interface Props {
+  items: string[]
+  /** For a white section, where the white items would vanish: they take the tint instead. */
+  soft?: boolean
+  /** A cross in place of the tick, for things to leave out. Screen readers hear "No" before each item. */
+  cross?: boolean
+  class?: string
+}
+
+const { items, soft = false, cross = false, class: className, ...rest } = Astro.props
+---
+
+<ul class:list={['iop-checklist', { 'iop-checklist-soft': soft, 'iop-checklist-no': cross }, className]} {...rest}>
+  {items.map((item) => <li>{cross && <span class="visually-hidden">No </span>}{item}</li>)}
+</ul>
+
+<style lang="scss">
+  @use "../styles/functions" as *;
+  @use "../styles/tokens" as *;
+
+  .iop-checklist {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding: 1rem 1.25rem 1rem 3.25rem;
+      border-radius: $iop-radius-sm;
+      background-color: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      font-size: 1.05rem;
+      color: $iop-ink;
+
+      /* A tick drawn in CSS, so the list needs no icon markup. */
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 1.15rem;
+        width: 1.35rem;
+        height: 1.35rem;
+        border-radius: 50%;
+        background-color: $orange-600;
+        transform: translateY(-50%);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 1.6rem;
+        width: 0.4rem;
+        height: 0.7rem;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: translateY(-62%) rotate(45deg);
+      }
+    }
+  }
+
+  /* The two variants come after .iop-checklist, whose items they override. */
+
+  .iop-checklist-soft li {
+    background-color: $iop-panel;
+    box-shadow: none;
+  }
+
+  .iop-checklist-no li {
+    &::before {
+      background-color: tint-color($iop-ink, 30%);
+    }
+
+    &::after {
+      left: 1.15rem;
+      width: 1.35rem;
+      height: 1.35rem;
+      border: 0;
+      $stroke: transparent calc(50% - 1px), #fff calc(50% - 1px), #fff calc(50% + 1px), transparent calc(50% + 1px);
+      background:
+        linear-gradient(45deg, $stroke) center / 0.6rem 0.6rem no-repeat,
+        linear-gradient(-45deg, $stroke) center / 0.6rem 0.6rem no-repeat;
+      transform: translateY(-50%);
+    }
+  }
+</style>

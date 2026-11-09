@@ -64,3 +64,167 @@ for (let month = seasonStart; month < seasonEnd;) {
     Ordination day
   </p>
 </div>
+
+<style lang="scss">
+  @use "../styles/functions" as *;
+  @use "../styles/tokens" as *;
+
+  $timeline-label: 8.5rem;
+
+  .iop-timeline {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    border: 1px solid rgba($orange-600, 0.16);
+    border-radius: $iop-radius;
+    background-color: tint-color($orange-50, 60%);
+  }
+
+  .iop-timeline-row {
+    display: grid;
+    grid-template-columns: $timeline-label 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding-block: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: inherit;
+
+      .iop-timeline-bar {
+        filter: brightness(1.08);
+        box-shadow: 0 4px 14px rgba($orange-700, 0.4);
+      }
+    }
+  }
+
+  .iop-timeline-head {
+    padding-block: 0 0.25rem;
+  }
+
+  .iop-timeline-label {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    font-size: 1.4rem;
+    line-height: 1.1;
+
+    strong {
+      display: block;
+      font-size: 0.95rem;
+      color: $iop-ink;
+    }
+
+    small {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--bs-secondary-color);
+    }
+  }
+
+  .iop-timeline-track {
+    position: relative;
+    height: 2rem;
+  }
+
+  .iop-timeline-head .iop-timeline-track {
+    height: 1.25rem;
+  }
+
+  .iop-timeline-month {
+    position: absolute;
+    top: 0;
+    padding-left: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $orange-900;
+  }
+
+  .iop-timeline-divider {
+    position: absolute;
+    top: -0.5rem;
+    bottom: -0.5rem;
+    border-left: 1px dashed rgba($orange-700, 0.25);
+  }
+
+  .iop-timeline-bar {
+    position: absolute;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    border-radius: $iop-radius-pill;
+    background: $iop-bar-gradient;
+    transition: filter 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .iop-timeline-ceremony {
+    position: absolute;
+    top: 50%;
+    width: 0.85rem;
+    height: 0.85rem;
+    border: 3px solid $orange-900;
+    border-radius: 50%;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+  }
+
+  .iop-timeline-legend {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0.75rem 0 0;
+    font-size: 0.8rem;
+    color: var(--bs-secondary-color);
+
+    .iop-timeline-ceremony {
+      position: static;
+      transform: none;
+    }
+
+    @media (min-width: $breakpoint-sm) {
+      padding-left: calc(#{$timeline-label} + 1rem);
+    }
+  }
+
+  @media (max-width: #{$breakpoint-sm - 0.02px}) {
+    .iop-timeline {
+      padding: 1.25rem 1rem;
+    }
+
+    .iop-timeline-row {
+      grid-template-columns: 7rem 1fr;
+      gap: 0.75rem;
+    }
+
+    .iop-timeline-label {
+      gap: 0.45rem;
+      font-size: 1.1rem;
+
+      small {
+        font-size: 0.68rem;
+        white-space: nowrap;
+      }
+    }
+
+    /* The bars are only a finger wide here, so the marker shrinks to leave some orange showing. */
+    .iop-timeline-ceremony {
+      width: 0.65rem;
+      height: 0.65rem;
+      border-width: 2px;
+    }
+
+    .iop-timeline-month {
+      padding-left: 0.25rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .iop-timeline-bar {
+      transition: none;
+    }
+  }
+</style>

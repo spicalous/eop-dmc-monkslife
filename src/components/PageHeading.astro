@@ -1,0 +1,82 @@
+---
+interface Props {
+  eyebrow: string
+  /**
+   * How large the headline is set: `display` for the home page, `page` for an inner page,
+   * and `long` for a title that runs to several words.
+   */
+  size?: 'display' | 'page' | 'long'
+}
+
+const { eyebrow, size = 'page' } = Astro.props
+---
+
+{/*
+  * The eyebrow, headline and standfirst a page opens on. Set in white, so it belongs on a photo or a dark band.
+  * The headline goes in the `headline` slot, where a <span> picks out a word in orange; the standfirst is the default slot.
+  */}
+<p class="iop-eyebrow">{eyebrow}</p>
+<h1 class:list={['iop-headline', size !== 'display' && `iop-headline-${size}`]}><slot name="headline" /></h1>
+<p class="iop-lead"><slot /></p>
+
+<style lang="scss">
+  @use "../styles/tokens" as *;
+
+  .iop-eyebrow {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    padding: 0.4rem 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $iop-radius-pill;
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    /* Keeps the pill to one line on a phone. */
+    @media (max-width: #{$breakpoint-sm - 0.02px}) {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+    }
+  }
+
+  .iop-headline {
+    max-width: 14ch;
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.75rem, 8.5vw, 6.25rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+
+    /* The accented word arrives through the slot, so it carries no scope of its own. */
+    :global(span) {
+      color: $orange-300;
+    }
+  }
+
+  .iop-headline-page {
+    font-size: clamp(2.75rem, 7.5vw, 5.25rem);
+  }
+
+  .iop-headline-long {
+    max-width: 20ch;
+    font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+    line-height: 1.05;
+  }
+
+  .iop-lead {
+    max-width: 36rem;
+    margin-bottom: 2rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+
+    /* With nothing after it, the band's own padding is space enough. */
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+</style>

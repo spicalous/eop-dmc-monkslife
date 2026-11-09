@@ -27,6 +27,78 @@ const { id, title } = Astro.props
   </a>
 </div>
 
+<style lang="scss">
+  @use "../styles/tokens" as *;
+
+  .yt-facade {
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background-color: #000;
+
+    a {
+      display: block;
+    }
+
+    /*
+     * Most thumbnails are 4:3 with the 16:9 frame letterboxed inside, so cropping to the frame trims the black bars.
+     * The slight zoom hides the sliver of bar some leave behind.
+     */
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.3s ease;
+    }
+
+    a:hover img,
+    a:focus-visible img {
+      transform: scale(1.06);
+    }
+
+    /* The player is put in by the script below, so it carries no scope of its own. */
+    :global(iframe) {
+      border: 0;
+    }
+  }
+
+  .yt-facade-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85);
+    transform: translate(-50%, -50%);
+    transition: background-color 0.2s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 1.25rem;
+      height: 1.4rem;
+      background-color: #fff;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      transform: translateX(10%);
+    }
+
+    a:hover &,
+    a:focus-visible & {
+      background-color: $orange-800;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .yt-facade img {
+      transition: none;
+    }
+  }
+</style>
+
 <script>
   document.querySelectorAll<HTMLAnchorElement>('.yt-facade a').forEach((link) => {
     link.addEventListener('click', (event) => {

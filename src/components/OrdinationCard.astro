@@ -40,3 +40,149 @@ const { ordination } = Astro.props
     <IconBoxArrowUpRight width="1em" height="1em" />
   </a>
 </article>
+
+<style lang="scss">
+  @use "../styles/functions" as *;
+  @use "../styles/tokens" as *;
+
+  .iop-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.75rem 1.5rem 1.5rem;
+    overflow: hidden;
+    border: 1px solid $iop-line;
+    border-radius: $iop-radius;
+    background-color: #fff;
+    box-shadow: $iop-shadow;
+    /* A jump to the card lands it below the fixed nav rather than under it. */
+    scroll-margin-top: calc(var(--nav-height) + 1rem);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 5px;
+      background: $iop-bar-gradient;
+    }
+
+    /* Picks out the card a timeline row or the stats card jumped to. */
+    &:target {
+      border-color: $orange-600;
+      box-shadow: 0 0 0 3px rgba($orange-600, 0.25), 0 14px 36px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .iop-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .iop-card-flag {
+    font-size: 2.25rem;
+    line-height: 1;
+  }
+
+  .iop-card-month {
+    padding: 0.3rem 0.75rem;
+    border-radius: $iop-radius-pill;
+    background-color: $orange-50;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $orange-900;
+  }
+
+  .iop-card-name {
+    margin-bottom: 0.25rem;
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: $iop-ink;
+  }
+
+  .iop-card-temple {
+    font-size: 0.9rem;
+    color: var(--bs-secondary-color);
+  }
+
+  .iop-card-dates {
+    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $iop-ink;
+
+    span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--bs-secondary-color);
+    }
+  }
+
+  .iop-card-ceremony,
+  .iop-card-languages {
+    > span {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+
+  .iop-card-ceremony {
+    margin-bottom: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: $iop-radius-sm;
+    background: linear-gradient(135deg, $orange-50, tint-color($orange-100, 30%));
+
+    > span {
+      color: $orange-900;
+    }
+
+    strong {
+      font-size: 1.05rem;
+      color: $iop-ink;
+    }
+  }
+
+  .iop-card-languages {
+    margin-bottom: 1.5rem;
+
+    > span {
+      color: var(--bs-secondary-color);
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      padding: 0.2rem 0.7rem;
+      border: 1px solid rgba($orange-700, 0.3);
+      border-radius: $iop-radius-pill;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: $orange-900;
+    }
+  }
+
+  .iop-card-apply {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+</style>

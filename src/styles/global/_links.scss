@@ -1,0 +1,9 @@
+@use "../functions" as *;
+@use "../tokens" as *;
+
+a {
+  color: $orange-700;
+}
+a:hover {
+  color: shift-color($orange-700, 20%);
+}

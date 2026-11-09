@@ -1,10 +1,10 @@
 ---
-import { Image, Picture } from 'astro:assets'
+import { Image } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
 import ApplyFinale from '../../components/ApplyFinale.astro'
+import Hero from '../../components/Hero.astro'
+import JumpNav from '../../components/JumpNav.astro'
 import StickyApply from '../../components/StickyApply.astro'
-import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
-import { FORM_LINK } from '../../config/site'
 import hero from '../../assets/images/2025/1765495926274-min.jpg'
 import lpRonnapop from '../../assets/images/teachers/lp-ronnapop.jpeg'
 import lpPisit from '../../assets/images/teachers/lp-pisit.png'
@@ -61,47 +61,23 @@ const teachers = [
 <Base title="Teachers - European Ordination Program"
   description="Meet the teaching monks who guide the European Ordination Program, and read about their monastic training, scholarship, and years of teaching meditation."
   socialImage={hero}>
-  <section class="iop-hero iop-hero-compact">
-    <Picture
-      src={hero}
-      formats={['avif', 'webp']}
-      widths={[640, 960, 1280, 1567]}
-      sizes="100vw"
-      class="iop-hero-img"
-      alt="A monk giving a Dhamma talk from the front of a meditation hall, watched by participants dressed in white"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="container">
-      <p class="iop-eyebrow">European Ordination Program</p>
-      <h1 class="iop-headline">Meet the <span>teachers</span></h1>
-      <p class="iop-lead">
-        Meet the teaching monks who guide the program, and read about their monastic training, scholarship, and years
-        of teaching meditation.
-      </p>
-      <div class="iop-hero-actions">
-        <a class="btn btn-primary btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
-          Apply now
-          <IconBoxArrowUpRight width="1em" height="1em" />
-        </a>
-        <a class="btn btn-outline-light btn-lg" href="/about/">Program details</a>
-      </div>
-    </div>
-  </section>
+  <Hero
+    image={hero}
+    alt="A monk giving a Dhamma talk from the front of a meditation hall, watched by participants dressed in white"
+    widths={[640, 960, 1280, 1567]}
+    eyebrow="European Ordination Program"
+    action={{ href: '/about/', label: 'Program details' }}
+    compact
+  >
+    <Fragment slot="headline">Meet the <span>teachers</span></Fragment>
+    Meet the teaching monks who guide the program, and read about their monastic training, scholarship, and years
+    of teaching meditation.
+  </Hero>
 
-  <div class="container">
-    <nav class="iop-jump iop-jump-four" aria-label="Teachers on this page">
-      <ul>
-        {teachers.map((teacher) => (
-          <li>
-            <a href={`#${teacher.id}`}>
-              <strong>{teacher.name}</strong>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
+  <JumpNav
+    label="Teachers on this page"
+    links={teachers.map((teacher) => ({ href: `#${teacher.id}`, label: teacher.name }))}
+  />
 
   {teachers.map((teacher, index) => (
     <section class={`iop-section${index % 2 ? ' iop-section-tinted' : ''}`} id={teacher.id}>
@@ -140,3 +116,42 @@ const teachers = [
 
   <StickyApply />
 </Base>
+
+<style lang="scss">
+  @use "../../styles/tokens" as *;
+
+  /* A second name or a gloss, set small under the title it belongs to. */
+  .iop-title-aside {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.45em;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--bs-secondary-color);
+  }
+
+  /* Small enough on a phone that the name still shows on the same screen. */
+  .iop-portrait {
+    max-width: 15rem;
+
+    /* The sources run from 3:4 to 2:3; cropping from the top keeps every face. */
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: top;
+      border-radius: $iop-radius;
+      box-shadow: $iop-shadow-float;
+      background-color: $iop-placeholder;
+    }
+
+    /* The longer biographies run past the photo, so it stays alongside them. */
+    @media (min-width: $breakpoint-md) {
+      position: sticky;
+      top: calc(var(--nav-height) + 2rem);
+      max-width: none;
+    }
+  }
+</style>

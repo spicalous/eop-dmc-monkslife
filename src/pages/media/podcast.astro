@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro'
 import ApplyFinale from '../../components/ApplyFinale.astro'
+import PageHeading from '../../components/PageHeading.astro'
 import StickyApply from '../../components/StickyApply.astro'
 import YouTube from '../../components/YouTube.astro'
 ---
@@ -10,12 +11,11 @@ import YouTube from '../../components/YouTube.astro'
   {/* The video is the page, so it opens on a dark band with the player in it rather than on a photo. */}
   <section class="iop-section iop-section-dark iop-page-top">
     <div class="container">
-      <p class="iop-eyebrow">European Ordination Program</p>
-      <h1 class="iop-headline">The <span>podcast</span></h1>
-      <p class="iop-lead">
+      <PageHeading eyebrow="European Ordination Program">
+        <Fragment slot="headline">The <span>podcast</span></Fragment>
         A conversation about the European Ordination Program: what draws men to ordain, what the weeks of training are
         like, and what they take home.
-      </p>
+      </PageHeading>
       <YouTube id="Di0Hrq2xk-Q" title="European Ordination Program podcast" />
       <a class="iop-more" href="/media/">See photos and films from past programs</a>
     </div>

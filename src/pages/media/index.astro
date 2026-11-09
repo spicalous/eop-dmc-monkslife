@@ -1,13 +1,12 @@
 ---
-import { Picture } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
 import ApplyFinale from '../../components/ApplyFinale.astro'
 import Gallery from '../../components/Gallery.astro'
+import Hero from '../../components/Hero.astro'
+import JumpNav from '../../components/JumpNav.astro'
 import PortraitCard from '../../components/PortraitCard.astro'
 import StickyApply from '../../components/StickyApply.astro'
 import YouTube from '../../components/YouTube.astro'
-import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
-import { FORM_LINK } from '../../config/site'
 import { galleryByYear } from '../../data/galleries'
 import { programs } from '../../data/programs'
 import hero from '../../assets/images/2026/07.jpeg'
@@ -57,47 +56,21 @@ function contents({ gallery, films, participants }: (typeof years)[number]): str
 <Base title="Media - European Ordination Program"
   description="Photographs and films from the European Ordination Program."
   socialImage={hero}>
-  <section class="iop-hero iop-hero-compact">
-    <Picture
-      src={hero}
-      formats={['avif', 'webp']}
-      widths={[640, 960, 1280, 1600]}
-      sizes="100vw"
-      class="iop-hero-img"
-      alt="Newly ordained monks meditating in rows on the grass beneath a vast tree"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="container">
-      <p class="iop-eyebrow">Photos and films</p>
-      <h1 class="iop-headline">Past <span>programs</span></h1>
-      <p class="iop-lead">
-        Photographs and films from past European Ordination Programs, from 2018 to last summer.
-      </p>
-      <div class="iop-hero-actions">
-        <a class="btn btn-primary btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
-          Apply now
-          <IconBoxArrowUpRight width="1em" height="1em" />
-        </a>
-        <a class="btn btn-outline-light btn-lg" href="/media/podcast/">The podcast</a>
-      </div>
-    </div>
-  </section>
+  <Hero
+    image={hero}
+    alt="Newly ordained monks meditating in rows on the grass beneath a vast tree"
+    eyebrow="Photos and films"
+    action={{ href: '/media/podcast/', label: 'The podcast' }}
+    compact
+  >
+    <Fragment slot="headline">Past <span>programs</span></Fragment>
+    Photographs and films from past European Ordination Programs, from 2018 to last summer.
+  </Hero>
 
-  <div class="container">
-    <nav class="iop-jump" aria-label="Years on this page">
-      <ul>
-        {years.map((entry) => (
-          <li>
-            <a href={`#media-${entry.year}`}>
-              <strong>{entry.year}</strong>
-              <small>{contents(entry)}</small>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
+  <JumpNav
+    label="Years on this page"
+    links={years.map((entry) => ({ href: `#media-${entry.year}`, label: entry.year, detail: contents(entry) }))}
+  />
 
   {years.map((entry, index) => (
     <section class={`iop-section${index % 2 ? ' iop-section-tinted' : ''}`} id={`media-${entry.year}`}>

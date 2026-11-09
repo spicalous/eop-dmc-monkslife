@@ -1,0 +1,56 @@
+@use "functions" as *;
+
+// Values shared across the stylesheets here and the <style> blocks of components and pages.
+// Anything used in one place alone stays there. This file must emit no CSS, as every block that uses it would repeat it.
+
+$orange-50: #FFF3E0;
+$orange-100: #FFE0B2;
+$orange-200: #FFCC80;
+$orange-300: #FFB74D;
+$orange-400: #FFA726;
+$orange-500: #FF9800;
+$orange-600: #FB8C00;
+$orange-700: #F57C00;
+$orange-800: #EF6C00;
+$orange-900: #E65100;
+$orange-A100: #FFD180;
+$orange-A200: #FFAB40;
+$orange-A400: #FF9100;
+$orange-A700: #FF6D00;
+
+// Bootstrap's breakpoints, so a rule switches where the grid classes in the markup do.
+// A max-width query stops 0.02px short of one, as Bootstrap's own do, so the two never overlap.
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Body text on the warm sections.
+$iop-ink: #2b1d0e;
+
+// The corner on cards and photos; a tighter one for boxes inside a card and gallery tiles; and the pill.
+$iop-radius: 1.25rem;
+$iop-radius-sm: 0.85rem;
+$iop-radius-pill: 50rem;
+
+// Borders and dividers, and a quieter line for a divider inside a bordered box or under the nav.
+$iop-line: rgba($orange-600, 0.18);
+$iop-line-soft: rgba($orange-600, 0.14);
+
+$iop-focus-color: rgba($orange-600, 0.6);
+
+// Cards resting on the page, and photos, videos and cards lifted off it.
+$iop-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+$iop-shadow-float: 0 18px 50px rgba(0, 0, 0, 0.12);
+
+// A box that has to show up on a white section.
+$iop-panel: tint-color($orange-50, 50%);
+
+// A card's top stripe and the timeline's date bars.
+$iop-bar-gradient: linear-gradient(90deg, $orange-500, $orange-800);
+
+// The white-and-orange ring round a person's face.
+$iop-avatar-ring: 0 0 0 3px #fff, 0 0 0 4px rgba($orange-600, 0.4);
+
+// Shown behind a photo until it loads.
+$iop-placeholder: var(--bs-gray-200);

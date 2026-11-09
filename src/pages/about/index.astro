@@ -1,13 +1,13 @@
 ---
-import { Picture } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
+import Checklist from '../../components/Checklist.astro'
 import ExperienceGrid from '../../components/ExperienceGrid.astro'
+import Hero from '../../components/Hero.astro'
+import JumpNav from '../../components/JumpNav.astro'
 import OrdinationCard from '../../components/OrdinationCard.astro'
 import OrdinationTimeline from '../../components/OrdinationTimeline.astro'
 import ApplyFinale from '../../components/ApplyFinale.astro'
 import StickyApply from '../../components/StickyApply.astro'
-import IconBoxArrowUpRight from '../../components/icons/IconBoxArrowUpRight.astro'
-import { FORM_LINK } from '../../config/site'
 import { ordinations } from '../../data/ordinations'
 import { templesByCountry } from '../../data/temples'
 import hero from '../../assets/images/2026/10.jpeg'
@@ -23,12 +23,12 @@ const sections = {
 }
 
 const jumps = [
-  { href: sections.dates, label: 'Dates', detail: 'Four temples, summer 2027' },
-  { href: sections.program, label: 'The program', detail: 'Where it began and what you do' },
-  { href: sections.eligibility, label: 'Who can join', detail: 'The requirements to apply' },
-  { href: sections.packing, label: 'What to bring', detail: 'And what to leave at home' },
-  { href: sections.faq, label: 'Good to know', detail: 'Chanting, visas and monks' },
-  { href: sections.temples, label: 'Temples', detail: 'Find one near you' },
+  { href: `#${sections.dates}`, label: 'Dates', detail: 'Four temples, summer 2027' },
+  { href: `#${sections.program}`, label: 'The program', detail: 'Where it began and what you do' },
+  { href: `#${sections.eligibility}`, label: 'Who can join', detail: 'The requirements to apply' },
+  { href: `#${sections.packing}`, label: 'What to bring', detail: 'And what to leave at home' },
+  { href: `#${sections.faq}`, label: 'Good to know', detail: 'Chanting, visas and monks' },
+  { href: `#${sections.temples}`, label: 'Temples', detail: 'Find one near you' },
 ]
 
 const itinerary = [
@@ -76,48 +76,19 @@ const notAllowed = [
 <Base title="Program details - European Ordination Program"
   description="Everything you need to apply: dates, itinerary, entry requirements, what to bring, and the Dhammakaya temples across Europe."
   socialImage={hero}>
-  <section class="iop-hero iop-hero-compact">
-    <Picture
-      src={hero}
-      formats={['avif', 'webp']}
-      widths={[640, 960, 1280, 1600]}
-      sizes="100vw"
-      class="iop-hero-img"
-      alt="A long line of monks in saffron robes walking the alms round along a tree-lined road at sunrise"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="container">
-      <p class="iop-eyebrow">Summer 2027 · European Ordination Program</p>
-      <h1 class="iop-headline">Program <span>details</span></h1>
-      <p class="iop-lead">
-        While many are searching for peace outside, we believe that world peace MUST begin from each and everyone of us.
-        That is why we promote the use of meditation in order to help individuals cultivate peace from within.
-      </p>
-      <div class="iop-hero-actions">
-        <a class="btn btn-primary btn-lg" href={FORM_LINK} target="_blank" rel="noopener noreferrer">
-          Apply now
-          <IconBoxArrowUpRight width="1em" height="1em" />
-        </a>
-        <a class="btn btn-outline-light btn-lg" href={`#${sections.dates}`}>Find your dates</a>
-      </div>
-    </div>
-  </section>
+  <Hero
+    image={hero}
+    alt="A long line of monks in saffron robes walking the alms round along a tree-lined road at sunrise"
+    eyebrow="Summer 2027 · European Ordination Program"
+    action={{ href: `#${sections.dates}`, label: 'Find your dates' }}
+    compact
+  >
+    <Fragment slot="headline">Program <span>details</span></Fragment>
+    While many are searching for peace outside, we believe that world peace MUST begin from each and everyone of us.
+    That is why we promote the use of meditation in order to help individuals cultivate peace from within.
+  </Hero>
 
-  <div class="container">
-    <nav class="iop-jump" aria-label="On this page">
-      <ul>
-        {jumps.map((jump) => (
-          <li>
-            <a href={`#${jump.href}`}>
-              <strong>{jump.label}</strong>
-              <small>{jump.detail}</small>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
+  <JumpNav label="On this page" links={jumps} />
 
   <section class="iop-section" id={sections.dates}>
     <div class="container">
@@ -235,9 +206,7 @@ const notAllowed = [
         </div>
         <div class="col-12 col-lg-7">
           <p class="iop-list-label">Qualifications for those who would like to join the program are:</p>
-          <ul class="iop-checklist mb-0">
-            {qualifications.map((qualification) => <li>{qualification}</li>)}
-          </ul>
+          <Checklist items={qualifications} class="mb-0" />
         </div>
       </div>
     </div>
@@ -253,15 +222,11 @@ const notAllowed = [
       <div class="row g-4 g-lg-5">
         <div class="col-12 col-md-6">
           <h3 class="iop-subtitle">Bring with you</h3>
-          <ul class="iop-checklist iop-checklist-soft mb-0">
-            {required.map((item) => <li>{item}</li>)}
-          </ul>
+          <Checklist items={required} soft class="mb-0" />
         </div>
         <div class="col-12 col-md-6">
           <h3 class="iop-subtitle">Not allowed during the training</h3>
-          <ul class="iop-checklist iop-checklist-soft iop-checklist-no mb-0">
-            {notAllowed.map((item) => <li><span class="visually-hidden">No </span>{item}</li>)}
-          </ul>
+          <Checklist items={notAllowed} soft cross class="mb-0" />
         </div>
       </div>
     </div>
@@ -340,3 +305,175 @@ const notAllowed = [
 
   <StickyApply />
 </Base>
+
+<style lang="scss">
+  @use "../../styles/tokens" as *;
+
+  .iop-subtitle {
+    margin-bottom: 1rem;
+    font-size: clamp(1.4rem, 3vw, 1.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: $iop-ink;
+  }
+
+  .iop-list-label {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: $iop-ink;
+  }
+
+  /* ---- Itinerary ---- */
+
+  $itinerary-dot: 0.9rem;
+
+  .iop-itinerary {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding: 0 0 1.75rem 2.25rem;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.15rem;
+        left: 0;
+        z-index: 1;
+        width: $itinerary-dot;
+        height: $itinerary-dot;
+        border-radius: 50%;
+        background: linear-gradient(135deg, $orange-500, $orange-800);
+      }
+
+      /* The thread from this stop down to the next one's dot. */
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: calc(0.15rem + #{$itinerary-dot * 0.5});
+        bottom: calc(-0.15rem - #{$itinerary-dot * 0.5});
+        left: calc(#{$itinerary-dot * 0.5} - 1px);
+        border-left: 2px solid rgba($orange-600, 0.25);
+      }
+    }
+
+    /* Ordination day wears the same ring as the timeline's ceremony marker. */
+    .is-ceremony {
+      &::before {
+        border: 3px solid $orange-900;
+        background: #fff;
+      }
+
+      .iop-itinerary-activity {
+        font-weight: 800;
+      }
+    }
+  }
+
+  .iop-itinerary-date {
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.2rem;
+    text-transform: uppercase;
+    color: $orange-900;
+  }
+
+  .iop-itinerary-activity {
+    display: block;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: $iop-ink;
+  }
+
+  /* ---- Good to know ---- */
+
+  .iop-note {
+    height: 100%;
+    padding: 1.75rem 1.5rem;
+    border-radius: $iop-radius;
+    background-color: #fff;
+    box-shadow: $iop-shadow;
+
+    h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: $iop-ink;
+    }
+
+    p {
+      line-height: 1.65;
+      color: var(--bs-secondary-color);
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* ---- Temples directory ---- */
+
+  /* Countries hold anywhere from one temple to seven, so they flow down columns rather than sit in rows. */
+  .iop-temples {
+    columns: 1;
+    column-gap: 1.5rem;
+
+    @media (min-width: $breakpoint-md) {
+      columns: 2;
+    }
+
+    @media (min-width: $breakpoint-xl) {
+      columns: 3;
+    }
+  }
+
+  .iop-temple-country {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid $iop-line;
+    border-radius: $iop-radius;
+    background-color: #fff;
+    break-inside: avoid;
+
+    h2 {
+      margin-bottom: 0.25rem;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: $iop-ink;
+    }
+  }
+
+  .iop-temple {
+    padding-top: 1rem;
+
+    & + & {
+      margin-top: 1rem;
+      border-top: 1px solid $iop-line-soft;
+    }
+
+    h4 {
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: $orange-900;
+    }
+
+    /* The address is an HTML fragment from src/data/temples.ts, so it carries no scope of its own. */
+    :global(address) {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--bs-secondary-color);
+    }
+  }
+</style>

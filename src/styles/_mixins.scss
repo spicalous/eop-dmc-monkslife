@@ -1,0 +1,14 @@
+@use "tokens" as *;
+
+// Rule sets worn by more than one block. A mixin emits nothing until it is
+// included, so a component's <style> can @use this file freely.
+
+/* The white card pulled up over the bottom of the hero: the home page's stats and JumpNav.astro. */
+@mixin float-card {
+  position: relative;
+  margin: -4.5rem 0 0;
+  padding: 1.75rem;
+  border-radius: $iop-radius;
+  background-color: #fff;
+  box-shadow: $iop-shadow-float;
+}

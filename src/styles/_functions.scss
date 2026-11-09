@@ -1,0 +1,25 @@
+@use "sass:color";
+
+// Bootstrap's own colour helpers. The site loads Bootstrap's compiled CSS rather
+// than its Sass, so these are copied here for every partial to share.
+
+@function to-rgb($value) {
+  @return color.channel($value, "red", $space: rgb),
+    color.channel($value, "green", $space: rgb),
+    color.channel($value, "blue", $space: rgb);
+}
+
+@function tint-color($color, $weight) {
+  @return color.mix(white, $color, $weight);
+}
+
+@function shade-color($color, $weight) {
+  @return color.mix(black, $color, $weight);
+}
+
+@function shift-color($color, $weight) {
+  @if $weight > 0 {
+    @return shade-color($color, $weight);
+  }
+  @return tint-color($color, -$weight);
+}

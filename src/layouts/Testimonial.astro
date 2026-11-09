@@ -3,6 +3,7 @@ import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 import Base from './Base.astro'
 import ApplyFinale from '../components/ApplyFinale.astro'
+import PageHeading from '../components/PageHeading.astro'
 import StickyApply from '../components/StickyApply.astro'
 
 interface Props {
@@ -28,13 +29,14 @@ const isLong = heading.length > 24
 
 <Base title={title} description={description} socialImage={socialImage}>
   <article>
-    <header class="iop-section iop-section-dark iop-page-top iop-testimonial-top">
+    <header class="iop-section iop-section-dark iop-page-top">
       <div class="container">
         <div class="row align-items-center gy-5 gx-lg-5">
           <div class="col-md-7">
-            <p class="iop-eyebrow">Testimonial</p>
-            <h1 class:list={['iop-headline', { 'iop-headline-long': isLong }]}>{heading}</h1>
-            <p class="iop-lead">{lead}</p>
+            <PageHeading eyebrow="Testimonial" size={isLong ? 'long' : 'page'}>
+              <Fragment slot="headline">{heading}</Fragment>
+              {lead}
+            </PageHeading>
             {detail && <p class="iop-byline">{detail}</p>}
           </div>
           <div class="col-md-5">
@@ -67,3 +69,126 @@ const isLong = heading.length > 24
 
   <StickyApply />
 </Base>
+
+<style lang="scss">
+  @use "../styles/tokens" as *;
+
+  .iop-byline {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $orange-300;
+  }
+
+  /* The photos run from landscape to 2:3, so tall ones are cropped from the top to keep the face. */
+  .iop-testimonial-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 24rem;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: $iop-radius;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    background-color: rgba(255, 255, 255, 0.08);
+
+    @media (min-width: $breakpoint-md) {
+      max-height: min(36rem, 75svh);
+    }
+  }
+
+  /* The article itself arrives through the slot, written by each testimonial
+   * page, so everything inside it is reached with :global. */
+  .iop-article {
+    margin-inline: auto;
+
+    > :global(:first-child) {
+      margin-top: 0;
+    }
+
+    :global(h2),
+    :global(h3),
+    :global(h4) {
+      color: $iop-ink;
+    }
+
+    :global(h2) {
+      margin: 3rem 0 1rem;
+      font-size: clamp(1.5rem, 3.2vw, 1.85rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    :global(h3) {
+      margin: 2.25rem 0 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    :global(h4) {
+      margin: 1.75rem 0 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    /* The original-language title under a translated heading. */
+    :global(h2 small),
+    :global(h3 small) {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    :global(figure) {
+      margin: 0;
+    }
+
+    :global(blockquote) {
+      margin: 2.25rem 0;
+      padding-left: 1.25rem;
+      border-left: 3px solid $orange-600;
+      font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: $iop-ink;
+    }
+
+    :global(blockquote p) {
+      margin: 0;
+    }
+
+    :global(hr) {
+      margin: 2.5rem 0;
+    }
+
+    :global(a) {
+      color: $orange-800;
+
+      &:hover {
+        color: $orange-900;
+      }
+    }
+
+    .iop-article-more {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--bs-border-color);
+      font-weight: 600;
+    }
+  }
+
+  /* The class a testimonial page puts on a photo in its article. */
+  :global(.iop-article-img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 2.25rem 0;
+    border-radius: $iop-radius;
+    box-shadow: $iop-shadow-float;
+    background-color: $iop-placeholder;
+  }
+</style>

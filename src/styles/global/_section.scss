@@ -1,0 +1,87 @@
+@use "../functions" as *;
+@use "../tokens" as *;
+
+// The bands a page is built from, and the heading a band opens with.
+
+/* ---- Bands ---- */
+
+.iop-section {
+  padding-block: clamp(4rem, 9vw, 6.5rem);
+}
+
+/* Section anchors land below the fixed nav rather than under it. */
+.iop-section[id] {
+  scroll-margin-top: calc(var(--nav-height) + 1rem);
+}
+
+.iop-section-tinted {
+  background-color: tint-color($orange-50, 45%);
+}
+
+/* A dark band, so a video section stands apart from the light and tinted sections on either side of it. */
+.iop-section-dark {
+  color: #fff;
+  background-color: $iop-ink;
+}
+
+/* A page that opens on a plain band instead of a photo, so it clears the fixed nav itself.
+ * Comes after .iop-section, whose padding it overrides. */
+.iop-page-top {
+  padding-top: calc(var(--nav-height) + clamp(3rem, 8vw, 5.5rem));
+}
+
+/* ---- Heading ---- */
+
+.iop-kicker {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $orange-800;
+}
+
+.iop-title {
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: $iop-ink;
+}
+
+.iop-intro {
+  max-width: 42rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--bs-secondary-color);
+}
+
+/* ---- On a dark band ---- */
+
+.iop-section-dark {
+  .iop-kicker {
+    color: $orange-300;
+  }
+
+  .iop-title {
+    color: #fff;
+  }
+
+  .iop-intro {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+/* The link that leads on from a dark band. */
+.iop-more {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-weight: 600;
+  color: $orange-300;
+
+  &:hover {
+    color: $orange-200;
+  }
+}

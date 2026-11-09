@@ -1,0 +1,14 @@
+@use "../functions" as *;
+@use "../tokens" as *;
+
+/* Long-form reading, held to a comfortable measure. */
+.iop-prose {
+  max-width: 44rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: tint-color($iop-ink, 15%);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
