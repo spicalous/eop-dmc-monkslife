@@ -11,25 +11,19 @@ import IconBoxArrowUpRight from '../components/icons/IconBoxArrowUpRight.astro'
 import { FORM_LINK } from '../config/site'
 import { ordinations } from '../data/ordinations'
 import hero from '../assets/images/2025/1754780918399-min.jpg'
-import jay from '../assets/images/testimonials/2026-07-1.jpeg'
-import martin from '../assets/images/testimonials/2026-07-3.jpg'
-import enevald from '../assets/images/testimonials/2026-07-4.jpg'
 import heiko from '../assets/images/testimonials/2026-07-5.jpeg'
+import jay from '../assets/images/testimonials/2026-07-1.jpeg'
+import allan from '../assets/images/testimonials/2026-05-1.jpeg'
+import kris from '../assets/images/testimonials/2026-05-2.jpg'
 
+/* The first four from the testimonials page, in its order. Each quote is word for word from that person's own page. */
 const voices = [
   {
-    image: martin,
-    name: 'Martin',
-    detail: 'Berlin, Germany. Ordained at 27',
-    quote: 'Since arriving here I meditate every day with the monks. Their teaching and the practice have helped me gain more control over myself, more inner peace, more happiness, and greater mindfulness.',
-    href: '/testimonials/testimonial/2026-07-3/',
-  },
-  {
-    image: enevald,
-    name: 'Enevald',
-    detail: 'Norway. Ordained at 60',
-    quote: 'I used to carry a lot of anger. The teachings and the daily life as a monk have helped me become a better person and more peaceful every day.',
-    href: '/testimonials/testimonial/2026-07-4/',
+    image: heiko,
+    name: 'Heiko',
+    detail: 'Returning participant',
+    quote: "It's much more than a normal retreat I would say, and that's why I'm here again.",
+    href: '/testimonials/testimonial/2026-07-5/',
   },
   {
     image: jay,
@@ -39,11 +33,18 @@ const voices = [
     href: '/testimonials/testimonial/2026-07-1/',
   },
   {
-    image: heiko,
-    name: 'Heiko',
-    detail: 'Returning participant',
-    quote: "It's much more than a normal retreat I would say, and that's why I'm here again.",
-    href: '/testimonials/testimonial/2026-07-5/',
+    image: allan,
+    name: 'Allan',
+    detail: 'Denmark',
+    quote: 'I am returning home, not only with a few experiences richer, but as a richer person in a mental sense.',
+    href: '/testimonials/testimonial/2026-05-1/',
+  },
+  {
+    image: kris,
+    name: 'Kris',
+    detail: 'Lede, Belgium',
+    quote: 'Everyone should actually learn to meditate. Something that happens far too little in our busy Western lives, but which helps to find the positive in a stressful life.',
+    href: '/testimonials/testimonial/2026-05-2/',
   },
 ]
 
